@@ -1,18 +1,11 @@
 package com.vahsikelebek
 
-import com.lagradost.cloudstream3.HomePageResponse
-import com.lagradost.cloudstream3.LoadResponse
-import com.lagradost.cloudstream3.MainAPI
-import com.lagradost.cloudstream3.MainPageRequest
-import com.lagradost.cloudstream3.SearchResponse
-import com.lagradost.cloudstream3.SubtitleFile
-import com.lagradost.cloudstream3.TvType
-import com.lagradost.cloudstream3.newHomePageResponse
+import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.ExtractorLink
 
 /**
- * Vahşi Kelebek - özel Cloudstream sağlayıcısı.
- * Bu dosya örnek/başlangıç iskeletidir; kendi kaynak mantığınızı buraya ekleyebilirsiniz.
+ * Vahşi Kelebek - genel amaçlı özel Cloudstream sağlayıcı iskeleti.
+ * Kendi kaynak mantığınızı buraya ekleyebilirsiniz.
  */
 class VahsiKelebekProvider : MainAPI() {
     override var mainUrl = "https://example.org"

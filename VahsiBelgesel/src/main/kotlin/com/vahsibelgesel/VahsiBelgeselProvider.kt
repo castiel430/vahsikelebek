@@ -1,13 +1,6 @@
 package com.vahsibelgesel
 
-import com.lagradost.cloudstream3.HomePageResponse
-import com.lagradost.cloudstream3.LoadResponse
-import com.lagradost.cloudstream3.MainAPI
-import com.lagradost.cloudstream3.MainPageRequest
-import com.lagradost.cloudstream3.SearchResponse
-import com.lagradost.cloudstream3.SubtitleFile
-import com.lagradost.cloudstream3.TvType
-import com.lagradost.cloudstream3.newHomePageResponse
+import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.ExtractorLink
 
 class VahsiBelgeselProvider : MainAPI() {
@@ -23,9 +16,12 @@ class VahsiBelgeselProvider : MainAPI() {
         newHomePageResponse(request.name, emptyList())
 
     override suspend fun search(query: String): List<SearchResponse> = emptyList()
+
     override suspend fun load(url: String): LoadResponse? = null
+
     override suspend fun loadLinks(
-        data: String, isCasting: Boolean,
+        data: String,
+        isCasting: Boolean,
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ): Boolean = false
