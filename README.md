@@ -21,14 +21,17 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek/main/repo.json
   - `src/main/kotlin/com/vahsikelebek/VahsiKelebekProvider.kt` — sağlayıcı (MainAPI) iskeleti
 - `.github/workflows/build.yml` — push sonrası `.cs3` ve `plugins.json` üretip `builds` dalına gönderir
 
-## Özel eklenti kodu
+## Özel eklenti modülleri (tamamı bu repoya özel yazıldı)
 
-`VahsiKelebekProvider` şu an özel bir başlangıç iskeletidir:
-- Dil: Türkçe (`tr`)
-- Türler: Film ve Dizi
-- `getMainPage`, `search`, `load`, `loadLinks` metotları size özel mantık eklemeniz için hazır
+| Modül | Açıklama | Türler |
+|---|---|---|
+| `VahsiKelebek` | Genel amaçlı özel sağlayıcı iskeleti | Film, Dizi |
+| `VahsiFilm` | Film odaklı özel sağlayıcı iskeleti | Film |
+| `VahsiDizi` | Dizi odaklı özel sağlayıcı iskeleti | Dizi |
+| `VahsiAnime` | Anime/animasyon odaklı özel sağlayıcı iskeleti | Anime, AnimeMovie, OVA |
+| `VahsiBelgesel` | Belgesel odaklı özel sağlayıcı iskeleti | Belgesel |
 
-Kendi kaynak/site mantığınızı bu dosyalara ekleyerek eklentiyi geliştirebilirsiniz.
+Tüm modüller `com.vahsi*` paketleri altında, örneklerden esinlenerek **birebir kopyalanmadan** bu projeye özel olarak yazılmıştır. `getMainPage`, `search`, `load`, `loadLinks` metotları kendi kaynak mantığınızı eklemeniz için hazırdır.
 
 ## Derleme ve yayınlama (GitHub Actions)
 
