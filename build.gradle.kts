@@ -70,6 +70,9 @@ subprojects {
                 )
             }
         }
+
+        sourceSets["main"].java.srcDir(rootProject.file("Common/src/main/kotlin"))
+        sourceSets["main"].java.srcDir(rootProject.file("WioCommon/src/main/kotlin"))
     }
 
 
