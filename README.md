@@ -10,6 +10,7 @@ Cloudstream uygulamasında:
 2. **Depo ekle** diyerek aşağıdaki kısa kodu veya URL'yi girin:
 
 - **Depo URL:** `https://raw.githubusercontent.com/castiel430/vahsikelebek/main/repo.json`
+- **Kısa Kod (kendi listenize eklerseniz):** repo URL'sini Cloudstream'de "Depo ekle" alanına yapıştırın.
 
 ## İçerik
 
