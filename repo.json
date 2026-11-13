@@ -1,8 +1,8 @@
 {
   "name": "Vahşi Kelebek",
-  "description": "Vahşi Kelebek Cloudstream eklenti deposu.",
+  "description": "Vahşi Kelebek - Cloudstream için özel (custom) eklenti deposu ve kaynak kodları.",
   "manifestVersion": 1,
   "pluginLists": [
-    "https://raw.githubusercontent.com/castiel430/vahsikelebek/main/plugins.json"
+    "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/plugins.json"
   ]
 }
