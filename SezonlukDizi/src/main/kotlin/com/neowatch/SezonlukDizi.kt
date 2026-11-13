@@ -285,7 +285,7 @@ class SezonlukDizi : MainAPI() {
         return found
     }
 
-    private fun renameLink(link: ExtractorLink, newName: String): ExtractorLink =
+    private suspend fun renameLink(link: ExtractorLink, newName: String): ExtractorLink =
         newExtractorLink(newName, newName, link.url, link.type) {
             this.referer = link.referer ?: "$mainUrl/"
             this.quality = link.quality
