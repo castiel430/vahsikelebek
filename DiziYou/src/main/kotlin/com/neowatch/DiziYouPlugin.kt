@@ -1,12 +1,12 @@
-package com.hdfilmcehennemi
+package com.neowatch
 
-import android.content.Context
 import com.lagradost.cloudstream3.plugins.CloudstreamPlugin
 import com.lagradost.cloudstream3.plugins.Plugin
+import android.content.Context
 
 @CloudstreamPlugin
-class HDFilmCehennemiPlugin : Plugin() {
+class DiziYouPlugin: Plugin() {
     override fun load(context: Context) {
-        registerMainAPI(HDFilmCehennemiProvider())
+        registerMainAPI(DiziYou())
     }
 }

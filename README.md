@@ -16,13 +16,28 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek/main/repo.json
 
 - `repo.json` — Cloudstream depo manifesti (Cloudstream bu dosyayı okur)
 - `build.gradle.kts`, `settings.gradle.kts`, `gradle/` — çoklu eklenti (multi-module) Gradle projesi
-- `VahsiKelebek/` — **özel eklenti modülü** (bize ait kaynak kod)
-  - `src/main/kotlin/com/vahsikelebek/VahsiKelebekPlugin.kt` — eklenti girişi
-  - `src/main/kotlin/com/vahsikelebek/VahsiKelebekProvider.kt` — sağlayıcı (MainAPI) iskeleti
+- `*/` — her eklenti için ayrı modül (`build.gradle.kts` + `src/main/...`)
 - `.github/workflows/build.yml` — push sonrası `.cs3` ve `plugins.json` üretip `builds` dalına gönderir
+- `scripts/` — domain kontrol aracı (`check_domains.py`, `domains.json`)
 
-## Özel eklenti modülleri (tamamı bu repoya özel yazıldı)
+## Eklenti modülleri
 
+### Hazır/çalışır sağlayıcı modülleri (nuviotr listesindeki açık kaynak Cloudstream depolarından alınarak bu repoya dahil edildi)
+| Modül | Hedef site | Türler |
+|---|---|---|
+| `HDFilmCehennemi` | hdfilmcehennemi.nl | Film, Dizi |
+| `SezonlukDizi` | sezonlukdizi.cc | Dizi |
+| `FilmMakinesi` | filmmakinesi.to | Film, Dizi |
+| `FullHDFilmizlesene` | fullhdfilmizlesene.de | Film |
+| `DiziYou` | diziyou.one | Dizi |
+| `SetFilmIzle` | setfilmizle.de | Film, Dizi |
+| `DiziBox` | dizibox.live | Dizi |
+| `DiziMom` | ddizimom.net | Dizi |
+| `DiziPal` | dizipal2145.com | Dizi |
+| `BelgeselX` | belgeselx.com | Belgesel/Video |
+| `AnimeciX` | animecix.tv | Anime |
+
+### Özel iskelet modüller (bu repoda özel yazıldı)
 | Modül | Açıklama | Türler |
 |---|---|---|
 | `VahsiKelebek` | Genel amaçlı özel sağlayıcı iskeleti | Film, Dizi |
@@ -30,10 +45,8 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek/main/repo.json
 | `VahsiDizi` | Dizi odaklı özel sağlayıcı iskeleti | Dizi |
 | `VahsiAnime` | Anime/animasyon odaklı özel sağlayıcı iskeleti | Anime, AnimeMovie, OVA |
 | `VahsiBelgesel` | Belgesel odaklı özel sağlayıcı iskeleti | Belgesel |
-| `HDFilmCehennemi` | HDFilmCehennemi için özel yazılmış sağlayıcı (sayfa/arama/yükleme mantığı) | Film, Dizi |
-| `SezonlukDizi` | SezonlukDizi için özel yazılmış sağlayıcı iskeleti | Dizi |
 
-Tüm modüller `com.vahsi*` paketleri altında, örneklerden esinlenerek **birebir kopyalanmadan** bu projeye özel olarak yazılmıştır. `getMainPage`, `search`, `load`, `loadLinks` metotları kendi kaynak mantığınızı eklemeniz için hazırdır.
+> Not: Hazır modüller ilgili açık kaynak eklenti depolarındaki kaynaklardan alınmış olup; site yapıları ve alan adları zamanla değişebilir. `scripts/check_domains.py` ile domain durumlarını kontrol edebilir, gerekli güncellemeleri modül içinden yapabilirsiniz.
 
 ## Derleme ve yayınlama (GitHub Actions)
 

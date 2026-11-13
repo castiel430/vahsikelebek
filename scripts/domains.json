@@ -1,12 +1,15 @@
 {
   "sites": [
-    {
-      "name": "HDFilmCehennemi",
-      "url": "https://www.hdfilmcehennemi.nl/"
-    },
-    {
-      "name": "SezonlukDizi",
-      "url": "https://sezonlukdizi6.com/"
-    }
+    { "name": "HDFilmCehennemi", "url": "https://www.hdfilmcehennemi.nl/" },
+    { "name": "SezonlukDizi", "url": "https://sezonlukdizi.cc/" },
+    { "name": "FilmMakinesi", "url": "https://filmmakinesi.to/" },
+    { "name": "FullHDFilmizlesene", "url": "https://www.fullhdfilmizlesene.de/" },
+    { "name": "DiziYou", "url": "https://www.diziyou.one/" },
+    { "name": "SetFilmIzle", "url": "https://www.setfilmizle.de/" },
+    { "name": "DiziBox", "url": "https://www.dizibox.live/" },
+    { "name": "DiziMom", "url": "https://ddizimom.net/" },
+    { "name": "DiziPal", "url": "https://dizipal2145.com/" },
+    { "name": "BelgeselX", "url": "https://belgeselx.com/" },
+    { "name": "AnimeciX", "url": "https://animecix.tv/" }
   ]
 }
