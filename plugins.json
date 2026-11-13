@@ -1,1 +1,338 @@
-﻿[]
+[
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=animecix.net&sz=%size%",
+        "fileHash": "sha256-4abf765d15caecf18cdc097208fb8d9c9c664bc4a45d96eb0fb2ff7c6dba836b",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 22520,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "NeO",
+            "inatchii",
+            "JustRelaxable"
+        ],
+        "tvTypes": [
+            "Anime"
+        ],
+        "version": 9,
+        "internalName": "AnimeciX",
+        "description": "AnimeciX, animeleri ke\u015ffedebilece\u011finiz ve animeler hakk\u0131nda her \u015feyi \u00f6\u011frenebilece\u011finiz bir payla\u015f\u0131m platformudur.",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/AnimeciX.cs3",
+        "name": "AnimeciX"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=belgeselx.com&sz=%size%",
+        "fileHash": "sha256-6ae003eb9c80bb0367f10ed4c6065db20b302dd6fa8d57f6168151ef7a8cfca7",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 31084,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "NeO",
+            "JustRelaxable"
+        ],
+        "tvTypes": [
+            "Documentary"
+        ],
+        "version": 6,
+        "internalName": "BelgeselX",
+        "description": "En yeni belgeseller, t\u00fcrk\u00e7e altyaz\u0131l\u0131 yada dublaj olarak 1080p kalitesinde HD belgesel izle.",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/BelgeselX.cs3",
+        "name": "BelgeselX"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.dizibox.de&sz=%size%",
+        "fileHash": "sha256-4d07f2cfd82c97a89bbab015f36ddc8d44d193613e9f710946b39e8f3c7ed58f",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 23407,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "NeO"
+        ],
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "version": 5,
+        "internalName": "DiziBox",
+        "description": "Yabanc\u0131 Dizi izle, T\u00fcm yabanc\u0131 dizilerin yeni ve eski sezonlar\u0131n\u0131 full hd izleyebilece\u011finiz elit site.",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/DiziBox.cs3",
+        "name": "DiziBox"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=ddizimom.net&sz=%size%",
+        "fileHash": "sha256-bade1afb9d6d7bf3fb781b0ead5852a02be528784f0f0341cc6aa4294d065639",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 40903,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "NeO"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "Anime"
+        ],
+        "version": 15,
+        "internalName": "DiziMom",
+        "description": "Binlerce yerli yabanc\u0131 dizi, film ve anime ar\u015fivi, t\u00fcm sezonlar, kesintisiz b\u00f6l\u00fcmler. DiziMom heryerde seninle!",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/DiziMom.cs3",
+        "name": "DiziMom"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=https://dizipal2145.com&sz=%size%",
+        "fileHash": "sha256-c0640747a32d619b29c5194ba17e51c1af069a49202146ff99fc819660c70cb7",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 35292,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "NeO",
+            "muratcesmecioglu"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 36,
+        "internalName": "DiziPal",
+        "description": "en yeni dizileri g\u00fcvenli ve h\u0131zl\u0131 \u015fekilde sunar.",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/DiziPal.cs3",
+        "name": "DiziPal"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.diziyou.one&sz=%size%",
+        "fileHash": "sha256-4d7374a3ef246fbb63f2f3900e8bd36fef927d765d6355d49f054f0cb54aae0d",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 15143,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "NeO"
+        ],
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "version": 9,
+        "internalName": "DiziYou",
+        "description": "Diziyou en kaliteli T\u00fcrk\u00e7e dublaj ve altyaz\u0131l\u0131 yabanc\u0131 dizi izleme sitesidir. G\u00fcncel ve efsanevi dizileri 1080p Full HD kalitede izlemek i\u00e7in hemen t\u0131kla!",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/DiziYou.cs3",
+        "name": "DiziYou"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=https://filmmakinesi.to&sz=%size%",
+        "fileHash": "sha256-417398fe172de9b0fde7d1ed43e780e7828d5668df63cf40b9d2bbe5807c8836",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 26392,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "NeO",
+            "usdogu"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 8,
+        "internalName": "FilmMakinesi",
+        "description": "Film Makinesi, en yeni ve en g\u00fcncel filmleri sitemizde full HD kalite fark\u0131 ile izleyebilirsiniz. HD film izle denildi\u011finde akla gelen en kaliteli film izleme sitesi.",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/FilmMakinesi.cs3",
+        "name": "FilmMakinesi"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=https://www.fullhdfilmizlesene.now&sz=%size%",
+        "fileHash": "sha256-5102228ae8b21d2afad0cb190c51de0c59a90eb361a501f0802e1e18099aba18",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 22896,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "NeO"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 5,
+        "internalName": "FullHDFilmizlesene",
+        "description": "Sinema zevkini evinize kadar getirdik. T\u00fcrkiye'nin lider Film sitesinde, en yeni filmleri Full HD izleyin.",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/FullHDFilmizlesene.cs3",
+        "name": "FullHDFilmizlesene"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=https://www.hdfilmcehennemi.nl&sz=%size%",
+        "fileHash": "sha256-c9275c816ac56f51010245bee7b16dd81639c95575544c795f945f7a5c831223",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 28336,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "hexated",
+            "NeO"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 19,
+        "internalName": "HDFilmCehennemi",
+        "description": "T\u00fcrkiye'nin en h\u0131zl\u0131 hd film izleme sitesi",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/HDFilmCehennemi.cs3",
+        "name": "HDFilmCehennemi"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.setfilmizle.ltd&sz=%size%",
+        "fileHash": "sha256-acc7c920b46adace1dd468b60216d5c13f7e35eda52198f1aad16f4515251a17",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 31244,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "NeO"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 11,
+        "internalName": "SetFilmIzle",
+        "description": "Setfilmizle sitemizde, donma ya\u015famadan T\u00fcrk\u00e7e dublaj ve altyaz\u0131l\u0131 filmleri ile dizileri muhte\u015fem 1080p full HD kalitesinde izleyebilirsiniz.",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/SetFilmIzle.cs3",
+        "name": "SetFilmIzle"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=https://sezonlukdizi.cc&sz=%size%",
+        "fileHash": "sha256-60a1d308ab1cdf4bd61ce3a4d09129cd1437a99a27b2c78c270a77afcc8700da",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 23517,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "NeO",
+            "JustRelaxable"
+        ],
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "version": 3,
+        "internalName": "SezonlukDizi",
+        "description": "G\u00fcncel ve eski dizileri en iyi g\u00f6r\u00fcnt\u00fc kalitesiyle bulabilece\u011finiz yabanc\u0131 dizi izleme siteniz.",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/SezonlukDizi.cs3",
+        "name": "SezonlukDizi"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=example.org&sz=128",
+        "fileHash": "sha256-18d1303b9ba6c7704fde21342c8d7c3f55e1faafedb1e8f96d6dc0227004db89",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 3265,
+        "status": 3,
+        "language": "tr",
+        "authors": [
+            "vahsikelebek"
+        ],
+        "tvTypes": [
+            "Anime",
+            "AnimeMovie",
+            "OVA"
+        ],
+        "version": 1,
+        "internalName": "VahsiAnime",
+        "description": "Vah\u015fi Anime: Anime ve animasyon odakl\u0131 \u00f6zel Cloudstream eklentisi (iskele).",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/VahsiAnime.cs3",
+        "name": "VahsiAnime"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=example.org&sz=128",
+        "fileHash": "sha256-480aaa92f13f1f35231fedb2da36c0949be8939c1f398fe519ce7c11b10a4a5d",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 3210,
+        "status": 3,
+        "language": "tr",
+        "authors": [
+            "vahsikelebek"
+        ],
+        "tvTypes": [
+            "Documentary"
+        ],
+        "version": 1,
+        "internalName": "VahsiBelgesel",
+        "description": "Vah\u015fi Belgesel: Belgesel ve ger\u00e7ek ya\u015fam i\u00e7erikleri i\u00e7in \u00f6zel Cloudstream eklentisi (iskele).",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/VahsiBelgesel.cs3",
+        "name": "VahsiBelgesel"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=example.org&sz=128",
+        "fileHash": "sha256-7ed02d106ae24fd4b243fbcac04cd05e99c915cd941cf330ba186527c21aab95",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 3197,
+        "status": 3,
+        "language": "tr",
+        "authors": [
+            "vahsikelebek"
+        ],
+        "tvTypes": [
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "VahsiDizi",
+        "description": "Vah\u015fi Dizi: T\u00fcrk\u00e7e dizi odakl\u0131 \u00f6zel Cloudstream eklentisi (iskele).",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/VahsiDizi.cs3",
+        "name": "VahsiDizi"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=example.org&sz=128",
+        "fileHash": "sha256-d8ebbfae094ad9b9c54547005705e44a3da20e6a1053f1d3a8b24b3a60107040",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 3195,
+        "status": 3,
+        "language": "tr",
+        "authors": [
+            "vahsikelebek"
+        ],
+        "tvTypes": [
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "VahsiFilm",
+        "description": "Vah\u015fi Film: T\u00fcrk\u00e7e film odakl\u0131 \u00f6zel Cloudstream eklentisi (iskele).",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/VahsiFilm.cs3",
+        "name": "VahsiFilm"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/castiel430/vahsikelebek/main/icon.png",
+        "fileHash": "sha256-e7f51235a456225179bf19bd6606c2033a87986de1e9f5b2ed13704549499955",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 3317,
+        "status": 3,
+        "language": "tr",
+        "authors": [
+            "vahsikelebek"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "VahsiKelebek",
+        "description": "Vah\u015fi Kelebek: Cloudstream i\u00e7in \u00f6zel T\u00fcrk\u00e7e eklenti \u015fablonu (kaynak kodu taraf\u0131n\u0131zca geli\u015ftirilebilir).",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/VahsiKelebek.cs3",
+        "name": "VahsiKelebek"
+    }
+]
