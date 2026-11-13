@@ -50,6 +50,19 @@ Bu makinede Android SDK/Java kurulu olmadığı için yerelde derleme yapılmad�
 
 Yeni bir klasör (ör. `YeniEklenti/`) oluşturup içinde `build.gradle.kts` ve `src/main/...` kaynaklarını ekleyin. `settings.gradle.kts` kök dizindeki modülleri otomatik algılar; GitHub Actions derlemesi yeni modülü de paketler.
 
+## Domain değişikliklerini kontrol etme (Python)
+
+Web sitelerinin güncel adres/domain değişikliklerini kontrol etmek için `scripts/check_domains.py` aracı eklenmiştir.
+
+```bash
+python scripts/check_domains.py
+python scripts/check_domains.py --file scripts/domains.json
+python scripts/check_domains.py --json
+```
+
+- İzlenen siteler: `scripts/domains.json`
+- Script, verilen URL'lere istek atar, yönlendirmeleri takip eder ve giriş domaini ile son domaini karşılaştırarak olası değişiklikleri raporlar.
+
 ## Kaynak/Referans
 
 Yapı, [Cloudstream eklenti sistemi](https://github.com/recloudstream/cloudstream) ve yaygın Cloudstream depo şablonları incelenerek **bu projeye özel** şekilde hazırlanmıştır.
