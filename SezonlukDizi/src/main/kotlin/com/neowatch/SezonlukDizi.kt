@@ -285,12 +285,17 @@ class SezonlukDizi : MainAPI() {
         return found
     }
 
-    private suspend fun renameLink(link: ExtractorLink, newName: String): ExtractorLink =
-        newExtractorLink(newName, newName, link.url, link.type) {
-            this.referer = link.referer ?: "$mainUrl/"
-            this.quality = link.quality
-            this.headers = link.headers ?: emptyMap()
-        }
+    private fun renameLink(link: ExtractorLink, newName: String): ExtractorLink = ExtractorLink(
+        source = link.source ?: newName,
+        name = newName,
+        url = link.url ?: "",
+        referer = link.referer ?: "$mainUrl/",
+        quality = link.quality,
+        headers = link.headers ?: emptyMap(),
+        extractorData = link.extractorData,
+        type = link.type,
+        audioTracks = link.audioTracks ?: emptyList()
+    )
 
     private suspend fun extractRuby(
         iframe: String,
