@@ -30,6 +30,8 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek/main/repo.json
 | `VahsiDizi` | Dizi odaklı özel sağlayıcı iskeleti | Dizi |
 | `VahsiAnime` | Anime/animasyon odaklı özel sağlayıcı iskeleti | Anime, AnimeMovie, OVA |
 | `VahsiBelgesel` | Belgesel odaklı özel sağlayıcı iskeleti | Belgesel |
+| `HDFilmCehennemi` | HDFilmCehennemi için özel yazılmış sağlayıcı (sayfa/arama/yükleme mantığı) | Film, Dizi |
+| `SezonlukDizi` | SezonlukDizi için özel yazılmış sağlayıcı iskeleti | Dizi |
 
 Tüm modüller `com.vahsi*` paketleri altında, örneklerden esinlenerek **birebir kopyalanmadan** bu projeye özel olarak yazılmıştır. `getMainPage`, `search`, `load`, `loadLinks` metotları kendi kaynak mantığınızı eklemeniz için hazırdır.
 
