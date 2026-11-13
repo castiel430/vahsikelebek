@@ -1,9 +1,9 @@
-version = 3
+version = 4
 
 cloudstream {
-    authors     = listOf("NeO","JustRelaxable")
+    authors     = listOf("NeO", "Blockades", "vahsikelebek")
     language    = "tr"
-    description = "Güncel ve eski dizileri en iyi görüntü kalitesiyle bulabileceğiniz yabancı dizi izleme siteniz."
+    description = "SezonlukDizi (sezonlukdizi.cc) - altyazılı ve dublajlı yabancı diziler. Not: sitenin bazı kaynakları Cloudflare doğrulaması istediği için captcha'sız kaynaklar (VideoMoly/Filemoon/Streamruby) kullanılır."
 
     /**
      * Status int as the following:
@@ -12,7 +12,7 @@ cloudstream {
      * 2: Slow
      * 3: Beta only
     **/
-    status  = 1 // will be 3 if unspecified
+    status  = 2 // bazı kaynaklar captcha arkasında
     tvTypes = listOf("TvSeries")
-    iconUrl = "https://www.google.com/s2/favicons?domain=https://sezonlukdizi.cc&sz=%size%"
+    iconUrl = "https://www.google.com/s2/favicons?domain=sezonlukdizi.cc&sz=%size%"
 }

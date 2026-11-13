@@ -37,14 +37,9 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek/main/repo.json
 | `BelgeselX` | belgeselx.com | Belgesel/Video |
 | `AnimeciX` | animecix.tv | Anime |
 
-### Özel iskelet modüller (bu repoda özel yazıldı)
-| Modül | Açıklama | Türler |
-|---|---|---|
-| `VahsiKelebek` | Genel amaçlı özel sağlayıcı iskeleti | Film, Dizi |
-| `VahsiFilm` | Film odaklı özel sağlayıcı iskeleti | Film |
-| `VahsiDizi` | Dizi odaklı özel sağlayıcı iskeleti | Dizi |
-| `VahsiAnime` | Anime/animasyon odaklı özel sağlayıcı iskeleti | Anime, AnimeMovie, OVA |
-| `VahsiBelgesel` | Belgesel odaklı özel sağlayıcı iskeleti | Belgesel |
+> Boş/islevsiz iskelet modüller (eski `VahsiKelebek`, `VahsiFilm`, `VahsiDizi`, `VahsiAnime`, `VahsiBelgesel`) kaldırıldı; depoda yalnızca gerçek site sağlayıcıları bulunur.
+
+> **SezonlukDizi notu:** Site, kaynaklarının çoğunu Cloudflare Turnstile (captcha) arkasına aldı. Eklenti captcha istemeyen kaynakları (Streamruby/Filemoon/VideoMoly) kullanır; captcha'lı kaynaklar otomatik atlanır.
 
 > Not: Hazır modüller ilgili açık kaynak eklenti depolarındaki kaynaklardan alınmış olup; site yapıları ve alan adları zamanla değişebilir. `scripts/check_domains.py` ile domain durumlarını kontrol edebilir, gerekli güncellemeleri modül içinden yapabilirsiniz.
 
