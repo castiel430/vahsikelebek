@@ -1,0 +1,9 @@
+{
+  "name": "Vahşi Kelebek",
+  "description": "Vahşi Kelebek Cloudstream eklenti deposu.",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/castiel430/vahsikelebek/main/plugins.json"
+  ],
+  "iconUrl": "https://raw.githubusercontent.com/castiel430/vahsikelebek/main/icon.png"
+}
