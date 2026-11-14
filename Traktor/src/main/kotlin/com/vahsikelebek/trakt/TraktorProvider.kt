@@ -6,10 +6,10 @@ import com.lagradost.cloudstream3.MainAPI
 @TraktProvider
 class TraktorProvider : MainAPI() {
 
-    /** Trakt.tv client ID (Boş bırakılırsa otomatik kullanılmaz) */
+    /** Trakt.tv client ID (Kullanıcı ayarılır) */
     var traktClientId: String = ""
 
-    /** Trakt.tv API endpoint'i */
+    /** Trakt API endpoint'i */
     const val API_BASE_URL = "https://api.trakt.tv"
 
     /** Trakt API scope'u */
