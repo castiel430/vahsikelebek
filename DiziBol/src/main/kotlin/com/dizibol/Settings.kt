@@ -1,5 +1,5 @@
 package com.dizibol
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_dizibol")
+object Settings : BaseSettings("vahsikelebek_dizibol")

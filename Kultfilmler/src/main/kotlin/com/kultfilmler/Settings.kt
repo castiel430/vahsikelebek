@@ -1,5 +1,5 @@
 package com.kultfilmler
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_kultfilmler")
+object Settings : BaseSettings("vahsikelebek_kultfilmler")

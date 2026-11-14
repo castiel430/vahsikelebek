@@ -1,5 +1,5 @@
 package com.ultrafilmizle
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_ultrafilmizle")
+object Settings : BaseSettings("vahsikelebek_ultrafilmizle")

@@ -1,5 +1,5 @@
 package com.minikago
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_minikago")
+object Settings : BaseSettings("vahsikelebek_minikago")

@@ -1,5 +1,5 @@
 package com.startv
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_startv")
+object Settings : BaseSettings("vahsikelebek_startv")

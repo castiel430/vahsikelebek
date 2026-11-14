@@ -1,5 +1,5 @@
 package com.sinemacx
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_sinemacx")
+object Settings : BaseSettings("vahsikelebek_sinemacx")

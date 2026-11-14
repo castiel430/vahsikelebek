@@ -1,7 +1,7 @@
 package com.sinemacx
 
 import android.util.Base64
-import com.bigbull.common.browserHeaders
+import com.vahsikelebek.common.browserHeaders
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse

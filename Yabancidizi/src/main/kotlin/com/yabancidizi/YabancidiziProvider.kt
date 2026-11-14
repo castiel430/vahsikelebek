@@ -1,7 +1,7 @@
 package com.yabancidizi
 
-import com.bigbull.common.pichiveSign
-import com.bigbull.common.browserHeaders
+import com.vahsikelebek.common.pichiveSign
+import com.vahsikelebek.common.browserHeaders
 import com.lagradost.cloudstream3.Actor
 import com.lagradost.cloudstream3.ActorData
 import com.lagradost.cloudstream3.Episode

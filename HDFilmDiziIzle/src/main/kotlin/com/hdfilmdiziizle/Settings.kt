@@ -1,5 +1,5 @@
 package com.hdfilmdiziizle
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_hdfilmdiziizle")
+object Settings : BaseSettings("vahsikelebek_hdfilmdiziizle")

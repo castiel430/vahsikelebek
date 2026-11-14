@@ -1,7 +1,7 @@
 package com.dizibal
 
-import com.bigbull.common.browserHeaders
-import com.bigbull.common.posterSrcLazy
+import com.vahsikelebek.common.browserHeaders
+import com.vahsikelebek.common.posterSrcLazy
 import com.lagradost.cloudstream3.Episode
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.HomePageResponse

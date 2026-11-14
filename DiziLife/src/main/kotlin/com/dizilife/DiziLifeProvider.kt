@@ -1,7 +1,7 @@
 package com.dizilife
 
 import android.util.Base64
-import com.bigbull.common.browserHeaders
+import com.vahsikelebek.common.browserHeaders
 import com.lagradost.cloudstream3.Actor
 import com.lagradost.cloudstream3.ActorData
 import com.lagradost.cloudstream3.Episode
@@ -366,7 +366,7 @@ class DiziLifeProvider : MainAPI() {
         val html = runCatching { com.lagradost.cloudstream3.app.get(u, referer = ref, headers = ua).text }.getOrNull().orEmpty().replace("\\/", "/")
         var foundDirect = false
         for (m in Regex("""https?://[^"'\s<>]+\.m3u8(?:\?[^"'\s<>]*)?""").findAll(html)) {
-            val m3u8 = com.bigbull.common.pichiveSign(html, m.value)
+            val m3u8 = com.vahsikelebek.common.pichiveSign(html, m.value)
             callback(com.lagradost.cloudstream3.utils.newExtractorLink(name, name, m3u8, com.lagradost.cloudstream3.utils.ExtractorLinkType.M3U8) {
                 this.referer = u
                 this.quality = com.lagradost.cloudstream3.utils.Qualities.Unknown.value

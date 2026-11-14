@@ -1,5 +1,5 @@
 package com.webteizle
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_webteizle")
+object Settings : BaseSettings("vahsikelebek_webteizle")

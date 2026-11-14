@@ -1,5 +1,5 @@
 package com.webdramaturkey2
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_webdramaturkey2")
+object Settings : BaseSettings("vahsikelebek_webdramaturkey2")

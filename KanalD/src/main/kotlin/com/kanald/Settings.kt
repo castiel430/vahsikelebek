@@ -1,5 +1,5 @@
 package com.kanald
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_kanald")
+object Settings : BaseSettings("vahsikelebek_kanald")

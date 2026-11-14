@@ -1,5 +1,5 @@
 package com.ddizi
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_ddizi")
+object Settings : BaseSettings("vahsikelebek_ddizi")

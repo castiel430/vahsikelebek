@@ -1,5 +1,5 @@
 package com.dizilla
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_dizilla")
+object Settings : BaseSettings("vahsikelebek_dizilla")

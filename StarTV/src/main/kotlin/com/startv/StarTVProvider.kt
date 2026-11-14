@@ -1,6 +1,6 @@
 package com.startv
 
-import com.bigbull.common.posterSrcLazy
+import com.vahsikelebek.common.posterSrcLazy
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse

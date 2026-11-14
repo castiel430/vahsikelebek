@@ -1,7 +1,7 @@
 package com.jetfilmizle
 
-import com.bigbull.common.browserHeaders
-import com.bigbull.common.posterSrcLazy
+import com.vahsikelebek.common.browserHeaders
+import com.vahsikelebek.common.posterSrcLazy
 import com.lagradost.cloudstream3.Actor
 import com.lagradost.cloudstream3.ActorData
 import com.lagradost.cloudstream3.ErrorLoadingException

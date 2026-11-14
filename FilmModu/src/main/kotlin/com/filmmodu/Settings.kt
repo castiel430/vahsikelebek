@@ -1,5 +1,5 @@
 package com.filmmodu
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_filmmodu")
+object Settings : BaseSettings("vahsikelebek_filmmodu")

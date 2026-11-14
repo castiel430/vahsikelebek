@@ -1,6 +1,6 @@
 package com.selcukflix
 
-import com.bigbull.common.pichiveSign
+import com.vahsikelebek.common.pichiveSign
 import android.util.Base64
 import com.lagradost.cloudstream3.Episode
 import com.lagradost.cloudstream3.ErrorLoadingException
@@ -26,7 +26,7 @@ import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.newExtractorLink
-import com.bigbull.common.pbkdf2AesCbcDecrypt
+import com.vahsikelebek.common.pbkdf2AesCbcDecrypt
 import org.json.JSONArray
 import org.json.JSONObject
 import org.jsoup.nodes.Document

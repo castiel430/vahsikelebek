@@ -1,5 +1,5 @@
 package com.dizigom
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_dizigom")
+object Settings : BaseSettings("vahsikelebek_dizigom")

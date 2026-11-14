@@ -13,7 +13,7 @@ import android.util.JsonToken
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.URLEncoder
-import dev.wiojelt.turksinema.common.WioKidsYoutubeFallback
+import com.vahsikelebek.kids.KidsYoutubeFallback
 
 private data class CizgiItem(
     val id: String = "",
@@ -622,8 +622,8 @@ class CizgiVeDiziProvider : MainAPI() {
             )
         }.getOrNull()?.takeIf(String::isNotBlank) else null
 
-        val youtubeFound = if (!found) WioKidsYoutubeFallback.append(
-            query = WioKidsYoutubeFallback.buildQuery(
+        val youtubeFound = if (!found) KidsYoutubeFallback.append(
+            query = KidsYoutubeFallback.buildQuery(
                 seriesTitle = fallbackSeriesTitle ?: pageTitle,
                 episodeTitle = fallbackEpisodeTitle ?: pageTitle,
                 season = fallbackSeason,

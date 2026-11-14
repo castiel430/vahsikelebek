@@ -1,5 +1,5 @@
 package com.minikacocuk
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_minikacocuk")
+object Settings : BaseSettings("vahsikelebek_minikacocuk")

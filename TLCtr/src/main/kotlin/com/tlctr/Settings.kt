@@ -1,5 +1,5 @@
 package com.tlctr
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_tlctr")
+object Settings : BaseSettings("vahsikelebek_tlctr")

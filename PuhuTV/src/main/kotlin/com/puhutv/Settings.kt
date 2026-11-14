@@ -1,5 +1,5 @@
 package com.puhutv
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_puhutv")
+object Settings : BaseSettings("vahsikelebek_puhutv")

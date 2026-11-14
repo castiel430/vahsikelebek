@@ -1,5 +1,5 @@
 package com.dizilife
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_dizilife")
+object Settings : BaseSettings("vahsikelebek_dizilife")

@@ -1,6 +1,6 @@
 package com.tlctr
 
-import com.bigbull.common.browserHeaders
+import com.vahsikelebek.common.browserHeaders
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.Episode
 import com.lagradost.cloudstream3.HomePageResponse

@@ -1,5 +1,5 @@
 package com.cizgimax
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_cizgimax")
+object Settings : BaseSettings("vahsikelebek_cizgimax")

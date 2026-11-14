@@ -1,5 +1,5 @@
 package com.showtv
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_showtv")
+object Settings : BaseSettings("vahsikelebek_showtv")

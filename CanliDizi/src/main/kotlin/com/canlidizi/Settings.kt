@@ -1,5 +1,5 @@
 package com.canlidizi
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_canlidizi")
+object Settings : BaseSettings("vahsikelebek_canlidizi")

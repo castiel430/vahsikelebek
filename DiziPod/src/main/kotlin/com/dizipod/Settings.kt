@@ -1,5 +1,5 @@
 package com.dizipod
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_dizipod")
+object Settings : BaseSettings("vahsikelebek_dizipod")

@@ -1,9 +1,9 @@
 package com.canlidizi
 
-import com.bigbull.common.jsonLdDescription
-import com.bigbull.common.browserHeaders
-import com.bigbull.common.parseHlsVariants
-import com.bigbull.common.posterSrcLazy
+import com.vahsikelebek.common.jsonLdDescription
+import com.vahsikelebek.common.browserHeaders
+import com.vahsikelebek.common.parseHlsVariants
+import com.vahsikelebek.common.posterSrcLazy
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse

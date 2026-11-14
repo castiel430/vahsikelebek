@@ -1,5 +1,5 @@
 package com.dmax
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_dmax")
+object Settings : BaseSettings("vahsikelebek_dmax")

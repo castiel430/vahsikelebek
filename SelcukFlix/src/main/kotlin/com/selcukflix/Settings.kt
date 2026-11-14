@@ -1,5 +1,5 @@
 package com.selcukflix
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_selcukflix")
+object Settings : BaseSettings("vahsikelebek_selcukflix")

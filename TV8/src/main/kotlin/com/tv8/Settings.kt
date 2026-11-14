@@ -1,5 +1,5 @@
 package com.tv8
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_tv8")
+object Settings : BaseSettings("vahsikelebek_tv8")

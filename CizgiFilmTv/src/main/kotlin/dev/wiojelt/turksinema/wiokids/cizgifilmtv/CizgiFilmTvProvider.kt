@@ -2,13 +2,13 @@ package dev.wiojelt.turksinema.wiokids.cizgifilmtv
 
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.ExtractorLink
-import dev.wiojelt.turksinema.common.WioKidsPublicEmbedProvider
+import com.vahsikelebek.kids.KidsPublicEmbedProvider
 import org.jsoup.nodes.Document
 import java.net.URLEncoder
 import java.text.Normalizer
 import java.util.Locale
 
-class CizgiFilmTvProvider : WioKidsPublicEmbedProvider() {
+class CizgiFilmTvProvider : KidsPublicEmbedProvider() {
     override var mainUrl = "https://www.cizgifilm.tv"
     override var name = "ÇizgiFilm TV"
     override var lang = "tr"

@@ -10,7 +10,7 @@ import android.widget.ScrollView
 
 /** Per-plugin preferences: homepage rows. */
 object Settings {
-    private const val FILE = "bigbull_canlitv"
+    private const val FILE = "vahsikelebek_canlitv"
     private const val ROW_KEY = "rows"
     private var prefs: SharedPreferences? = null
 

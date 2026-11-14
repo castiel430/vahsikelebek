@@ -1,5 +1,5 @@
 package com.hdfilmcehennemi2
 
-import com.bigbull.common.BaseSettings
+import com.vahsikelebek.common.BaseSettings
 
-object Settings : BaseSettings("bigbull_hdfilmcehennemi2")
+object Settings : BaseSettings("vahsikelebek_hdfilmcehennemi2")
