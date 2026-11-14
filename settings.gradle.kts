@@ -1,8 +1,9 @@
 rootProject.name = "CloudstreamPlugins"
 
-// This file sets what projects are included. All new projects should get automatically included unless specified in "disabled" variable.
+// This file sets what projects are included. All new projects are automatically
+// included when they contain a `build.gradle.kts`; add their name here to exclude them.
 
-val disabled = listOf("__Temel")
+val disabled = emptyList<String>()
 
 File(rootDir, ".").eachDir { dir ->
     if (!disabled.contains(dir.name) && File(dir, "build.gradle.kts").exists()) {
@@ -14,6 +15,6 @@ fun File.eachDir(block: (File) -> Unit) {
     listFiles()?.filter { it.isDirectory }?.forEach { block(it) }
 }
 
-
-// To only include a single project, comment out the previous lines (except the first one), and include your plugin like so:
+// To only include a single project, comment out the previous lines (except the first one),
+// and include your plugin like so:
 // include("PluginName")

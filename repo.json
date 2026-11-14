@@ -1,7 +1,8 @@
 {
   "name": "Vahşi Kelebek",
-  "description": "Vahşi Kelebek - Cloudstream için özel (custom) Türkçe eklenti deposu (film, dizi, anime ve belgesel).",
+  "description": "Vahşi Kelebek - Cloudstream için Türkçe film, dizi, anime ve belgesel eklenti deposu.",
   "manifestVersion": 1,
+  "iconUrl": "https://github.com/castiel430.png?size=128",
   "pluginLists": [
     "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/plugins.json"
   ]
