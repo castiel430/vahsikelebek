@@ -174,7 +174,7 @@ class HDFilmCehennemi : MainAPI() {
                     referer = data
                 ).text
 
-                val iframe = Regex("""data-src=\\"([^"]+)""").find(apiGet)?.groupValues?.get(1)?.replace("\\", "") ?: return@forEach
+                val iframe = Regex("""data-src=\"([^\"]+)""").find(apiGet)?.groupValues?.get(1)?.replace("\\", "") ?: return@forEach
                 Log.d("HDCH", "$source » $videoID » $iframe")
                 bulundu = true
 

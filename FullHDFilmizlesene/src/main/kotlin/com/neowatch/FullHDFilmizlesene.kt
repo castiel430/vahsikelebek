@@ -135,7 +135,7 @@ class FullHDFilmizlesene : MainAPI() {
 
         val scxData         = Regex("""scx\s*=\s*(\{.*?\});""").find(scriptContent)?.groupValues?.get(1) ?: return emptyList()
         val scxMap: SCXData = jacksonObjectMapper().readValue(scxData)
-        val keys             = listOf("atom", "advid", "advidprox", "proton", "fast", "fastly", "tr", "en")
+        val keys             = listOf("atom", "advid", "advidprox", "proton", "fast", "fastly", "tr", "en", "gd")
 
         val linkList = mutableListOf<Map<String, String>>()
 
@@ -149,6 +149,7 @@ class FullHDFilmizlesene : MainAPI() {
                 "fastly"    -> scxMap.fastly?.sx?.t
                 "tr"        -> scxMap.tr?.sx?.t
                 "en"        -> scxMap.en?.sx?.t
+                "gd"        -> scxMap.gd?.sx?.t
                 else        -> null
             }
 
@@ -206,6 +207,7 @@ class FullHDFilmizlesene : MainAPI() {
         @JsonProperty("fastly")    val fastly: AtomData?    = null,
         @JsonProperty("tr")        val tr: AtomData?        = null,
         @JsonProperty("en")        val en: AtomData?        = null,
+        @JsonProperty("gd")        val gd: AtomData?       = null,
     )
 
     @JsonIgnoreProperties(ignoreUnknown = true)
