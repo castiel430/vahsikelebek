@@ -4,6 +4,6 @@
   "manifestVersion": 1,
   "iconUrl": "https://github.com/castiel430.png?size=128",
   "pluginLists": [
-    "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/plugins.json"
+    "https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/plugins.json"
   ]
 }

@@ -26,10 +26,12 @@ jobs:
         with:
           path: src
 
-      - name: Checkout builds
+      - name: Checkout public builds repo
         uses: actions/checkout@v4
         with:
-          ref: builds
+          repository: castiel430/vahsikelebek-builds
+          ref: main
+          token: ${{ secrets.BUILDS_TOKEN }}
           path: builds
 
       - name: Clean old builds
@@ -55,6 +57,24 @@ jobs:
           find . -path "*/build/*.cs3" -exec cp {} "$GITHUB_WORKSPACE/builds/" \;
           cp build/plugins.json "$GITHUB_WORKSPACE/builds/plugins.json"
 
+      - name: Repo manifestini dağıtım reposuna kopyala
+        run: cp "$GITHUB_WORKSPACE/src/repo.json" "$GITHUB_WORKSPACE/builds/repo.json"
+
+      - name: Plugin URL'lerini public depoya yönlendir
+        run: |
+          python3 - <<'EOF'
+          path = "$GITHUB_WORKSPACE/builds/plugins.json"
+          with open(path, encoding="utf-8") as f:
+              content = f.read()
+          content = content.replace(
+              "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/",
+              "https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/",
+          )
+          with open(path, "w", encoding="utf-8") as f:
+              f.write(content)
+          print("plugins.json URL'leri güncellendi")
+          EOF
+
       - name: Push builds
         run: |
           cd "$GITHUB_WORKSPACE/builds"
@@ -66,4 +86,4 @@ jobs:
             exit 0
           fi
           git commit -m "Build $GITHUB_SHA"
-          git push origin builds
+          git push origin HEAD:main

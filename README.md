@@ -1,36 +1,35 @@
 # Vahşi Kelebek — CloudStream Türkçe Eklenti Deposu
 
-[![Build](https://github.com/castiel430/vahsikelebek/actions/workflows/build.yml/badge.svg)](https://github.com/castiel430/vahsikelebek/actions/workflows/build.yml)
-
 Bu depo, **CloudStream** için hazırlanmış Türkçe film, dizi, anime ve belgesel
-senkron/sağlayıcı eklentilerini içerir. Derlenmiş eklentiler (`.cs3`) ve `plugins.json`,
-GitHub Actions tarafından [`builds`](https://github.com/castiel430/vahsikelebek/tree/builds)
-dalında yayımlanır; depo `main` dalındaki [`repo.json`](repo.json) herkese açıktır.
+senkron/sağlayıcı eklentilerinin **kaynak kodunu** içerir. Kaynak repo **private**'tır;
+derlenmiş eklentiler (`.cs3`), `plugins.json` ve `repo.json` ise public
+[`vahsikelebek-builds`](https://github.com/castiel430/vahsikelebek-builds) reposunda
+yayımlanır (GitHub Actions ile her push sonrası güncellenir).
 
 ## Depoyu CloudStream'e ekleme
 
 CloudStream uygulamasında: **Ayarlar → Eklentiler → Depolar → Depo ekle** ve şu adresi girin:
 
 ```text
-https://raw.githubusercontent.com/castiel430/vahsikelebek/main/repo.json
+https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/repo.json
 ```
 
 > Not: CloudStream, `repo.json` → `plugins.json` → `.cs3` dosyalarını **anonim olarak**
-> `raw.githubusercontent.com` üzerinden indirir. Bu deponun **public** olması bu yüzden
-> gereklidir (bkz. [Gizlilik](#gizlilik-depoyu-private-yapmak)).
+> public `vahsikelebek-builds` reposundan indirir. Bu `repo.json`'un
+> `pluginLists` alanı da o repo'daki `plugins.json`'u işaret eder.
 
 ## Depo yapısı
 
-- `repo.json` — CloudStream depo manifesti (CloudStream bu dosyayı okur)
+- `repo.json` — CloudStream depo manifesti (dağıtım reposuna Actions tarafından kopyalanır)
 - `settings.gradle.kts`, `build.gradle.kts`, `gradle/` — çoklu eklenti (multi-module) Gradle projesi
 - `*/` — her eklenti için ayrı modül (`build.gradle.kts` + `src/main/...`); `build.gradle.kts` içeren her üst dizin otomatik dahil edilir
-- `.github/workflows/build.yml` — push sonrası `.cs3` ve `plugins.json` üretip `builds` dalına gönderir
+- `.github/workflows/build.yml` — push sonrası `.cs3` ve `plugins.json` üretip **public `vahsikelebek-builds` reposuna** gönderir
 - `scripts/` — domain kontrol aracı (`check_domains.py`, `domains.json`)
 
 ## Eklenti listesi
 
 Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
-[`builds/plugins.json`](https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/plugins.json).
+[`builds/plugins.json`](https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/plugins.json).
 
 ### Sağlayıcı modülleri (66)
 
@@ -153,8 +152,14 @@ Trakt.tv API'si kullanılır — başka kodlardan kopyalanmamıştır.
 
 1. `main` dalına yaptığınız değişiklikleri push edin.
 2. **Actions** sekmesinde "Build" iş akışının başarıyla tamamlandığını kontrol edin.
-3. İş akışı `builds` dalına `*.cs3` ve `plugins.json` dosyalarını yazar.
-4. CloudStream, `repo.json` üzerinden bu listeyi kullanarak eklentiyi sunar.
+3. İş akışı `.cs3`, `plugins.json` ve `repo.json` dosyalarını **public
+   [vahsikelebek-builds](https://github.com/castiel430/vahsikelebek-builds)** reposuna push eder
+   (`BUILDS_TOKEN` secret'i ile).
+4. CloudStream, public repodaki `repo.json` üzerinden eklentileri sunar.
+
+> Dağıtım reposunun tekrar oluşturulması gerekirse: repo public olmalı, `main` dalında
+> boş bir başlangıç commit'i bulunmalı ve bu kaynak repoda `BUILDS_TOKEN` secret'ine
+> yazma yetkisi olan bir GitHub token'ı tanımlanmalıdır.
 
 Yerelde derlemek isterseniz JDK 17 ve Android SDK kurulu bir ortamda:
 
@@ -180,30 +185,25 @@ python scripts/check_domains.py --json
 - Script, verilen URL'lere istek atar, yönlendirmeleri takip eder ve olası alan adı
   değişikliklerini raporlar.
 
-## Gizlilik: depoyu private yapmak?
-
-Kısa cevap: **Bu repo private yapılırsa eklentiler kullanıcılara ulaşmaz.**
+## Gizlilik: kaynak repo private, dağıtım repo public
 
 CloudStream, `repo.json` ve `plugins.json`/`.cs3` dosyalarını **anonim HTTPS** ile
-`raw.githubusercontent.com` üzerinden çeker. Repo private olunca bu adresler 404
-döndürür (GitHub token'ı olmadan raw erişim yok), dolayısıyla:
+public `vahsikelebek-builds` reposundan çeker. Bu kaynak repo (`vahsikelebek`) private'tır:
 
-- Depo CloudStream'de hiç eklenemez / güncellenemez,
-- Depodan önceden kurulmuş eklentiler yerelde çalışmaya devam eder ancak
-  güncellemeler gelmez,
-- Yeni eklentiler hiç görünmez.
+- Kaynak kodunuz (eklentilerin yazıldığı Kotlin kodu) başkalarına görünmez,
+- Derlenmiş eklentiler (`.cs3`) yine de herkes tarafından CloudStream'e kurulabilir ve
+  güncellenebilir,
+- `.cs3` dosyaları bayt düzeyinde public olsa da, kaynak koda ulaşmak isteyen birinin
+  `.cs3`'ü decompile etmesi gerekir (çok daha zor).
 
-CloudStream'in depo URL'leri için kimlik doğrulama (token/header) desteği yoktur.
+Sınırlar: önceden kurulum yapmış kullanıcıların tek ihtiyacı public adres; dolayısıyla
+**dağıtım reposu asla private yapılmamalıdır**, aksi halde CloudStream depoyu hiç
+gösteremez. Kaynak repo ziyaret edilemez, klonlanamaz, Issues açma yetkisi yoktur.
 
-**"Sadece bize özel kalsın ama eklentiler kullanılsın" isterseniz:**
-
-1. `main` repo private kalır (kaynak kod size özel),
-2. Yayınlama için ayrı, **public** bir dağıtım reposu açın (ör. `vahsikelebek-builds`) —
-   Actions, derlenmiş `.cs3` ve `plugins.json`'u oraya push eder,
-3. `repo.json` içindeki `pluginLists` bu public repoyu işaret eder.
-
-Böylece kaynak kod gizli kalır, ama eklentiler herkes tarafından kurulabilir. Bunu
-istiyorsanız söyleyin; iş akışını 5 dakikada ayırabilirim.
+Token güvenliği: Actions, dağıtım reposuna push etmek için bu kaynak repoda tanımlı
+`BUILDS_TOKEN` secret'ini kullanır. İsterseniz daha dar yetkili (yalnızca
+`vahsikelebek-builds`, `Contents: Read and write`) bir fine-grained PAT oluşturup
+`gh secret set BUILDS_TOKEN --body "..."` ile değiştirebilirsiniz.
 
 ## Kaynak/Referans
 
