@@ -1,12 +1,12 @@
 package com.vahsikelebek.trakt
 
-import com.lagradost.cloudstream3.Settings
+import com.bigbull.common.BaseSettings
 
 /**
  * Trakt TV ayarları.
  * Kullanıcı Trakt.tv client ID'ını girerek izleme takibini etkinleştirebilir.
  */
-object TraktorSettings : Settings() {
+object TraktorSettings : BaseSettings("traktor_trakt") {
 
     /** Trakt.tv client ID (Trakt.tv'den alınan) */
     var traktClientId: String by default("")
