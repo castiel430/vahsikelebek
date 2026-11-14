@@ -70,8 +70,6 @@ subprojects {
                 )
             }
         }
-
-        sourceSets["main"].java.srcDir(rootProject.file("Traktor/src/main/kotlin"))
     }
 
 
