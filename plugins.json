@@ -1143,6 +1143,27 @@
         "name": "TLCtr"
     },
     {
+        "iconUrl": "https://trakt.tv/apple-touch-icon.png",
+        "fileHash": "sha256-0bf88f785a748278304c9d7fd6bfcd0d7dca2046e875f5715b54df4ab1d7950c",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/castiel430/vahsikelebek",
+        "fileSize": 32168,
+        "status": 1,
+        "language": "tr",
+        "authors": [
+            "vahsikelebek"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "TraktSync",
+        "description": "Trakt Senkron - CloudStream k\u00fct\u00fcphenizi Trakt.tv ile e\u015fitler (izleme listesi ve izlenenler)",
+        "url": "https://raw.githubusercontent.com/castiel430/vahsikelebek/builds/TraktSync.cs3",
+        "name": "TraktSync"
+    },
+    {
         "iconUrl": "https://www.google.com/s2/favicons?domain=turkanime.live&sz=%size%",
         "fileHash": "sha256-03923b5273837bdccd23f06e3079f570ec66255692e42aababe9bd2a6141aa81",
         "apiVersion": 1,
