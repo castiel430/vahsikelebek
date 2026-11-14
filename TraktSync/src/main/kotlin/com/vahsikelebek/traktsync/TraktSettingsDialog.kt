@@ -110,41 +110,47 @@ object TraktSettingsDialog {
                 Toast.makeText(activity, "Client ID ve Secret gerekli", Toast.LENGTH_LONG).show()
                 return
             }
-            val code = TraktApi.requestDeviceCode(TraktSyncConfig.clientId)
-            if (code == null) {
-                Toast.makeText(activity, "Trakt'a bağlanılamadı. Client ID/Secret doğru mu?", Toast.LENGTH_LONG).show()
-                return
-            }
-            // Tarayıcıyı otomatik aç
-            runCatching {
-                activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(code.verificationUrl)))
-            }
-            val msg = "1) Tarayıcıda ${code.verificationUrl} adresine gidin\n" +
-                "2) Giriş yapıp şu kodu girin: ${code.userCode}\n\n" +
-                "Kod ${code.expiresIn / 60} dakika geçerli. Onayladığınızda otomatik bağlanacağız..."
-            val waitDialog = AlertDialog.Builder(activity)
-                .setTitle("Trakt'a Bağlan")
-                .setMessage(msg)
-                .setNegativeButton("İptal", null)
-                .setCancelable(false)
-                .create()
-            waitDialog.show()
-
-            scope.launch {
-                val deadline = System.currentTimeMillis() + code.expiresIn * 1000L
-                var done = false
-                while (!done && System.currentTimeMillis() < deadline) {
-                    kotlinx.coroutines.delay(code.interval * 1000L)
-                    done = TraktApi.pollDeviceToken(code.deviceCode)
+            scope.launch(Dispatchers.IO) {
+                val code = TraktApi.requestDeviceCode(TraktSyncConfig.clientId)
+                if (code == null) {
+                    launch(Dispatchers.Main) {
+                        Toast.makeText(activity, "Trakt'a bağlanılamadı. Client ID/Secret doğru mu?", Toast.LENGTH_LONG).show()
+                    }
+                    return@launch
                 }
-                runCatching { waitDialog.dismiss() }
-                if (done) {
-                    refreshStatus()
-                    Toast.makeText(activity, "Trakt'a bağlandı ✓", Toast.LENGTH_SHORT).show()
-                    // İlk eşitlemeyi hemen başlat
-                    scope.launch(Dispatchers.IO) { runCatching { TraktSyncManager.syncOnce() } }
-                } else {
-                    Toast.makeText(activity, "Süre doldu veya kod onaylanmadı, tekrar deneyin", Toast.LENGTH_LONG).show()
+                launch(Dispatchers.Main) {
+                    // Tarayıcıyı otomatik aç
+                    runCatching {
+                        activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(code.verificationUrl)))
+                    }
+                    val msg = "1) Tarayıcıda ${code.verificationUrl} adresine gidin\n" +
+                        "2) Giriş yapıp şu kodu girin: ${code.userCode}\n\n" +
+                        "Kod ${code.expiresIn / 60} dakika geçerli. Onayladığınızda otomatik bağlanacağız..."
+                    val waitDialog = AlertDialog.Builder(activity)
+                        .setTitle("Trakt'a Bağlan")
+                        .setMessage(msg)
+                        .setNegativeButton("İptal", null)
+                        .setCancelable(false)
+                        .create()
+                    waitDialog.show()
+
+                    scope.launch {
+                        val deadline = System.currentTimeMillis() + code.expiresIn * 1000L
+                        var done = false
+                        while (!done && System.currentTimeMillis() < deadline) {
+                            kotlinx.coroutines.delay(code.interval * 1000L)
+                            done = TraktApi.pollDeviceToken(code.deviceCode)
+                        }
+                        runCatching { waitDialog.dismiss() }
+                        if (done) {
+                            refreshStatus()
+                            Toast.makeText(activity, "Trakt'a bağlandı ✓", Toast.LENGTH_SHORT).show()
+                            // İlk eşitlemeyi hemen başlat
+                            scope.launch(Dispatchers.IO) { runCatching { TraktSyncManager.syncOnce() } }
+                        } else {
+                            Toast.makeText(activity, "Süre doldu veya kod onaylanmadı, tekrar deneyin", Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
             }
         }

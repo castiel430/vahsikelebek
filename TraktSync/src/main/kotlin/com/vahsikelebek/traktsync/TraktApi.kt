@@ -57,7 +57,7 @@ object TraktApi {
     private fun authHeaders(): Map<String, String> =
         publicHeaders() + ("Authorization" to "Bearer ${TraktSyncConfig.accessToken}")
 
-    private fun postJson(url: String, body: JSONObject, auth: Boolean): JSONObject? = try {
+    private suspend fun postJson(url: String, body: JSONObject, auth: Boolean): JSONObject? = try {
         val resp = app.post(
             url,
             headers = if (auth) authHeaders() else publicHeaders(),
@@ -69,7 +69,7 @@ object TraktApi {
         null
     }
 
-    private fun getJson(url: String): JSONObject? = try {
+    private suspend fun getJson(url: String): JSONObject? = try {
         val resp = app.get(url, headers = authHeaders())
         JSONObject(resp.text)
     } catch (e: Exception) {
@@ -88,7 +88,7 @@ object TraktApi {
     )
 
     /** Adım 1: trakt.tv/activate'de girilecek kodu alır. */
-    fun requestDeviceCode(clientId: String): DeviceCode? {
+    suspend fun requestDeviceCode(clientId: String): DeviceCode? {
         val resp = try {
             app.post(
                 "$API/oauth/device/code",
@@ -125,7 +125,7 @@ object TraktApi {
      * Adım 2: kullanıcı trakt.tv/activate'ta kodu girdikten sonra çağırın.
      * Henüz onaylanmamışsa false, onaylandıysa token'ı kaydedip true döner.
      */
-    fun pollDeviceToken(deviceCode: String): Boolean {
+    suspend fun pollDeviceToken(deviceCode: String): Boolean {
         val resp = try {
             app.post(
                 "$API/oauth/device/token",
@@ -144,7 +144,7 @@ object TraktApi {
         return saveToken(resp.text)
     }
 
-    private fun saveToken(body: String): Boolean = try {
+    private suspend fun saveToken(body: String): Boolean = try {
         val j = JSONObject(body)
         val access = j.optString("access_token")
         if (access.isBlank()) {
@@ -162,7 +162,7 @@ object TraktApi {
     }
 
     /** Token süresi yaklaşıyorsa refresh token ile yeniler. */
-    fun ensureFreshToken(): Boolean {
+    suspend fun ensureFreshToken(): Boolean {
         if (TraktSyncConfig.expiresAt > System.currentTimeMillis() / 1000 + 3600) return true
         val refresh = TraktSyncConfig.refreshToken
         if (refresh.isBlank() || TraktSyncConfig.clientSecret.isBlank()) return false
@@ -185,7 +185,7 @@ object TraktApi {
         return saveToken(resp.text)
     }
 
-    private fun fetchProfile() {
+    private suspend fun fetchProfile() {
         val j = getJson("$API/users/me") ?: return
         val user = j.optJSONObject("user") ?: j
         TraktSyncConfig.userName = user.optString("username").ifBlank {
@@ -235,7 +235,7 @@ object TraktApi {
     }
 
     /** İzleme geçmişine ekler (izlendi). */
-    fun addHistory(
+    suspend fun addHistory(
         imdb: String?,
         tmdb: String?,
         season: Int?,
@@ -251,7 +251,7 @@ object TraktApi {
     }
 
     /** İzleme listesine ekler. */
-    fun addToWatchlist(imdb: String?, tmdb: String?, isShow: Boolean): Boolean {
+    suspend fun addToWatchlist(imdb: String?, tmdb: String?, isShow: Boolean): Boolean {
         val ids = idsJson(imdb, tmdb) ?: return false
         val item = JSONObject().put("ids", ids)
         val payload = if (isShow) {
@@ -263,7 +263,7 @@ object TraktApi {
     }
 
     /** Başlık (+ yıl) ile Trakt'ta arayıp ilk sonucu işaretlemeyi dener. (imdb/tmdb yoksa kullanılır) */
-    fun addHistoryBySearch(title: String, year: Int?, isShow: Boolean): Boolean {
+    suspend fun addHistoryBySearch(title: String, year: Int?, isShow: Boolean): Boolean {
         val path = if (isShow) "show" else "movie"
         val q = java.net.URLEncoder.encode(title, "UTF-8")
         val url = buildString {
