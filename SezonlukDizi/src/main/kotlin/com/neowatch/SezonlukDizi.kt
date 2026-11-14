@@ -262,19 +262,19 @@ class SezonlukDizi : MainAPI() {
                 }
 
                 if (src.contains("byse", true)) {
-                    val ok = runCatching {
-                        ByseSX().getUrl(src, "$mainUrl/", subtitleCallback) { link ->
+                    runCatching {
+                        loadExtractor(src, "$mainUrl/", subtitleCallback) { link ->
                             runCatching { callback(renameLink(link, label)) }
+                            found = true
                         }
-                        true
-                    }.getOrDefault(false)
-                    if (ok) found = true
+                    }
                     continue
                 }
 
                 runCatching {
                     loadExtractor(src, "$mainUrl/", subtitleCallback) { link ->
                         runCatching { callback(renameLink(link, label)) }
+                        found = true
                     }
                 }
 
