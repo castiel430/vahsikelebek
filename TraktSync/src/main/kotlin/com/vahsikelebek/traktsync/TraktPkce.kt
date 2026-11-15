@@ -36,7 +36,10 @@ object TraktPkce {
 
     fun codeChallenge(verifier: String): String {
         val digest = MessageDigest.getInstance("SHA-256").digest(verifier.toByteArray(Charsets.UTF_8))
-        return android.util.Base64.encodeToString(digest, android.util.Base64.URL_SAFE or android.util.Base64.NO_PADDING or android.util.Base64.NO_WRAP)
+        return android.util.Base64.encodeToString(
+            digest,
+            android.util.Base64.URL_SAFE or android.util.Base64.NO_PADDING or android.util.Base64.NO_WRAP,
+        )
     }
 
     fun authorizeUrl(clientId: String, state: String, codeChallenge: String): String =
@@ -49,7 +52,7 @@ object TraktPkce {
             "&code_challenge_method=S256"
 
     /** PKCE token takası — client_secret yok. */
-    fun exchangeCode(code: String, codeVerifier: String, clientId: String): Boolean = try {
+    suspend fun exchangeCode(code: String, codeVerifier: String, clientId: String): Boolean = try {
         val body = JSONObject()
             .put("code", code)
             .put("client_id", clientId)
@@ -81,23 +84,22 @@ object TraktPkce {
         Log.w(TAG, "token takası başarısız: ${e.message}")
         false
     }
-}
 
-/** Kullanıcı profilini çeker (ad). */
-fun fetchProfile(): String? = try {
-    // hafif: mevcut API katmanını tekrar kullan
-    val resp = app.get(
-        "$API/users/me",
-        headers = mapOf(
-            "Content-Type" to "application/json",
-            "trakt-api-version" to "2",
-            "trakt-api-key" to TraktSyncConfig.clientId,
-            "Authorization" to "Bearer ${TraktSyncConfig.accessToken}",
-        ),
-    )
-    val j = JSONObject(resp.text)
-    val user = j.optJSONObject("user") ?: j
-    user.optString("username").ifBlank { user.optString("name").ifBlank { null } }
-} catch (e: Exception) {
-    null
+    /** Kullanıcı profilini çeker (ad). */
+    suspend fun fetchProfile(): String? = try {
+        val resp = app.get(
+            "$API/users/me",
+            headers = mapOf(
+                "Content-Type" to "application/json",
+                "trakt-api-version" to "2",
+                "trakt-api-key" to TraktSyncConfig.clientId,
+                "Authorization" to "Bearer ${TraktSyncConfig.accessToken}",
+            ),
+        )
+        val j = JSONObject(resp.text)
+        val user = j.optJSONObject("user") ?: j
+        user.optString("username").ifBlank { user.optString("name").ifBlank { null } }
+    } catch (e: Exception) {
+        null
+    }
 }

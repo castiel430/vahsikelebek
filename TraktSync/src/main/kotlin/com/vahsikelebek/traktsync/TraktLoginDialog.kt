@@ -90,7 +90,11 @@ object TraktLoginDialog {
                 scope.launch(Dispatchers.IO) {
                     val ok = TraktPkce.exchangeCode(code, verifier, clientId)
                     if (ok) {
-                        runCatching { TraktPkce.fetchProfile()?.let { TraktSyncConfig.userName = it } }
+                        try {
+                            TraktPkce.fetchProfile()?.let { TraktSyncConfig.userName = it }
+                        } catch (_: Exception) {
+                            // profil adı alınamadı — bağlantı yine de geçerli
+                        }
                     }
                     launch(Dispatchers.Main) {
                         runCatching { dialog.dismiss() }
