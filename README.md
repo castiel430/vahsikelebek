@@ -129,19 +129,20 @@ Trakt.tv API'si kullanılır — başka kodlardan kopyalanmamıştır.
   - `COMPLETED` → Trakt izleme geçmişine (`sync/history`) yazılır
     (dizide son bilinen sezon/bölüm)
   - `WATCHING` / `ONHOLD` / `PLANTOWATCH` → Trakt izleme listesine (`sync/watchlist`) eklenir
-- **Ayarlar → Eklenti ayarları → Trakt Senkron** düğmesiyle Client ID/Secret girip
-  cihaz-kodu (OAuth) akışıyla bağlanın.
+- **Ayarlar → Eklenti ayarları → Trakt Senkron** düğmesiyle Client ID girip
+  WebView üzerinden e-posta + kod ile bağlanın (PKCE, Secret gerekmez).
 
 **Kurulum:**
 
 1. https://trakt.tv/settings/api → **New Application** oluşturun
-   (Name: ör. `CloudStream`, Redirect URI: `urn:ietf:wg:oauth:2.0:oob`).
+   (Name: ör. `CloudStream`, Redirect URI: **`https://app.trakt.tv/callback`**).
 2. CloudStream → **Ayarlar → Eklenti ayarları → Trakt Senkron**.
-3. Uygulamadaki **Client ID** ve **Client Secret** değerlerini girip **Trakt'a Bağlan**'a basın.
-4. Açılan tarayıcıda `trakt.tv/activate` adresine gidip gösterilen kodu girin.
-5. Onay sonrası otomatik bağlanır; eşitleme hemen başlar.
+3. Uygulamadaki **Client ID** değerini girip **Trakt'a Bağlan** düğmesine basın
+   (Client Secret gerekmez — PKCE kullanılır).
+4. Açılan sayfada e-postanıza gelen kodu girin; onay sonrası otomatik bağlanır.
+5. İsterseniz **Cihaz Kodu (yedek)** ile eski yöntemle de bağlanabilirsiniz (o akışta Secret gerekir).
 
-> Her kullanıcı kendi Trakt API uygulamasını oluşturmalıdır; Client Secret'ınız
+> Her kullanıcı kendi Trakt API uygulamasını oluşturmalıdır; Client ID'niz
 > yalnızca kendi cihazınızda `vahsi_trakt_sync` SharedPreferences dosyasında saklanır.
 > IMDb/TMDb kimliği `syncData` üzerinden okunur (çoğu sağlayıcımız bunu doldurur);
 > kimliği olmayan dizi içerikler sessizce atlanır. Film için başlıkla arama denenir.
