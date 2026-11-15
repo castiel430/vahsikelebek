@@ -78,7 +78,7 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | MinikaGO | www.minikago.com.tr |
 | NetflixMirror | iosmirror.cc |
 | PuhuTV | puhutv.com |
-| RareFilmm | ok.ru |
+| RareFilmm | rarefilmm.com |
 | RecTV | a.psrectv80.xyz |
 | SelcukFlix | selcukflix.app |
 | SetFilmIzle | www.setfilmizle.ltd |
@@ -87,7 +87,7 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | SinemaCX | sinemacc.com |
 | Sinezy | sinezy.si |
 | StarTV | www.startv.com.tr |
-| SuperFilmGeldi | mixplayhd.com |
+| SuperFilmGeldi | superfilmizle.icu |
 | TLCtr | www.tlctv.com.tr |
 | TurkAnime | turkanime.live |
 | TurkAnimeTV | turkanime.live |
