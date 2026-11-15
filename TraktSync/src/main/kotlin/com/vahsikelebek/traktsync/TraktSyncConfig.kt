@@ -11,6 +11,14 @@ object TraktSyncConfig {
     private const val FILE = "vahsi_trakt_sync"
     const val DEFAULT_AUTO_SYNC = true
 
+    /**
+     * Eklentiye gömülü Trakt API uygulaması (PKCE, client_secret yok).
+     * Geliştirme (Development) uygulamasıdır; yalnızca hesap sahibi ve 16 davetli
+     * kullanıcı giriş yapabilir. Kendi uygulamanızı kullanmak isterseniz
+     * Client ID alanına kendi değerinizi yazabilirsiniz.
+     */
+    const val EMBEDDED_CLIENT_ID = "1TF_r9MwpFwHHTjzAAQ0n7hWIqwNBXZ2MU9-nuKLleQ"
+
     private var prefs: SharedPreferences? = null
 
     fun init(context: Context) {
@@ -21,7 +29,7 @@ object TraktSyncConfig {
         ?: throw IllegalStateException("Trakt Senkron henüz başlatılmadı")
 
     var clientId: String
-        get() = p().getString("client_id", "").orEmpty()
+        get() = p().getString("client_id", EMBEDDED_CLIENT_ID).orEmpty()
         set(v) = p().edit().putString("client_id", v.trim()).apply()
 
     var clientSecret: String

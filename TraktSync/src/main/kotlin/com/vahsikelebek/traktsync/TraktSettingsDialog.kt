@@ -43,19 +43,22 @@ object TraktSettingsDialog {
 
         layout.addView(TextView(activity).apply {
             text = "İzleme listenizi ve izlendi işaretlerini Trakt.tv ile eşitler.\n\n" +
-                "Önce trakt.tv/settings/api adresinden bir API uygulaması oluşturun.\n" +
-                "Redirect URI olarak \"https://app.trakt.tv/callback\" yazın.\n" +
-                "Sonra Client ID'yi aşağıya girin ve Bağlan düğmesine basın.\n" +
-                "Açılan sayfada e-postanıza gelen kodu girmeniz yeterli — Secret gerekmez."
+                "Eklentiye gömülü bir Trakt uygulaması vardır; kullanmak için ek bir " +
+                "Client ID/Secret girmenize gerek yoktur.\n" +
+                "Sadece \"Trakt'a Bağlan\"'a basın → e-postanıza gelen kodu girin → bitti.\n\n" +
+                "Not: Gömülü uygulama \u201cDevelopment\u201d türündedir; yalnızca sizin hesabınız ve\n" +
+                "My Apps sayfasından ekleyeceğiniz 16 kişiye kadar geçerli çalışır.\n" +
+                "Herkes için erişilebilir yapmak isterseniz uygulamayı trakt.tv/developer →\n" +
+                "My Apps → Production erişimi istersiniz."
             textSize = 12f
             setTextColor(Color.DKGRAY)
             setPadding(0, 8, 0, 16)
         })
 
-        layout.addView(TextView(activity).apply { text = "Client ID (gerekli)"; textSize = 12f })
+        layout.addView(TextView(activity).apply { text = "Client ID (isteğe bağlı)"; textSize = 12f })
         val idInput = EditText(activity).apply {
-            hint = "trakt.tv uygulama client_id"
-            setText(TraktSyncConfig.clientId)
+            hint = "Gömülü uygulama kullanılır (değiştirmek isterseniz yazın)"
+            setText(if (TraktSyncConfig.clientId == TraktSyncConfig.EMBEDDED_CLIENT_ID) "" else TraktSyncConfig.clientId)
             inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
         }
         layout.addView(idInput)
@@ -99,7 +102,9 @@ object TraktSettingsDialog {
         val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
         fun saveFields() {
-            TraktSyncConfig.clientId = idInput.text?.toString().orEmpty()
+            val cid = idInput.text?.toString()?.trim().orEmpty()
+            // Boş bırakılırsa gömülü uygulamayı kullan
+            TraktSyncConfig.clientId = if (cid.isBlank()) TraktSyncConfig.EMBEDDED_CLIENT_ID else cid
             TraktSyncConfig.clientSecret = secretInput.text?.toString().orEmpty()
         }
 
@@ -221,10 +226,12 @@ object TraktSettingsDialog {
                 "• Kütüphanede COMPLETED (izlendi) olarak işaretlediğiniz içerikler Trakt geçmişine eklenir.\n" +
                 "• WATCHING / ONHOLD / PLANTOWATCH içerikler Trakt izleme listesine eklenir.\n" +
                 "• Oynat menüsündeki \"✓ Trakt'a İzledim Olarak İşaretle\" düğmesiyle tek dokunuşla işaretleyebilirsiniz.\n\n" +
-                "Trakt API uygulaması oluşturma kılavuzu:\n" +
-                "trakt.tv/settings/api → New Application → isim: ör. CloudStream Sync → " +
-                "Redirect URI: https://app.trakt.tv/callback → Save.\n" +
-                "Oluşan sayfadaki Client ID'yi kopyalayıp yukarıya yapıştırın."
+                "Trakt API uygulaması gömülüdür — ekstra kurulum gerekmez.\n" +
+                "Sadece \"Trakt'a Bağlan\"'a basın, e-postanıza gelen kodu girin.\n\n" +
+                "Gelişmiş: kendi Trakt uygulamanızı kullanmak isterseniz Client ID alanına\n" +
+                "onun Client ID'sini yazabilirsiniz (boş bırakınca gömülü uygulama kullanılır).\n" +
+                "Dikkat: gömülü uygulama Development türündedir; yalnızca sizin hesabınız\n" +
+                "ve My Apps'ten davet ettiğiniz 16 kişi bağlanabilir."
             textSize = 11f
             setTextColor(Color.DKGRAY)
             setPadding(0, 16, 0, 8)

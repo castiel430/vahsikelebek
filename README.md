@@ -134,16 +134,17 @@ Trakt.tv API'si kullanılır — başka kodlardan kopyalanmamıştır.
 
 **Kurulum:**
 
-1. https://trakt.tv/settings/api → **New Application** oluşturun
-   (Name: ör. `CloudStream`, Redirect URI: **`https://app.trakt.tv/callback`**).
-2. CloudStream → **Ayarlar → Eklenti ayarları → Trakt Senkron**.
-3. Uygulamadaki **Client ID** değerini girip **Trakt'a Bağlan** düğmesine basın
-   (Client Secret gerekmez — PKCE kullanılır).
-4. Açılan sayfada e-postanıza gelen kodu girin; onay sonrası otomatik bağlanır.
-5. İsterseniz **Cihaz Kodu (yedek)** ile eski yöntemle de bağlanabilirsiniz (o akışta Secret gerekir).
+1. CloudStream → **Ayarlar → Eklenti ayarları → Trakt Senkron**.
+2. **Trakt'a Bağlan** düğmesine basın (Client ID/Secret girmenize gerek yok —
+   eklenti gömülü bir uygulama kullanır).
+3. Açılan sayfada e-postanıza gelen 6 haneli kodu girin; onay sonrası otomatik bağlanır.
+4. İsterseniz **Cihaz Kodu (yedek)** ile eski yöntemle de bağlanabilirsiniz (o akışta Secret gerekir).
 
-> Her kullanıcı kendi Trakt API uygulamasını oluşturmalıdır; Client ID'niz
-> yalnızca kendi cihazınızda `vahsi_trakt_sync` SharedPreferences dosyasında saklanır.
+> Gömülü uygulama "Development" türündedir: sadece sizin hesabınız ve My Apps
+> sayfasından ekleyeceğiniz 16 kullanıcı bağlanabilir. Herkese açık kullanmak için
+> trakt.tv/developer → My Apps → Production erişimi isteyin (uygulama incelemeye girer,
+> birkaç iş günü sürer). Ya da kendi Trakt API uygulamanızı oluşturup Client ID alanına
+> onun Client ID'sini yazabilirsiniz (Redirect URI: `https://app.trakt.tv/callback`).
 > IMDb/TMDb kimliği `syncData` üzerinden okunur (çoğu sağlayıcımız bunu doldurur);
 > kimliği olmayan dizi içerikler sessizce atlanır. Film için başlıkla arama denenir.
 
