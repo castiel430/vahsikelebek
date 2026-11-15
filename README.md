@@ -31,7 +31,7 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/repo.json
 Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 [`builds/plugins.json`](https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/plugins.json).
 
-### Sağlayıcı modülleri (66)
+### Sağlayıcı modülleri (64)
 
 | Modül | Hedef site |
 |---|---|
@@ -89,13 +89,11 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | StarTV | www.startv.com.tr |
 | SuperFilmGeldi | superfilmizle.icu |
 | TLCtr | www.tlctv.com.tr |
-| TurkAnime | turkanime.live |
 | TurkAnimeTV | turkanime.live |
 | TV8 | www.tv8.com.tr |
 | UgurFilm | ugurfilm8.com |
 | UltraFilmizle | ufilmizle.com |
 | Watch2Movies | watch2movies.net |
-| WebDramaTurkey | webdramaturkey2.com |
 | WebdramaTurkey2 | webdramaturkey2.com |
 | WebteIzle | webteizle.info |
 | Yabancidizi | ybncidizi.com |
