@@ -51,6 +51,13 @@ open class GizliJsOynatici : ExtractorApi() {
             link = fileLink?.let { runCatching { base64Decode(it) }.getOrNull() }
         }
 
+        // Yeni tip: sources: [{file:(function(){ ... })()}] — data-v korumalı inline IIFE
+        // Rhino ile betikleri çalıştırıp (DOM shim taklidi) IIFE sonucunu okur.
+        if (link.isNullOrBlank()) {
+            link = GizliJs.iifeCoz(html)
+            if (!link.isNullOrBlank()) Log.d("NeO_$isim", "iife » $link")
+        }
+
         if (link.isNullOrBlank() || !link.startsWith("http")) {
             Log.d("NeO_$isim", "video adresi çözülemedi » $url")
             return
@@ -93,6 +100,63 @@ object GizliJs {
             if (deger == null || deger == Scriptable.NOT_FOUND) null else Context.toString(deger)
         } catch (e: Throwable) {
             Log.d("NeO_GizliJs", "js hata » ${e.message}")
+            null
+        } finally {
+            Context.exit()
+        }
+    }
+
+    /**
+     * Yeni nesil sayfalar: `sources: [{file:(function(){ ... return vaxu1(...); })()}]`
+     * — kaynak adresi inline bir IIFE tarafından üretilir ve anti-scraping amacıyla
+     * `document.querySelectorAll('[data-v]')` üzerinden gizli bir `data-v` anahtarı
+     * (`<div id="pk" data-v="...">`) arar.
+     * Burada DOM'u taklit eden bir shim kurup betikleri Rhino'ya besleriz, sonra
+     * IIFE'yi değerlendirerek üretilen URL'i okuruz.
+     */
+    fun iifeCoz(html: String): String? {
+        val dataV = Regex("""data-v\s*=\s*"([^"]+)"""").find(html)?.groupValues?.get(1) ?: return null
+        val expr  = Regex(
+            """file\s*:\s*(\(function\s*\([^)]*\)\s*\{[\s\S]*?\}\)\s*\([^)]*\))""",
+        ).find(html)?.groupValues?.get(1) ?: return null
+        val betikler = Jsoup.parse(html).select("script").map { it.data() }.filter {
+            it.contains("eval(function(p,a,c,k,e,d)") || it.contains("vaxu1") || it.contains(".join('')") || it.contains(".join(\"\")")
+        }
+        if (betikler.isEmpty()) return null
+
+        val cx = SinirliFabrika.enterContext()
+        return try {
+            val scope: Scriptable = cx.initSafeStandardObjects()
+            cx.putThreadLocal("baslangic", System.currentTimeMillis())
+            cx.evaluateString(scope, POLYFILL, "polyfill", 1, null)
+            // DOM shim'i POLYFILL'deki `var document = {}` üzerine yazar
+            cx.evaluateString(scope, """
+                document = {
+                    readyState: "complete",
+                    hidden: false,
+                    visibilityState: "visible",
+                    querySelectorAll: function(sel) {
+                        return [{ getAttribute: function(name) { return '$dataV'; }, style: {}, appendChild: function(){}, setAttribute: function(){}, innerHTML: '' }];
+                    },
+                    querySelector: function(sel) {
+                        return { getAttribute: function(name) { return '$dataV'; }, style: {}, appendChild: function(){}, setAttribute: function(){}, innerHTML: '' };
+                    },
+                    getElementById: function(id) {
+                        return { getAttribute: function(n) { return '$dataV'; }, style: {}, appendChild: function(){}, setAttribute: function(){}, innerHTML: '' };
+                    },
+                    createElement: function(tag) { return { appendChild: function(){}, style: {}, setAttribute: function(){}, innerHTML: '' }; },
+                    addEventListener: function() {},
+                    removeEventListener: function() {}
+                };
+            """.trimIndent(), "shim", 1, null)
+            betikler.forEach { betik ->
+                val kod = if (betik.contains("eval(function(p,a,c,k,e,d)")) paketAc(cx, scope, betik) else betik
+                if (kod != null) runCatching { cx.evaluateString(scope, kod, "betik", 1, null) }
+            }
+            val sonuc = cx.evaluateString(scope, "var __sonuc = ($expr); String(__sonuc)", "sonuc", 1, null)
+            Context.toString(sonuc)?.takeIf { it.startsWith("http") }
+        } catch (e: Throwable) {
+            Log.d("NeO_GizliJs", "iife hata » ${e.message}")
             null
         } finally {
             Context.exit()
