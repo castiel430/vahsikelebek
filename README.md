@@ -31,7 +31,7 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/repo.json
 Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 [`builds/plugins.json`](https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/plugins.json).
 
-### Sağlayıcı modülleri (63)
+### Sağlayıcı modülleri (58)
 
 | Modül | Hedef site |
 |---|---|
@@ -51,12 +51,8 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | DiziBox | www.dizibox.live |
 | Dizigom | www.dizigom.news |
 | DiziKorea | dizikorea3.com |
-| DiziLife | dizi85.life |
 | Dizilla | dizilla.la |
 | DiziMom | ddizimom.net |
-| DiziPal | dizipal2145.com |
-| DiziPalGuncel | dizipal1593.com |
-| DiziPalOrjinal | dizipalorjinal18.com |
 | DiziPod | dizipod.com |
 | DiziYou | www.diziyou.one |
 | DMAX | www.dmax.com.tr |
@@ -76,7 +72,6 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | LoveFilm | lovefilmizle.net |
 | MinikaCocuk | www.minikacocuk.com.tr |
 | MinikaGO | www.minikago.com.tr |
-| NetflixMirror | iosmirror.cc |
 | PuhuTV | puhutv.com |
 | RareFilmm | rarefilmm.com |
 | RecTV | a.psrectv80.xyz |
@@ -104,8 +99,10 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 - **TraktSync** — kütüphanenizi Trakt.tv ile eşitler; bkz. [TraktSync (Trakt.tv)](#traktsync-trakt-tv-eklentisi)
 
 > Kullanılmayan iskelet modüller (eski `VahsiKelebek`, `VahsiFilm`, `VahsiDizi`,
-> `VahsiAnime`, `VahsiBelgesel`) ve kapanmış site sağlayıcısı `Watch2Movies`
-> silinmiştir; depoda yalnızca çalışan gerçek site sağlayıcıları ve TraktSync bulunur.
+> `VahsiAnime`, `VahsiBelgesel`) ve bölümü kapanan/yıldırım sertifikası geçersiz kalan
+> sağlayıcılar (`Watch2Movies`, `DiziPal`, `DiziPalGuncel`, `DiziPalOrjinal`,
+> `DiziLife`, `NetflixMirror` —iosmirror.cc adfarmına döndü) silinmiştir;
+> depoda yalnızca çalışan gerçek site sağlayıcıları ve TraktSync bulunur.
 
 > **SezonlukDizi notu:** Site, kaynaklarının çoğunu Cloudflare Turnstile (captcha)
 > arkasına aldı. Eklenti captcha istemeyen kaynakları (Streamruby/Filemoon/VideoMoly)

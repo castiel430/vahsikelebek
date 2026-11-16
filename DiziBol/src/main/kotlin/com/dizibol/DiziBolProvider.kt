@@ -69,7 +69,8 @@ class DiziBolProvider : MainAPI() {
 
     override suspend fun search(query: String, page: Int): SearchResponseList? {
         if (page > 1) return newSearchResponseList(emptyList(), false)
-        val doc = app.get("$mainUrl/", params = mapOf("s" to query.trim()), headers = uaHeaders).document
+        // Arama formu `/ara?q=` adresine GET atar; `/?s=` ana sayfayı olduğu gibi döndürür.
+        val doc = app.get("$mainUrl/ara", params = mapOf("q" to query.trim()), headers = uaHeaders).document
         return newSearchResponseList(doc.cards(), false)
     }
 
