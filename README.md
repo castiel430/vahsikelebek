@@ -1,4 +1,4 @@
-# Vahşi Kelebek — CloudStream Türkçe Eklenti Deposu
+﻿# Vahşi Kelebek — CloudStream Türkçe Eklenti Deposu
 
 Bu depo, **CloudStream** için hazırlanmış Türkçe film, dizi, anime ve belgesel
 senkron/sağlayıcı eklentilerinin **kaynak kodunu** içerir. Kaynak repo **private**'tır;
@@ -125,24 +125,28 @@ Trakt.tv API'si kullanılır — başka kodlardan kopyalanmamıştır.
   - `COMPLETED` → Trakt izleme geçmişine (`sync/history`) yazılır
     (dizide son bilinen sezon/bölüm)
   - `WATCHING` / `ONHOLD` / `PLANTOWATCH` → Trakt izleme listesine (`sync/watchlist`) eklenir
-- **Ayarlar → Eklenti ayarları → Trakt Senkron** düğmesiyle Client ID girip
-  WebView üzerinden e-posta + kod ile bağlanın (PKCE, Secret gerekmez).
+- **Ayarlar → Eklenti ayarları → Trakt Senkron** → **Trakt'a Bağlan** düğmesine
+  dokunun; açılan pencere **uygulama içinde** Trakt sitesini açar — e-posta +
+  e-postanıza gelen 6 haneli kodu girin, otomatik bağlanın.
 
 **Kurulum:**
 
 1. CloudStream → **Ayarlar → Eklenti ayarları → Trakt Senkron**.
-2. **Trakt'a Bağlan** düğmesine basın (Client ID/Secret girmenize gerek yok —
-   eklenti gömülü bir uygulama kullanır).
-3. Açılan sayfada e-postanıza gelen 6 haneli kodu girin; onay sonrası otomatik bağlanır.
-4. İsterseniz **Cihaz Kodu (yedek)** ile eski yöntemle de bağlanabilirsiniz (o akışta Secret gerekir).
+2. **Trakt'a Bağlan** düğmesine basın (uygulama içinde pencere açılır).
+3. E-postanızı yazın → Trakt'tan gelen 6 haneli kodu girin → otomatik bağlanır.
+4. Uygulama içi pencere açılmazsa (cihazda sistem WebView'i yoksa) **"Tarayıcıda Aç"**
+   düğmesini kullanın (o akışta uygulama otomatik bağlanmaz; aynı pencerede
+   tamamlayın).
 
 > Gömülü uygulama "Development" türündedir: sadece sizin hesabınız ve My Apps
 > sayfasından ekleyeceğiniz 16 kullanıcı bağlanabilir. Herkese açık kullanmak için
 > trakt.tv/developer → My Apps → Production erişimi isteyin (uygulama incelemeye girer,
-> birkaç iş günü sürer). Ya da kendi Trakt API uygulamanızı oluşturup Client ID alanına
-> onun Client ID'sini yazabilirsiniz (Redirect URI: `https://app.trakt.tv/callback`).
-> IMDb/TMDb kimliği `syncData` üzerinden okunur (çoğu sağlayıcımız bunu doldurur);
-> kimliği olmayan dizi içerikler sessizce atlanır. Film için başlıkla arama denenir.
+> birkaç iş günü sürer).
+> Kimlik çözümü: `syncData` varsa o kullanılır; yoksa eklenti **başlık (+ yıl) ile
+> Trakt'ta arayıp** ilk sonucu alır (yanlış eşleşme olasılığı vardır; emin
+> olmadığınızda "✓ Trakt'a İzledim Olarak İşaretle" düğmesini kullanın).
+> IMDb/TMDb kimliği olmayan dizi içeriklerin sezon/bölümü bilinmiyorsa sıra atlar;
+> film ve dizilerin izleme listesi başlıkla aranır ve eşleşirse eklenir.
 
 ## Derleme ve yayınlama (GitHub Actions)
 

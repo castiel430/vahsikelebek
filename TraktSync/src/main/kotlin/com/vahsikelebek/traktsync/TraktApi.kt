@@ -262,8 +262,8 @@ object TraktApi {
         return postJson("$API/sync/watchlist", payload, auth = true) != null
     }
 
-    /** Başlık (+ yıl) ile Trakt'ta arayıp ilk sonucu işaretlemeyi dener. (imdb/tmdb yoksa kullanılır) */
-    suspend fun addHistoryBySearch(title: String, year: Int?, isShow: Boolean): Boolean {
+    /** Başlık (+ yıl) ile Trakt'ta arayıp ilk sonucun kimliklerini (imdb/tmdb) döner; bulunamazsa boş çift. */
+    suspend fun searchIdsByTitle(title: String, year: Int?, isShow: Boolean): Pair<String?, String?> {
         val path = if (isShow) "show" else "movie"
         val q = java.net.URLEncoder.encode(title, "UTF-8")
         val url = buildString {
@@ -273,25 +273,30 @@ object TraktApi {
         val resp = try {
             app.get(url, headers = authHeaders())
         } catch (e: Exception) {
-            return false
+            Log.w(TAG, "arama hatası: ${e.message}")
+            return null to null
         }
         return try {
             val arr = org.json.JSONArray(resp.text)
-            if (arr.length() == 0) return false
-            val first = arr.optJSONObject(0) ?: return false
-            val media = first.optJSONObject(path) ?: return false
-            val ids = media.optJSONObject("ids") ?: return false
+            if (arr.length() == 0) return null to null
+            val media = arr.optJSONObject(0)?.optJSONObject(path) ?: return null to null
+            val ids = media.optJSONObject("ids") ?: return null to null
             val imdb = ids.optString("imdb").ifBlank { null }
             val tmdb = ids.optInt("tmdb", -1).takeIf { it > 0 }?.toString()
-            if (imdb == null && tmdb == null) return false
-            if (isShow) {
-                // Sezon/bölüm bilgisi yoksa yalnızca izleme listesine ekle, geçmişe dokunma
-                false
-            } else {
-                addHistory(imdb, tmdb, null, null)
-            }
+            imdb to tmdb
         } catch (e: Exception) {
-            false
+            null to null
         }
+    }
+
+    /** Başlık (+ yıl) ile Trakt'ta arayıp ilk sonucu işaretlemeyi dener. (imdb/tmdb yoksa kullanılır) */
+    suspend fun addHistoryBySearch(title: String, year: Int?, isShow: Boolean): Boolean {
+        val (imdb, tmdb) = searchIdsByTitle(title, year, isShow)
+        if (imdb == null && tmdb == null) return false
+        if (isShow) {
+            // Sezon/bölüm bilgisi yoksa yalnızca izleme listesine ekle, geçmişe dokunma
+            return false
+        }
+        return addHistory(imdb, tmdb, null, null)
     }
 }

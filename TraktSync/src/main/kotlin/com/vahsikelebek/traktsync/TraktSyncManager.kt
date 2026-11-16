@@ -65,10 +65,19 @@ object TraktSyncManager {
             val state = runCatching { DataStoreHelper.getResultWatchState(id) }.getOrNull() ?: continue
             if (state == WatchType.NONE || state == WatchType.DROPPED) continue
 
-            val (imdb, tmdb) = TraktIds.resolve(b.syncData)
+            // 1) Kimlik syncData'dan; yoksa başlıkla Trakt'ta ara
+            var (imdb, tmdb) = TraktIds.resolve(b.syncData)
             val isShow = b.type == TvType.TvSeries || b.type == TvType.Anime ||
                 b.type == TvType.Cartoon || b.type == TvType.AsianDrama ||
                 b.type == TvType.OVA
+            if (imdb == null && tmdb == null) {
+                val title = b.name?.takeIf { it.isNotBlank() }
+                if (title != null) {
+                    val found = runCatching { TraktApi.searchIdsByTitle(title, b.year, isShow) }.getOrNull()
+                    imdb = found?.first
+                    tmdb = found?.second
+                }
+            }
 
             if (state == WatchType.COMPLETED) {
                 val ok = when {
