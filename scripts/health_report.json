@@ -1,0 +1,630 @@
+[
+  {
+    "module": "ATV",
+    "url": "https://www.atv.com.tr",
+    "src": "ATV\\src\\main\\kotlin\\com\\atv\\ATVProvider.kt",
+    "status": 200,
+    "final": "https://www.atv.com.tr",
+    "note": "Dizi atv’de izlenir | En iyi yerli diziler, programlar atv’d",
+    "ms": 653,
+    "len": 199779
+  },
+  {
+    "module": "AnimeciX",
+    "url": "https://animecix.tv",
+    "src": "AnimeciX\\src\\main\\kotlin\\com\\neowatch\\AnimeciX.kt",
+    "status": 200,
+    "final": "https://animecix.tv",
+    "note": "AnimeciX - Türkçe Anime Bilgi ve Paylaşım Platformu",
+    "ms": 319,
+    "len": 68008
+  },
+  {
+    "module": "BelgeselX",
+    "url": "https://belgeselx.com",
+    "src": "BelgeselX\\src\\main\\kotlin\\com\\neowatch\\BelgeselX.kt",
+    "status": 200,
+    "final": "https://belgeselx.com",
+    "note": "BelgeselX | Türkçe Dublaj ve Altyazılı HD Belgesel İzle",
+    "ms": 879,
+    "len": 119777
+  },
+  {
+    "module": "CanliDizi",
+    "url": "https://canlidizi.sbs",
+    "src": "CanliDizi\\src\\main\\kotlin\\com\\canlidizi\\CanliDiziProvider.kt",
+    "status": 200,
+    "final": "https://canlidizi.sbs",
+    "note": "CanlıDizi - Full HD Dizi izle, Yerli ve Yabancı Diziler",
+    "ms": 913,
+    "len": 199689
+  },
+  {
+    "module": "CanliTV",
+    "url": "https://iptv-org.github.io/iptv/countries/tr.m3u",
+    "src": "CanliTV\\src\\main\\kotlin\\com\\canlitv\\CanliTVProvider.kt",
+    "status": 200,
+    "final": "https://iptv-org.github.io/iptv/countries/tr.m3u",
+    "note": "",
+    "ms": 312,
+    "len": 37699
+  },
+  {
+    "module": "CizgiMax",
+    "url": "https://cizgimax.online",
+    "src": "CizgiMax\\src\\main\\kotlin\\com\\cizgimax\\CizgimaxProvider.kt",
+    "status": 200,
+    "final": "https://cizgimax.online",
+    "note": "ÇizgiMax - HD Çizgi Film İzle",
+    "ms": 770,
+    "len": 197798
+  },
+  {
+    "module": "CizgiSite",
+    "url": "https://www.cizgi.site",
+    "src": "CizgiSite\\src\\main\\kotlin\\com\\cizgiste\\CizgiSiteProvider.kt",
+    "status": 200,
+    "final": "https://www.cizgi.site/tr",
+    "note": "Çizgi Film İzle, Çocuk Etkinlikleri ve Masallar",
+    "ms": 1524,
+    "len": 82174
+  },
+  {
+    "module": "CizgiVeDizi",
+    "url": "https://cizgivedizi.net",
+    "src": "CizgiVeDizi\\src\\main\\kotlin\\dev\\wiojelt\\turksinema\\vendor\\cizgivedizi\\CizgiVeDiziProvider.kt",
+    "status": 200,
+    "final": "https://cizgivedizi.net",
+    "note": "Çizgi ve Dizi",
+    "ms": 1620,
+    "len": 198983
+  },
+  {
+    "module": "DMAX",
+    "url": "https://www.dmax.com.tr",
+    "src": "DMAX\\src\\main\\kotlin\\com\\dmax\\DMAXProvider.kt",
+    "status": 200,
+    "final": "https://www.dmax.com.tr",
+    "note": "DMAX - Belgesel, Canlı TV ve Macera Dolu Programlar",
+    "ms": 598,
+    "len": 199062
+  },
+  {
+    "module": "Ddizi",
+    "url": "https://www.ddizi.tel",
+    "src": "Ddizi\\src\\main\\kotlin\\com\\ddizi\\DdiziProvider.kt",
+    "status": 200,
+    "final": "https://www.ddizi.tel",
+    "note": "Ddizi, dizi izle, dizi seyret, dizi, canlı dizi, ddizi.tel",
+    "ms": 398,
+    "len": 36074
+  },
+  {
+    "module": "DiziBal",
+    "url": "https://dizibal.org",
+    "src": "DiziBal\\src\\main\\kotlin\\com\\dizibal\\DiziBalProvider.kt",
+    "status": 200,
+    "final": "https://dizibal.org",
+    "note": "dizibaL: Online Dizi Arşivi - Altyazılı Yabancı Diziler",
+    "ms": 491,
+    "len": 199536
+  },
+  {
+    "module": "DiziBol",
+    "url": "https://dizibol.org",
+    "src": "DiziBol\\src\\main\\kotlin\\com\\dizibol\\DiziBolProvider.kt",
+    "status": 200,
+    "final": "https://dizibol.org",
+    "note": "diziboL: Yabancı Dizi izle - Türkçe Altyazılı Full HD Dizi",
+    "ms": 722,
+    "len": 199545
+  },
+  {
+    "module": "DiziBox",
+    "url": "https://www.dizibox.live",
+    "src": "DiziBox\\src\\main\\kotlin\\com\\neowatch\\DiziBox.kt",
+    "status": 200,
+    "final": "https://www.dizibox.live",
+    "note": "DiziBOX - Yabancı Dizi izle, Yabancı Diziler",
+    "ms": 880,
+    "len": 199681
+  },
+  {
+    "module": "DiziKorea",
+    "url": "https://dizikorea3.com",
+    "src": "DiziKorea\\src\\main\\kotlin\\com\\neowatch\\DiziKorea.kt",
+    "status": 200,
+    "final": "https://dizikorea3.com",
+    "note": "DiziKorea - En Güncel Asya ve Kore Dizileri izleme Sitesi",
+    "ms": 902,
+    "len": 199492
+  },
+  {
+    "module": "DiziMom",
+    "url": "https://ddizimom.net",
+    "src": "DiziMom\\src\\main\\kotlin\\com\\neowatch\\DiziMom.kt",
+    "status": 200,
+    "final": "https://ddizimom.net",
+    "note": "DiziMom - Dizi izle - Yabancı Dizi izle",
+    "ms": 781,
+    "len": 199600
+  },
+  {
+    "module": "DiziPal",
+    "url": "https://dizipal2145.com",
+    "src": "DiziPal\\src\\main\\kotlin\\com\\neowatch\\DiziPal.kt",
+    "status": 200,
+    "final": "https://dizipal2145.com",
+    "note": "...",
+    "ms": 555,
+    "len": 10643
+  },
+  {
+    "module": "DiziPalGuncel",
+    "url": "https://dizipal1593.com",
+    "src": "DiziPalGuncel\\src\\main\\kotlin\\com\\neowatch\\DiziPalGuncel.kt",
+    "status": 200,
+    "final": "https://dizipal1593.com",
+    "note": "...",
+    "ms": 539,
+    "len": 10643
+  },
+  {
+    "module": "DiziPalOrjinal",
+    "url": "https://dizipalorjinal18.com",
+    "src": "DiziPalOrjinal\\src\\main\\kotlin\\com\\neowatch\\DiziPalOrjinal.kt",
+    "status": 200,
+    "final": "https://dizipalorjinal18.com",
+    "note": "...",
+    "ms": 452,
+    "len": 10653
+  },
+  {
+    "module": "DiziPod",
+    "url": "https://dizipod.com",
+    "src": "DiziPod\\src\\main\\kotlin\\com\\dizipod\\DiziPodProvider.kt",
+    "status": 200,
+    "final": "https://dizipod.com",
+    "note": "",
+    "ms": 1118,
+    "len": 199997
+  },
+  {
+    "module": "DiziYou",
+    "url": "https://www.diziyou.one",
+    "src": "DiziYou\\src\\main\\kotlin\\com\\neowatch\\DiziYou.kt",
+    "status": 200,
+    "final": "https://www.diziyou.one",
+    "note": "Diziyou - Türkçe Dublaj &amp; Altyazılı Yabancı Dizi İzle",
+    "ms": 665,
+    "len": 199283
+  },
+  {
+    "module": "Dizigom",
+    "url": "https://www.dizigom.news",
+    "src": "Dizigom\\src\\main\\kotlin\\com\\dizigom\\DizigomProvider.kt",
+    "status": 200,
+    "final": "https://www.dizigom.news",
+    "note": "Dizigom | Full HD 1080p Dizi izle",
+    "ms": 826,
+    "len": 199712
+  },
+  {
+    "module": "Dizilla",
+    "url": "https://dizilla.la",
+    "src": "Dizilla\\src\\main\\kotlin\\com\\dizilla\\DizillaProvider.kt",
+    "status": 200,
+    "final": "https://dizilla.la",
+    "note": "",
+    "ms": 1152,
+    "len": 199468
+  },
+  {
+    "module": "FilmModu",
+    "url": "https://filmmodu.news",
+    "src": "FilmModu\\src\\main\\kotlin\\com\\filmmodu\\FilmModuProvider.kt",
+    "status": 200,
+    "final": "https://filmmodu.news",
+    "note": "Filmmodu - Film ve Dizi İzleme Platformu",
+    "ms": 1001,
+    "len": 199636
+  },
+  {
+    "module": "FullHDFilm",
+    "url": "https://fullhdfilmizlebox.vip",
+    "src": "FullHDFilm\\src\\main\\kotlin\\com\\fullhdfilm\\FullHDFilmProvider.kt",
+    "status": 200,
+    "final": "https://fullhdfilmizlebox.vip",
+    "note": "Fullhdfilmizle | Film izle, HD Film izle",
+    "ms": 1057,
+    "len": 199762
+  },
+  {
+    "module": "FullHDFilmizlesene",
+    "url": "https://www.fullhdfilmizlesene.now",
+    "src": "FullHDFilmizlesene\\src\\main\\kotlin\\com\\neowatch\\FullHDFilmizlesene.kt",
+    "status": 200,
+    "final": "https://www.fullhdfilmizlesene.now",
+    "note": "Film İzle | Full HD Filmler | FullHDFilmizlesene",
+    "ms": 501,
+    "len": 98860
+  },
+  {
+    "module": "HDFilmCehennemi",
+    "url": "https://www.hdfilmcehennemi.nl",
+    "src": "HDFilmCehennemi\\src\\main\\kotlin\\com\\neowatch\\HDFilmCehennemi.kt",
+    "status": 200,
+    "final": "https://www.hdfilmcehennemi.nl",
+    "note": "Hdfilmcehennemi | Film izle | HD Film izle",
+    "ms": 605,
+    "len": 199743
+  },
+  {
+    "module": "HDFilmCehennemi2",
+    "url": "https://www.hdfilmcehennemi2.biz",
+    "src": "HDFilmCehennemi2\\src\\main\\kotlin\\com\\hdfilmcehennemi2\\HDFilmCehennemi2Provider.kt",
+    "status": 200,
+    "final": "https://www.hdfilmcehennemi2.biz",
+    "note": "hdfilmcehennemi2 | Türkçe Dublaj Full HD Kalite Film izle",
+    "ms": 1053,
+    "len": 199711
+  },
+  {
+    "module": "HDFilmDelisi",
+    "url": "https://hdfilmdelisi1.com",
+    "src": "HDFilmDelisi\\src\\main\\kotlin\\com\\hdfilmdelisi\\HDFilmDelisiProvider.kt",
+    "status": 200,
+    "final": "https://hdfilmdelisi1.com",
+    "note": "HDFilmDelisi - Film izle, Full HD Türkçe Dublaj &amp; Altyaz",
+    "ms": 984,
+    "len": 199942
+  },
+  {
+    "module": "HDFilmDiziIzle",
+    "url": "https://www.hdfilmdiziizle.com",
+    "src": "HDFilmDiziIzle\\src\\main\\kotlin\\com\\hdfilmdiziizle\\HDFilmDiziIzleProvider.kt",
+    "status": 200,
+    "final": "https://www.hdfilmdiziizle.com",
+    "note": "HD Film izle | Yabancı Dizi izle – Hdfilmdiziizle",
+    "ms": 904,
+    "len": 154188
+  },
+  {
+    "module": "JetFilmizle",
+    "url": "https://jetfilmizle.app",
+    "src": "JetFilmizle\\src\\main\\kotlin\\com\\jetfilmizle\\JetFilmizleProvider.kt",
+    "status": 200,
+    "final": "https://jetfilmizle.app",
+    "note": "JetFilmizle - Film İzle, Türkçe Dublaj, Altyazılı ve Yerli F",
+    "ms": 880,
+    "len": 197778
+  },
+  {
+    "module": "KanalD",
+    "url": "https://www.kanald.com.tr",
+    "src": "KanalD\\src\\main\\kotlin\\com\\kanald\\KanalDProvider.kt",
+    "status": 200,
+    "final": "https://www.kanald.com.tr",
+    "note": "Kanal D - Anasayfa",
+    "ms": 1149,
+    "len": 199977
+  },
+  {
+    "module": "KoreanTurk",
+    "url": "https://koreanturk.tv",
+    "src": "KoreanTurk\\src\\main\\kotlin\\com\\neowatch\\KoreanTurk.kt",
+    "status": 200,
+    "final": "https://koreanturk.tv",
+    "note": "KoreanTürk – Kore Dizileri İzle | Yeni ve En İyi K-Drama&#03",
+    "ms": 902,
+    "len": 199219
+  },
+  {
+    "module": "Kultfilmler",
+    "url": "https://kultfilmler.net",
+    "src": "Kultfilmler\\src\\main\\kotlin\\com\\kultfilmler\\KultfilmlerProvider.kt",
+    "status": 200,
+    "final": "https://kultfilmler.net",
+    "note": "Kült Filmler - Seçkin Film İzleme Sitesi 2026",
+    "ms": 2497,
+    "len": 91162
+  },
+  {
+    "module": "LoveFilm",
+    "url": "https://lovefilmizle.net",
+    "src": "LoveFilm\\src\\main\\kotlin\\com\\lovefilm\\LoveFilmProvider.kt",
+    "status": 200,
+    "final": "https://lovefilmizle.net",
+    "note": "Film izle 2026 | HD &amp; 4K Türkçe Dublaj Altyazılı | LoveF",
+    "ms": 868,
+    "len": 92365
+  },
+  {
+    "module": "MinikaCocuk",
+    "url": "https://www.minikacocuk.com.tr",
+    "src": "MinikaCocuk\\src\\main\\kotlin\\com\\minikacocuk\\MinikaCocukProvider.kt",
+    "status": 200,
+    "final": "https://www.minikacocuk.com.tr",
+    "note": "minika ÇOCUK - Çizgi filmler, çocuklar için online oyunlar, ",
+    "ms": 530,
+    "len": 80728
+  },
+  {
+    "module": "MinikaGO",
+    "url": "https://www.minikago.com.tr",
+    "src": "MinikaGO\\src\\main\\kotlin\\com\\minikago\\MinikaGOProvider.kt",
+    "status": 200,
+    "final": "https://www.minikago.com.tr",
+    "note": "minikaGO - Çocuklara Özel Çizgi Film, Videolar, Yarışmalar V",
+    "ms": 778,
+    "len": 68157
+  },
+  {
+    "module": "PuhuTV",
+    "url": "https://puhutv.com",
+    "src": "PuhuTV\\src\\main\\kotlin\\com\\puhutv\\PuhuTVProvider.kt",
+    "status": 200,
+    "final": "https://puhutv.com",
+    "note": "puhutv | Sen Nasıl İzlersen",
+    "ms": 706,
+    "len": 198362
+  },
+  {
+    "module": "RareFilmm",
+    "url": "https://rarefilmm.com",
+    "src": "RareFilmm\\src\\main\\kotlin\\com\\neowatch\\RareFilmm.kt",
+    "status": 200,
+    "final": "https://rarefilmm.com",
+    "note": "rarefilmm | The Cave of Forgotten Films &#8211; The Cave of ",
+    "ms": 708,
+    "len": 49423
+  },
+  {
+    "module": "RecTV",
+    "url": "https://a.psrectv80.xyz",
+    "src": "RecTV\\src\\main\\kotlin\\com\\neowatch\\RecTV.kt",
+    "status": 200,
+    "final": "https://floral-star-55c8.cloudflareaccess.com/cdn-cgi/access/login/a.psrectv80.xyz?kid=e9ae628f39be6b4bb69fa80bafb29f0f0d384dcc5f629dfe683447dcc24e6661&meta=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjRkYTI5NzdiNTQwNjg4Y2FlNjRjNjc1MDUzNzkwMjJiNzA0M2ExMGQ0ZTM1NWM3YmQ0OGRmM2VkY2M2N2NmMTEifQ.eyJ0eXBlIjoibWV0YSIsImF1ZCI6ImU5YWU2MjhmMzliZTZiNGJiNjlmYTgwYmFmYjI5ZjBmMGQzODRkY2M1ZjYyOWRmZTY4MzQ0N2RjYzI0ZTY2NjEiLCJob3N0bmFtZSI6ImEucHNyZWN0djgwLnh5eiIsInJlZGlyZWN0X3VybCI6Ii9hZG1pbi8iLCJzZXJ2aWNlX3Rva2VuX3N0YXR1cyI6ZmFsc2UsImlzX3dhcnAiOmZhbHNlLCJpc19nYXRld2F5IjpmYWxzZSwiZXhwIjoxNzk0ODQxODAxLCJuYmYiOjE3OTQ4NDE1MDEsImlhdCI6MTc5NDg0MTUwMSwiYXV0aF9zdGF0dXMiOiJOT05FIiwibXRsc19hdXRoIjp7ImNlcnRfaXNzdWVyX2RuIjoiIiwiY2VydF9zZXJpYWwiOiIiLCJjZXJ0X2lzc3Vlcl9za2kiOiIiLCJjZXJ0X3ByZXNlbnRlZCI6ZmFsc2UsImNvbW1vbl9uYW1lIjoiIiwiYXV0aF9zdGF0dXMiOiJOT05FIn0sInJlYWxfY291bnRyeSI6IlRSIiwiYXBwX3Nlc3Npb25faGFzaCI6IjhmNzFlNzRlNGE1ZGZmZjUwMmM5NmJlYzM0MTYzM2JlN2MwZjI2ZWVhNDdlY2JmY2I4MGYwYzhiYjY0NDYwMTUifQ.UUISuWhdkDt3nUJOOLxhorcWcblTUjY1Rnjtw0aPISGUEmwSzpNlqv9eNgq_Wnn1VdUcO161RmWEQJaZKHlEaOAkFy5yc5B-80GISSCBJIcxdLJrni-KfTk2cBShx3fL_u8IW5zR4y4mpZPuKvECkAmn8j4zcDfA-4Y--x1wwQZqhYD5Mw-SwUit3FuZg8vJh2LtFtXAd0Zwzf3Mt6lL6TDaSctsiP8SslWs9fb-6CulxJGv9q_MPDB4lh605fCdVgfPOVb_ejD6kPaINrzWPHCEstkR6aphHlP-7KD3sA48aUaJ2YUhjsVsM8m7vSdzqEqalrg2zYjRlVZlSkYtMA&redirect_url=%2Fadmin%2F",
+    "note": "Sign in ・ Cloudflare Access",
+    "ms": 1108,
+    "len": 60824
+  },
+  {
+    "module": "SelcukFlix",
+    "url": "https://selcukflix.app",
+    "src": "SelcukFlix\\src\\main\\kotlin\\com\\selcukflix\\SelcukFlixProvider.kt",
+    "status": 200,
+    "final": "https://selcukflix.app",
+    "note": "Yabancı Dizi ve film izle - Selcukflix",
+    "ms": 1793,
+    "len": 198888
+  },
+  {
+    "module": "SetFilmIzle",
+    "url": "https://www.setfilmizle.ltd",
+    "src": "SetFilmIzle\\src\\main\\kotlin\\com\\neowatch\\SetFilmIzle.kt",
+    "status": 200,
+    "final": "https://www.setfilmizle.ltd",
+    "note": "Set Film izle | HD Film | Yabancı Dizi",
+    "ms": 355,
+    "len": 109257
+  },
+  {
+    "module": "SezonlukDizi",
+    "url": "https://sezonlukdizi.cc",
+    "src": "SezonlukDizi\\src\\main\\kotlin\\com\\neowatch\\SezonlukDizi.kt",
+    "status": 200,
+    "final": "https://sezonlukdizi.cc",
+    "note": "Sezonluk Dizi izle - 1080p yabanc dizi izle",
+    "ms": 384,
+    "len": 32655
+  },
+  {
+    "module": "ShowTV",
+    "url": "https://www.showtv.com.tr",
+    "src": "ShowTV\\src\\main\\kotlin\\com\\showtv\\ShowTVProvider.kt",
+    "status": 200,
+    "final": "https://www.showtv.com.tr",
+    "note": "Show TV - Diziler, Haberler, Programlar ve TV Canlı Yayın",
+    "ms": 650,
+    "len": 199134
+  },
+  {
+    "module": "SinemaCX",
+    "url": "https://sinemacc.com",
+    "src": "SinemaCX\\src\\main\\kotlin\\com\\sinemacx\\SinemaCXProvider.kt",
+    "status": 200,
+    "final": "https://sinemacc.com",
+    "note": "Film izle | Türkçe Dublaj HD Yabancı Filmler | Sinema CC",
+    "ms": 486,
+    "len": 144882
+  },
+  {
+    "module": "Sinezy",
+    "url": "https://sinezy.si",
+    "src": "Sinezy\\src\\main\\kotlin\\com\\sinezy\\SinezyProvider.kt",
+    "status": 200,
+    "final": "https://sinezy.si",
+    "note": "Sinezy: Film İzle, Full HD Yabancı Filmler",
+    "ms": 765,
+    "len": 199818
+  },
+  {
+    "module": "StarTV",
+    "url": "https://www.startv.com.tr",
+    "src": "StarTV\\src\\main\\kotlin\\com\\startv\\StarTVProvider.kt",
+    "status": 200,
+    "final": "https://www.startv.com.tr",
+    "note": "Startv.com.tr – Star TV Resmi İnternet Sitesi",
+    "ms": 409,
+    "len": 198710
+  },
+  {
+    "module": "SuperFilmGeldi",
+    "url": "https://superfilmizle.icu",
+    "src": "SuperFilmGeldi\\src\\main\\kotlin\\com\\neowatch\\SuperFilmGeldi.kt",
+    "status": 200,
+    "final": "https://superfilmizle.icu",
+    "note": "Superfilmizle - HD Kalite Film izle",
+    "ms": 657,
+    "len": 199738
+  },
+  {
+    "module": "TLCtr",
+    "url": "https://www.tlctv.com.tr",
+    "src": "TLCtr\\src\\main\\kotlin\\com\\tlctr\\TLCtrProvider.kt",
+    "status": 200,
+    "final": "https://www.tlctv.com.tr",
+    "note": "TLC | Gerçek Hikayeler, Belgesel, Dizi",
+    "ms": 393,
+    "len": 199352
+  },
+  {
+    "module": "TV8",
+    "url": "https://www.tv8.com.tr",
+    "src": "TV8\\src\\main\\kotlin\\com\\tv8\\TV8Provider.kt",
+    "status": 200,
+    "final": "https://www.tv8.com.tr",
+    "note": "TV8 Yenileniyor | TV8 Canlı Yayın",
+    "ms": 292,
+    "len": 1960
+  },
+  {
+    "module": "TurkAnimeTV",
+    "url": "https://turkanime.live",
+    "src": "TurkAnimeTV\\src\\main\\kotlin\\com\\turkanimetv\\TurkAnimeTVProvider.kt",
+    "status": 200,
+    "final": "https://turkanime.live",
+    "note": "Türk Anime TV | Türkçe Altyazılı Anime izle",
+    "ms": 1614,
+    "len": 199423
+  },
+  {
+    "module": "UgurFilm",
+    "url": "https://ugurfilm8.com",
+    "src": "UgurFilm\\src\\main\\kotlin\\com\\neowatch\\UgurFilm.kt",
+    "status": 200,
+    "final": "https://ugurfilm8.com",
+    "note": "Redirecting...",
+    "ms": 531,
+    "len": 5576
+  },
+  {
+    "module": "UltraFilmizle",
+    "url": "https://ufilmizle.com",
+    "src": "UltraFilmizle\\src\\main\\kotlin\\com\\ultrafilmizle\\UltraFilmizleProvider.kt",
+    "status": 200,
+    "final": "https://ufilmizle.com",
+    "note": "...",
+    "ms": 340,
+    "len": 4729
+  },
+  {
+    "module": "WebdramaTurkey2",
+    "url": "https://webdramaturkey2.com",
+    "src": "WebdramaTurkey2\\src\\main\\kotlin\\com\\webdramaturkey2\\WebdramaTurkey2Provider.kt",
+    "status": 200,
+    "final": "https://webdramaturkey2.com",
+    "note": "Web Drama Turkey - Kore, Çin, Japon Dizileri İzle",
+    "ms": 426,
+    "len": 199527
+  },
+  {
+    "module": "Yabancidizi",
+    "url": "https://ybncidizi.com",
+    "src": "Yabancidizi\\src\\main\\kotlin\\com\\yabancidizi\\YabancidiziProvider.kt",
+    "status": 200,
+    "final": "https://ybncidizi.com",
+    "note": "Yabancı Dizi İzle - Türkçe Altyazılı ve Dublaj Diziler | yab",
+    "ms": 685,
+    "len": 198769
+  },
+  {
+    "module": "YesilCamTv",
+    "url": "https://yesilcamtv.com.tr",
+    "src": "YesilCamTv\\src\\main\\kotlin\\com\\yesilcamtv\\YesilCamTvProvider.kt",
+    "status": 200,
+    "final": "https://yesilcamtv.com.tr",
+    "note": "",
+    "ms": 729,
+    "len": 47489
+  },
+  {
+    "module": "YouTube",
+    "url": "https://www.youtube.com",
+    "src": "YouTube\\src\\main\\kotlin\\com\\neowatch\\YouTube.kt",
+    "status": 200,
+    "final": "https://www.youtube.com",
+    "note": "YouTube",
+    "ms": 566,
+    "len": 199978
+  },
+  {
+    "module": "FilmMakinesi",
+    "url": "https://filmmakinesi.to",
+    "src": "FilmMakinesi\\src\\main\\kotlin\\com\\neowatch\\FilmMakinesi.kt",
+    "status": 403,
+    "note": "HTTP 403",
+    "ms": 184
+  },
+  {
+    "module": "WebteIzle",
+    "url": "https://webteizle.info",
+    "src": "WebteIzle\\src\\main\\kotlin\\com\\webteizle\\WebteIzleProvider.kt",
+    "status": 403,
+    "note": "HTTP 403",
+    "ms": 179
+  },
+  {
+    "module": "DiziLife",
+    "url": "https://dizi85.life",
+    "src": "DiziLife\\src\\main\\kotlin\\com\\dizilife\\DiziLifeProvider.kt",
+    "status": "ERR",
+    "note": "timed out",
+    "ms": 20064
+  },
+  {
+    "module": "NetflixMirror",
+    "url": "https://iosmirror.cc",
+    "src": "NetflixMirror\\src\\main\\kotlin\\com\\neowatch\\NetflixMirror.kt",
+    "status": "ERR",
+    "note": "[Errno 11001] getaddrinfo failed",
+    "ms": 166
+  },
+  {
+    "module": "Watch2Movies",
+    "url": "https://watch2movies.net",
+    "src": "Watch2Movies\\src\\main\\kotlin\\com\\neowatch\\Watch2Movies.kt",
+    "status": "ERR",
+    "note": "[Errno 11001] getaddrinfo failed",
+    "ms": 98
+  },
+  {
+    "module": ".git",
+    "url": null,
+    "src": null,
+    "status": "NOMAURL",
+    "note": "mainUrl bulunamadi"
+  },
+  {
+    "module": "CizgiFilmIzleInfo",
+    "url": null,
+    "src": null,
+    "status": "NOMAURL",
+    "note": "mainUrl bulunamadi"
+  },
+  {
+    "module": "CizgiFilmTv",
+    "url": null,
+    "src": null,
+    "status": "NOMAURL",
+    "note": "mainUrl bulunamadi"
+  },
+  {
+    "module": "InatBox",
+    "url": null,
+    "src": null,
+    "status": "NOMAURL",
+    "note": "mainUrl bulunamadi"
+  }
+]

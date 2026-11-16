@@ -31,7 +31,7 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/repo.json
 Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 [`builds/plugins.json`](https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/plugins.json).
 
-### Sağlayıcı modülleri (64)
+### Sağlayıcı modülleri (63)
 
 | Modül | Hedef site |
 |---|---|
@@ -93,7 +93,6 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | TV8 | www.tv8.com.tr |
 | UgurFilm | ugurfilm8.com |
 | UltraFilmizle | ufilmizle.com |
-| Watch2Movies | watch2movies.net |
 | WebdramaTurkey2 | webdramaturkey2.com |
 | WebteIzle | webteizle.info |
 | Yabancidizi | ybncidizi.com |
@@ -105,8 +104,8 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 - **TraktSync** — kütüphanenizi Trakt.tv ile eşitler; bkz. [TraktSync (Trakt.tv)](#traktsync-trakt-tv-eklentisi)
 
 > Kullanılmayan iskelet modüller (eski `VahsiKelebek`, `VahsiFilm`, `VahsiDizi`,
-> `VahsiAnime`, `VahsiBelgesel`) silinmiştir; depoda yalnızca gerçek site sağlayıcıları
-> ve TraktSync bulunur.
+> `VahsiAnime`, `VahsiBelgesel`) ve kapanmış site sağlayıcısı `Watch2Movies`
+> silinmiştir; depoda yalnızca çalışan gerçek site sağlayıcıları ve TraktSync bulunur.
 
 > **SezonlukDizi notu:** Site, kaynaklarının çoğunu Cloudflare Turnstile (captcha)
 > arkasına aldı. Eklenti captcha istemeyen kaynakları (Streamruby/Filemoon/VideoMoly)
