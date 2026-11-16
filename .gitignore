@@ -11,3 +11,7 @@
 local.properties
 .vscode
 *.cs3
+
+# audit artifacts
+scripts/audit_*.json
+scripts/health_report.json
