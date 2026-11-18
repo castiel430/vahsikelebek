@@ -30,6 +30,7 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.net.URI
 import java.net.URLEncoder
+import com.vahsikelebek.common.CfBypass
 
 /**
  * WebdramaTurkey2 — webdramaturkey2.com (Korean/Chinese/Japanese dramas and films, Turkish subs).
@@ -195,7 +196,7 @@ class WebdramaTurkey2Provider : MainAPI() {
 
             // The video.php wrapper hides the real player in #main-iframe.
             val target = if (wrapper.contains("/video.php")) {
-                runCatching { app.get(wrapper, referer = data, headers = browserHeaders).text }
+                runCatching { app.get(wrapper, referer = data, headers = browserHeaders, interceptor = CfBypass.interceptor).text }
                     .getOrNull()
                     ?.let { MAIN_IFRAME_SRC.find(it)?.groupValues?.get(1) }
             } else {
@@ -270,7 +271,7 @@ class WebdramaTurkey2Provider : MainAPI() {
         referer: String,
         callback: (ExtractorLink) -> Unit,
     ): Boolean {
-        val playlist = runCatching { app.get(masterUrl, referer = referer, headers = browserHeaders).text }
+        val playlist = runCatching { app.get(masterUrl, referer = referer, headers = browserHeaders, interceptor = CfBypass.interceptor).text }
             .getOrNull() ?: return false
         val hasAudio = playlist.contains("TYPE=AUDIO", ignoreCase = true) || playlist.contains("AUDIO=", ignoreCase = true)
         val variants = if (hasAudio) emptyList() else VARIANT.findAll(playlist).mapNotNull { match ->
@@ -303,7 +304,7 @@ class WebdramaTurkey2Provider : MainAPI() {
     }
 
     private suspend fun fetch(url: String): Document = runCatching {
-        app.get(url, headers = browserHeaders).document
+        app.get(url, headers = browserHeaders, interceptor = CfBypass.interceptor).document
     }.getOrNull() ?: throw ErrorLoadingException("$name: sayfa yüklenemedi. $REPORT_HINT")
 
     /** Listing / search-tab card: `div.list-movie`. */

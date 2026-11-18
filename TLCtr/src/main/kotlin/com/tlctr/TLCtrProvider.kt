@@ -25,6 +25,7 @@ import com.lagradost.cloudstream3.utils.newExtractorLink
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import com.vahsikelebek.common.CfBypass
 
 /**
  * TLC Türkiye — tlctv.com.tr.
@@ -91,7 +92,7 @@ class TLCtrProvider : MainAPI() {
             "$mainUrl/arama",
             params = mapOf("sorgu" to query.trim()),
             headers = uaHeaders,
-        ).document
+         interceptor = CfBypass.interceptor,).document
         val programs = searchGroup(doc, "PROGRAMLAR")
             ?.let { parseCards(it.select("div.poster > a[href]")) }
             .orEmpty()
@@ -109,7 +110,7 @@ class TLCtrProvider : MainAPI() {
     }
 
     override suspend fun load(url: String): LoadResponse? {
-        val response = runCatching { app.get(url, headers = uaHeaders) }.getOrNull()
+        val response = runCatching { app.get(url, headers = uaHeaders, interceptor = CfBypass.interceptor) }.getOrNull()
             ?: throw ErrorLoadingException("$name: sayfa yüklenemedi. $REPORT_HINT")
         val doc = response.document
 
@@ -154,7 +155,7 @@ class TLCtrProvider : MainAPI() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit,
     ): Boolean {
-        val page = runCatching { app.get(data, headers = uaHeaders) }.getOrNull()
+        val page = runCatching { app.get(data, headers = uaHeaders, interceptor = CfBypass.interceptor) }.getOrNull()
             ?: throw ErrorLoadingException("$name: sayfa yüklenemedi. $REPORT_HINT")
 
         val master = if (data.trimEnd('/').endsWith("/canli-izle")) {
@@ -170,13 +171,13 @@ class TLCtrProvider : MainAPI() {
                         "&SecretKey=$PLAYER_SECRET",
                     headers = uaHeaders,
                     referer = data,
-                ).url
+                 interceptor = CfBypass.interceptor,).url
             }.getOrNull()?.takeIf { it.contains(".m3u8") }
                 ?: throw ErrorLoadingException("$name: video kaynağı alınamadı. $REPORT_HINT")
         }
 
         val playlist = runCatching {
-            app.get(master, headers = uaHeaders, referer = "$mainUrl/").text
+            app.get(master, headers = uaHeaders, referer = "$mainUrl/", interceptor = CfBypass.interceptor).text
         }.getOrNull() ?: throw ErrorLoadingException("$name: oynatma listesi alınamadı. $REPORT_HINT")
 
         val variants = parseVariants(playlist, master)

@@ -1,8 +1,8 @@
-﻿version = 7
+version = 8
 
 
 cloudstream {
-    description = "WebdramaTurkey2 â€” Kore, Ã‡in ve Japon dizileri, TR altyazÄ±lÄ± (webdramaturkey2.com)"
+    description = "WebdramaTurkey2 — Kore, Çin ve Japon dizileri, TR altyazılı (webdramaturkey2.com)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("TvSeries", "Movie", "Anime")

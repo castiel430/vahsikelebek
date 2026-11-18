@@ -1,8 +1,8 @@
-﻿version = 7
+version = 8
 
 
 cloudstream {
-    description = "KÃ¼lt Filmler â€” kultfilmler.net"
+    description = "Kült Filmler — kultfilmler.net"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie")

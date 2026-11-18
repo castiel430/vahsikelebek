@@ -1,8 +1,8 @@
-﻿version = 7
+version = 8
 
 
 cloudstream {
-    description = "HDFilmDiziIzle â€” TÃ¼rkÃ§e iÃ§erik"
+    description = "HDFilmDiziIzle — Türkçe içerik"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie", "TvSeries")

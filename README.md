@@ -52,10 +52,10 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | Dizigom | www.dizigom.news |
 | DiziKorea | dizikorea3.com |
 | Dizilla | dizilla.la |
-| DiziMom | ddizimom.net |
+| DiziMom | ddizimom.com |
 | DiziPal | dizipal1596.com |
 | DiziPod | dizipod.com |
-| DiziYou | www.diziyou.one |
+| DiziYou | diziyou.to |
 | DMAX | www.dmax.com.tr |
 | FilmMakinesi | filmmakinesi.to |
 | FilmModu | filmmodu.news |
@@ -75,7 +75,7 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | MinikaGO | www.minikago.com.tr |
 | PuhuTV | puhutv.com |
 | RareFilmm | rarefilmm.com |
-| RecTV | a.psrectv80.xyz |
+
 | SelcukFlix | selcukflix.app |
 | SetFilmIzle | www.setfilmizle.ltd |
 | SezonlukDizi | sezonlukdizi.cc |
@@ -87,8 +87,8 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | TLCtr | www.tlctv.com.tr |
 | TurkAnimeTV | turkanime.live |
 | TV8 | www.tv8.com.tr |
-| UgurFilm | ugurfilm8.com |
-| UltraFilmizle | ufilmizle.com |
+
+| UltraFilmizle | ultraiz.net |
 | WebdramaTurkey2 | webdramaturkey2.com |
 | WebteIzle | webteizle.info |
 | Yabancidizi | ybncidizi.com |
@@ -100,10 +100,12 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 - **TraktSync** — kütüphanenizi Trakt.tv ile eşitler; bkz. [TraktSync (Trakt.tv)](#traktsync-trakt-tv-eklentisi)
 
 > Kullanılmayan iskelet modüller (eski `VahsiKelebek`, `VahsiFilm`, `VahsiDizi`,
-> `VahsiAnime`, `VahsiBelgesel`) ve bölümü kapanan/yıldırım sertifikası geçersiz kalan
-> sağlayıcılar (`Watch2Movies`, `DiziPal`, `DiziPalGuncel`, `DiziPalOrjinal`,
-> `DiziLife`, `NetflixMirror` —iosmirror.cc adfarmına döndü) silinmiştir;
-> depoda yalnızca çalışan gerçek site sağlayıcıları ve TraktSync bulunur.
+> `VahsiAnime`, `VahsiBelgesel`) ve ölü sağlayıcılar (`Watch2Movies`, `DiziPal`,
+> `DiziPalGuncel`, `DiziPalOrjinal`, `DiziLife`, `NetflixMirror`,
+> `UgurFilm` - alan adı park edilmiş, `RecTV` - backend Cloudflare Access
+> duvarının arkasında ve Firebase Remote Config'teki `api_url` da oraya işaret
+> ediyor) silinmiştir; depoda yalnızca çalışan gerçek site sağlayıcıları ve
+> TraktSync bulunur.
 
 > **SezonlukDizi notu:** Site, kaynaklarının çoğunu Cloudflare Turnstile (captcha)
 > arkasına aldı. Eklenti captcha istemeyen kaynakları (Streamruby/Filemoon/VideoMoly)

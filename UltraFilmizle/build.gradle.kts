@@ -1,13 +1,13 @@
-﻿version = 8
+version = 9
 
 
 cloudstream {
-    description = "UltraFilmizle â€” TÃ¼rkÃ§e dublaj/altyazÄ±lÄ± film arÅŸivi"
+    description = "UltraFilmizle — Türkçe dublaj/altyazılı film arşivi"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie")
     language = "tr"
-    iconUrl = "https://www.google.com/s2/favicons?domain=ufilmizle.com&sz=%size%"
+    iconUrl = "https://www.google.com/s2/favicons?domain=ultraiz.net&sz=%size%"
 }
 
 

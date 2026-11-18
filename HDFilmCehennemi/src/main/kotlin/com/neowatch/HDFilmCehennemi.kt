@@ -39,7 +39,7 @@ class HDFilmCehennemi : MainAPI() {
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
         if (page > 1) return newHomePageResponse(request.name, emptyList(), hasNext = false)
 
-        val document = app.get(request.data, referer = "${mainUrl}/").document
+        val document = app.get(request.data, referer = "${mainUrl}/", interceptor = CfBypass.interceptor).document
         val home     = document.select("div.section-content a.poster").mapNotNull { it.toSearchResult() }
 
         return newHomePageResponse(request.name, home, hasNext = false)
@@ -65,7 +65,7 @@ class HDFilmCehennemi : MainAPI() {
             params  = mapOf("q" to query),
             referer = "${mainUrl}/",
             headers = mapOf("X-Requested-With" to "fetch")
-        ).parsedSafe<Results>() ?: return emptyList()
+        , interceptor = CfBypass.interceptor).parsedSafe<Results>() ?: return emptyList()
         val searchResults = mutableListOf<SearchResponse>()
 
         response.results.forEach { resultHtml ->
@@ -89,7 +89,7 @@ class HDFilmCehennemi : MainAPI() {
     }
 
     override suspend fun load(url: String): LoadResponse? {
-        val document = app.get(url).document
+        val document = app.get(url, interceptor = CfBypass.interceptor).document
 
         val title       = document.selectFirst("h1.section-title")?.text()?.substringBefore(" izle")?.trim() ?: return null
         val poster      = fixUrlNull(document.select("aside.post-info-poster img.lazyload").lastOrNull()?.attr("data-src"))
@@ -155,7 +155,7 @@ class HDFilmCehennemi : MainAPI() {
 
     override suspend fun loadLinks(data: String, isCasting: Boolean, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit ): Boolean {
         Log.d("HDCH", "data » $data")
-        val document = app.get(data, referer = "${mainUrl}/").document
+        val document = app.get(data, referer = "${mainUrl}/", interceptor = CfBypass.interceptor).document
         var bulundu  = false
 
         document.select("div.alternative-links").forEach { element ->
@@ -172,7 +172,7 @@ class HDFilmCehennemi : MainAPI() {
                         "X-Requested-With" to "fetch"
                     ),
                     referer = data
-                ).text
+                , interceptor = CfBypass.interceptor).text
 
                 val iframe = Regex("""data-src=\"([^\"]+)""").find(apiGet)?.groupValues?.get(1)?.replace("\\", "") ?: return@forEach
                 Log.d("HDCH", "$source » $videoID » $iframe")

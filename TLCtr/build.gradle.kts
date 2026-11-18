@@ -1,8 +1,8 @@
-﻿version = 9
+version = 10
 
 
 cloudstream {
-    description = "TLCtr â€” TLC TÃ¼rkiye: gerÃ§ek hikayeler, belgesel ve dizi bÃ¶lÃ¼mleri + canlÄ± yayÄ±n (tlctv.com.tr)"
+    description = "TLCtr — TLC Türkiye: gerçek hikayeler, belgesel ve dizi bölümleri + canlı yayın (tlctv.com.tr)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("TvSeries", "Live")

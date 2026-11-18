@@ -32,6 +32,7 @@ import org.json.JSONObject
 import org.jsoup.nodes.Element
 import java.net.URLEncoder
 import java.util.concurrent.CancellationException
+import com.vahsikelebek.common.CfBypass
 
 /**
  * ÇizgiMax — cizgimax.online
@@ -83,7 +84,7 @@ class CizgimaxProvider : MainAPI() {
     )
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
-        val doc = app.get(request.data, headers = uaHeaders).document
+        val doc = app.get(request.data, headers = uaHeaders, interceptor = CfBypass.interceptor).document
         val items = doc.select("div.film-item").mapNotNull { seriesOf(it) }.distinctBy { it.url }
         return newHomePageResponse(request.name, items, hasNext = false)
     }
@@ -92,7 +93,7 @@ class CizgimaxProvider : MainAPI() {
         search(query, 1)?.items ?: emptyList()
 
     override suspend fun search(query: String, page: Int): SearchResponseList? {
-        val doc = app.get("$mainUrl/ara/?q=${URLEncoder.encode(query, "UTF-8")}&page=$page", headers = uaHeaders).document
+        val doc = app.get("$mainUrl/ara/?q=${URLEncoder.encode(query, "UTF-8")}&page=$page", headers = uaHeaders, interceptor = CfBypass.interceptor).document
         val items = doc.select("div.film-item").mapNotNull { seriesOf(it) }.distinctBy { it.url }
         // The pager has no "next" link: it lists every page in a <select>.
         val lastPage = doc.select("div.listing-pager select.lp-jump-select option")
@@ -103,7 +104,7 @@ class CizgimaxProvider : MainAPI() {
     /** Header autocomplete: `/api/search/suggest/` returns five hits without a full page load. */
     override suspend fun quickSearch(query: String): List<SearchResponse>? {
         val body = try {
-            JSONObject(app.get("$mainUrl/api/search/suggest/?q=${URLEncoder.encode(query, "UTF-8")}", headers = uaHeaders).text)
+            JSONObject(app.get("$mainUrl/api/search/suggest/?q=${URLEncoder.encode(query, "UTF-8")}", headers = uaHeaders, interceptor = CfBypass.interceptor).text)
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
@@ -129,7 +130,7 @@ class CizgimaxProvider : MainAPI() {
     }
 
     override suspend fun load(url: String): LoadResponse? {
-        val doc = runCatching { app.get(url, headers = uaHeaders).document }
+        val doc = runCatching { app.get(url, headers = uaHeaders, interceptor = CfBypass.interceptor).document }
             .getOrNull() ?: throw ErrorLoadingException("$name: içerik yüklenemedi. $REPORT_HINT")
         val title = doc.selectFirst("h1 a.anime-title-link")?.text()?.trim()
             ?.takeIf { it.isNotBlank() }
@@ -189,7 +190,7 @@ class CizgimaxProvider : MainAPI() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit,
     ): Boolean {
-        val html = runCatching { app.get(data, headers = uaHeaders).text }
+        val html = runCatching { app.get(data, headers = uaHeaders, interceptor = CfBypass.interceptor).text }
             .getOrNull() ?: throw ErrorLoadingException("$name: kaynak bulunamadı. $REPORT_HINT")
         val encoded = ServersRegex.find(html)?.groupValues?.get(1) ?: ""
         val servers = runCatching { JSONArray(decodeBlob(encoded)) }.getOrNull()
@@ -227,7 +228,7 @@ class CizgimaxProvider : MainAPI() {
                         // sibling qualitiesUrl lists every signed one (verified 1080p + 360p).
                         val renditions = if (isMp4 && qualitiesUrl.isNotBlank()) {
                             runCatching {
-                                JSONObject(app.get(fixUrl(qualitiesUrl), referer = data, headers = uaHeaders).text)
+                                JSONObject(app.get(fixUrl(qualitiesUrl), referer = data, headers = uaHeaders, interceptor = CfBypass.interceptor).text)
                                     .optJSONArray("qualities")
                             }.getOrNull()
                         } else {
@@ -271,7 +272,7 @@ class CizgimaxProvider : MainAPI() {
                         val embed = if (src.startsWith("http") || src.startsWith("//")) {
                             absolute(src)
                         } else {
-                            app.get(fixUrl(src), referer = data, allowRedirects = false, headers = uaHeaders)
+                            app.get(fixUrl(src), referer = data, allowRedirects = false, headers = uaHeaders, interceptor = CfBypass.interceptor)
                                 .headers["location"]?.let { absolute(it) }
                         }
                         if (!embed.isNullOrBlank()) loadExtractor(embed, data, subtitleFilter, emit)
@@ -279,7 +280,7 @@ class CizgimaxProvider : MainAPI() {
 
                     resolveUrl.isNotBlank() -> {
                         val resolve = if (resolveUrl.startsWith("http")) resolveUrl else "$mainUrl$resolveUrl"
-                        val videoKey = JSONObject(app.get(resolve, referer = data, headers = uaHeaders).text)
+                        val videoKey = JSONObject(app.get(resolve, referer = data, headers = uaHeaders, interceptor = CfBypass.interceptor).text)
                             .optString("id")
                         if (videoKey.isNotBlank()) {
                             // tau-video's SPA loads its own API; read the renditions directly.
@@ -288,7 +289,7 @@ class CizgimaxProvider : MainAPI() {
                                     "https://tau-video.xyz/api/video/$videoKey",
                                     referer = "https://tau-video.xyz/",
                                     headers = uaHeaders,
-                                ).text
+                                 interceptor = CfBypass.interceptor,).text
                             }.getOrNull().orEmpty()
                             val urls = runCatching { JSONObject(body).optJSONArray("urls") }.getOrNull()
                             if (urls != null) {

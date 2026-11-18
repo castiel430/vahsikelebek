@@ -38,7 +38,7 @@ class FilmMakinesi : MainAPI() {
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
         val url      = if (page <= 1) request.data else "${request.data}sayfa/${page}/"
-        val document = app.get(url, referer = "${mainUrl}/").document
+        val document = app.get(url, referer = "${mainUrl}/", interceptor = CfBypass.interceptor).document
         val home     = document.select("div.item-relative > a.item").mapNotNull { it.toSearchResult() }
         val hasNext  = document.selectFirst("a[href*='/sayfa/${page + 1}/']") != null
 
@@ -69,7 +69,7 @@ class FilmMakinesi : MainAPI() {
     }
 
     override suspend fun search(query: String): List<SearchResponse> {
-        val document = app.get("${mainUrl}/arama/", params = mapOf("s" to query), referer = "${mainUrl}/").document
+        val document = app.get("${mainUrl}/arama/", params = mapOf("s" to query), referer = "${mainUrl}/", interceptor = CfBypass.interceptor).document
 
         return document.select("div.item-relative > a.item").mapNotNull { it.toSearchResult() }
     }
@@ -77,7 +77,7 @@ class FilmMakinesi : MainAPI() {
     override suspend fun quickSearch(query: String): List<SearchResponse> = search(query)
 
     override suspend fun load(url: String): LoadResponse? {
-        val document = app.get(url, referer = "${mainUrl}/").document
+        val document = app.get(url, referer = "${mainUrl}/", interceptor = CfBypass.interceptor).document
 
         val title           = document.selectFirst("h1.title")?.ownText()?.removeSuffix(" izle")?.trim()
             ?: document.selectFirst("h1")?.text()?.substringBefore(" izle")?.trim() ?: return null
@@ -139,7 +139,7 @@ class FilmMakinesi : MainAPI() {
 
     override suspend fun loadLinks(data: String, isCasting: Boolean, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit): Boolean {
         Log.d("FLMM", "data » $data")
-        val document = app.get(data, referer = "${mainUrl}/").document
+        val document = app.get(data, referer = "${mainUrl}/", interceptor = CfBypass.interceptor).document
 
         // ? Alternatifler div.video-parts a[data-video_url] içinde; tek kaynaklı sayfalarda oynatıcı div.after-player iframe'inde
         val kaynaklar = linkedMapOf<String, String>()   // adres → etiket

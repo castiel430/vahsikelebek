@@ -31,6 +31,7 @@ import com.lagradost.cloudstream3.utils.newExtractorLink
 import java.util.Base64
 import org.json.JSONArray
 import org.jsoup.nodes.Document
+import com.vahsikelebek.common.CfBypass
 
 private fun cleanTitle(raw: String?): String = (raw ?: "")
     .replace(Regex("""\s*\|.*$"""), "")
@@ -88,7 +89,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
         if (request.name in ROWS) {
             if (page > 1) return newHomePageResponse(request.name, emptyList(), hasNext = false)
-            val doc = app.get(request.data, headers = uaHeaders).document
+            val doc = app.get(request.data, headers = uaHeaders, interceptor = CfBypass.interceptor).document
             return newHomePageResponse(request.name, cards(doc), hasNext = false)
         }
         return newHomePageResponse(request.name, emptyList(), hasNext = false)
@@ -112,7 +113,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
             "$mainUrl/wp-json/wp/v2/search",
             params = mapOf("search" to query.trim(), "per_page" to "20"),
             headers = uaHeaders,
-        ).text
+         interceptor = CfBypass.interceptor,).text
         val results = JSONArray(body)
         return (0 until results.length()).mapNotNull { index ->
             val row = results.optJSONObject(index) ?: return@mapNotNull null
@@ -154,7 +155,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
     }.distinctBy { it.url }
 
     override suspend fun load(url: String): LoadResponse? {
-        val resp = app.get(url, headers = uaHeaders)
+        val resp = app.get(url, headers = uaHeaders, interceptor = CfBypass.interceptor)
         val doc = resp.document
         val raw = resp.text
         val title = cleanTitle(
@@ -210,7 +211,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit,
     ): Boolean {
-        val resp = app.get(data, headers = uaHeaders)
+        val resp = app.get(data, headers = uaHeaders, interceptor = CfBypass.interceptor)
         val text = resp.text.replace("\\/", "/").replace("\\\"", "\"")
         var found = false
         val seen = mutableSetOf<String>()
@@ -259,7 +260,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
                     emit(target, btnLabel, data)
                     continue
                 }
-                val innerResp = runCatching { app.get(target, headers = uaHeaders, referer = data) }
+                val innerResp = runCatching { app.get(target, headers = uaHeaders, referer = data, interceptor = CfBypass.interceptor) }
                     .getOrNull() ?: continue
                 val innerRaw = innerResp.text
                 val inner = innerResp.document
@@ -268,7 +269,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
                 if (master != null) {
                     val playerBase = baseHref(innerRaw)
                     val masterText = runCatching {
-                        app.get(master, headers = uaHeaders, referer = playerBase).text
+                        app.get(master, headers = uaHeaders, referer = playerBase, interceptor = CfBypass.interceptor).text
                     }.getOrNull().orEmpty()
                     val isHls = masterText.contains("#EXTM3U") || master.contains(".m3u8")
                     val lType = if (isHls) ExtractorLinkType.M3U8 else null
@@ -295,7 +296,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
                 for (frame in inner.select("iframe[src]")) {
                     val sub = fixUrlNull(frame.attr("src")) ?: continue
                     if (loadExtractor(sub, target, subtitleCallback, callback)) found = true
-                    val subDoc = runCatching { app.get(sub, headers = uaHeaders, referer = target).document }
+                    val subDoc = runCatching { app.get(sub, headers = uaHeaders, referer = target, interceptor = CfBypass.interceptor).document }
                         .getOrNull() ?: continue
                     for (m in Regex("""["'](/[^"']+\.m3u8(?:\?[^"']*)?)["']""").findAll(subDoc.outerHtml())) {
                         emit(fixUrl(m.groupValues[1]), btnLabel, sub)
@@ -315,7 +316,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
                 emit(absolute, "Embed", data)
                 continue
             }
-            val inner = runCatching { app.get(absolute, headers = uaHeaders, referer = data).text }.getOrNull() ?: continue
+            val inner = runCatching { app.get(absolute, headers = uaHeaders, referer = data, interceptor = CfBypass.interceptor).text }.getOrNull() ?: continue
             val innerMedia = Regex("""https?://[^"'\s<>]+?\.(?:m3u8|mp4)(?:\?[^"'\s<>]*)""").findAll(inner)
             for (m in innerMedia) emit(m.value, "Embed", absolute)
         }
@@ -328,7 +329,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
                 emit(frame, "Embed", data)
                 continue
             }
-            val inner = runCatching { app.get(frame, headers = uaHeaders, referer = data).text }.getOrNull()
+            val inner = runCatching { app.get(frame, headers = uaHeaders, referer = data, interceptor = CfBypass.interceptor).text }.getOrNull()
             if (inner != null) {
                 val innerText = inner.replace("\\/", "/")
                 for (m in Regex("""https?://[^"'\s<>]+?\.(?:m3u8|mp4)(?:\?[^"'\s<>]*)""").findAll(innerText)) {

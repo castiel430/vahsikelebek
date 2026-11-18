@@ -27,6 +27,7 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.json.JSONArray
 import org.json.JSONObject
+import com.vahsikelebek.common.CfBypass
 
 /** Kült Filmler — kultfilmler.net (WordPress + vidpapi.xyz FirePlayer embed) */
 
@@ -52,7 +53,7 @@ class KultfilmlerProvider : MainAPI() {
     }
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
-        val doc = app.get(request.data.replace("SAYFA", page.toString()), headers = uaHeaders).document
+        val doc = app.get(request.data.replace("SAYFA", page.toString()), headers = uaHeaders, interceptor = CfBypass.interceptor).document
         val items = doc.select("a.mcard").mapNotNull { it.toSearchResult() }
         // Archive pager ends with the next-page arrow (svg) on every page but the last.
         return newHomePageResponse(
@@ -77,7 +78,7 @@ class KultfilmlerProvider : MainAPI() {
 
     override suspend fun search(query: String, page: Int): SearchResponseList? {
         val encoded = java.net.URLEncoder.encode(query, "UTF-8")
-        val doc = app.get("$mainUrl/?s=$encoded&paged=$page", headers = uaHeaders).document
+        val doc = app.get("$mainUrl/?s=$encoded&paged=$page", headers = uaHeaders, interceptor = CfBypass.interceptor).document
         val items = doc.select("a.mcard").mapNotNull { it.toSearchResult() }
         return newSearchResponseList(items, hasNext = doc.selectFirst("nav.pager a.next") != null)
     }
@@ -86,7 +87,7 @@ class KultfilmlerProvider : MainAPI() {
     override suspend fun quickSearch(query: String): List<SearchResponse>? {
         val encoded = java.net.URLEncoder.encode(query, "UTF-8")
         val data = runCatching {
-            JSONObject(app.get("$mainUrl/wp-admin/admin-ajax.php?action=kf_live_search&q=$encoded", headers = uaHeaders).text)
+            JSONObject(app.get("$mainUrl/wp-admin/admin-ajax.php?action=kf_live_search&q=$encoded", headers = uaHeaders, interceptor = CfBypass.interceptor).text)
         }.getOrNull()?.optJSONArray("data") ?: return null
         return (0 until data.length()).mapNotNull { i ->
             val item = data.optJSONObject(i) ?: return@mapNotNull null
@@ -99,7 +100,7 @@ class KultfilmlerProvider : MainAPI() {
     }
 
     override suspend fun load(url: String): LoadResponse? {
-        val doc = runCatching { app.get(url, headers = uaHeaders).document }
+        val doc = runCatching { app.get(url, headers = uaHeaders, interceptor = CfBypass.interceptor).document }
             .getOrNull() ?: throw ErrorLoadingException("$name: içerik yüklenemedi. $REPORT_HINT")
         val schema = movieSchema(doc)
         val title = doc.selectFirst("h1.vtitle")?.text()?.trim()?.takeIf { it.isNotBlank() }
@@ -131,7 +132,7 @@ class KultfilmlerProvider : MainAPI() {
         val linkCallback: (ExtractorLink) -> Unit = { if (Settings.qualityAllowed(it.quality)) callback(it) }
         val subtitleFilter: (com.lagradost.cloudstream3.SubtitleFile) -> Unit =
             { if (Settings.subtitleAllowed(it.lang)) subtitleCallback(it) }
-        val doc = runCatching { app.get(data, headers = uaHeaders).document }
+        val doc = runCatching { app.get(data, headers = uaHeaders, interceptor = CfBypass.interceptor).document }
             .getOrNull() ?: throw ErrorLoadingException("$name: kaynak bulunamadı. $REPORT_HINT")
 
         // #kf-srcdata lists every mirror (altyazılı + dublaj); the rendered iframe only shows the first.

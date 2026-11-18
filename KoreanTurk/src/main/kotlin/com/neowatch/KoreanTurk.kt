@@ -53,7 +53,7 @@ class KoreanTurk : MainAPI() {
         if (page <= 1) data else "${data.trimEnd('/')}/page/$page/"
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
-        val document = app.get(sayfaAdresi(request.data, page), headers = tarayici).document
+        val document = app.get(sayfaAdresi(request.data, page), headers = tarayici, interceptor = CfBypass.interceptor).document
         val sonBolumler = request.data.trimEnd('/') == mainUrl
 
         val home = if (sonBolumler) {
@@ -107,7 +107,7 @@ class KoreanTurk : MainAPI() {
     }
 
     override suspend fun search(query: String): List<SearchResponse> {
-        val document = app.get("${mainUrl}/", params = mapOf("s" to query), headers = tarayici).document
+        val document = app.get("${mainUrl}/", params = mapOf("s" to query), headers = tarayici, interceptor = CfBypass.interceptor).document
 
         return document.select("div.series-box, div.film-box").mapNotNull { it.toSearchResult() }.distinctBy { it.url }
     }
@@ -123,7 +123,7 @@ class KoreanTurk : MainAPI() {
     }
 
     override suspend fun load(url: String): LoadResponse? {
-        var document = app.get(url, headers = tarayici).document
+        var document = app.get(url, headers = tarayici, interceptor = CfBypass.interceptor).document
         var adres    = url
 
         // Bölüm sayfasından gelindiyse diziye geç
@@ -131,7 +131,7 @@ class KoreanTurk : MainAPI() {
             val dizi = document.select("a[href*=/dizi/]").map { it.attr("abs:href") }.firstOrNull { Regex("""/dizi/[^/]+/?$""").containsMatchIn(it) }
                 ?: return null
             adres    = dizi
-            document = app.get(dizi, headers = tarayici).document
+            document = app.get(dizi, headers = tarayici, interceptor = CfBypass.interceptor).document
         }
 
         val title       = document.selectFirst("h1")?.text()?.trim()?.ifBlank { null } ?: return null
@@ -174,7 +174,7 @@ class KoreanTurk : MainAPI() {
 
     override suspend fun loadLinks(data: String, isCasting: Boolean, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit): Boolean {
         Log.d("KRT", "data » $data")
-        val document = app.get(data, headers = tarayici).document
+        val document = app.get(data, headers = tarayici, interceptor = CfBypass.interceptor).document
         val iframes  = document.select("iframe").mapNotNull { fixUrlNull(it.attr("src").ifBlank { it.attr("data-src") }) }.distinct()
         if (iframes.isEmpty()) return false
 
