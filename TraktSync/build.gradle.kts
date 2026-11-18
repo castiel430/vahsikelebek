@@ -1,4 +1,4 @@
-version = 1
+version = 2
 
 cloudstream {
     description = "Trakt Senkron - CloudStream kütüphenizi Trakt.tv ile eşitler (izleme listesi ve izlenenler)"

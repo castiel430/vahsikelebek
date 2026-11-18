@@ -37,6 +37,9 @@ jobs:
       - name: Clean old builds
         run: rm -f "$GITHUB_WORKSPACE/builds"/*.cs3
 
+      - name: Yayındaki manifesti yedekle
+        run: cp "$GITHUB_WORKSPACE/builds/plugins.json" "$RUNNER_TEMP/prev_plugins.json" || true
+
       - name: Setup JDK 17
         uses: actions/setup-java@v4
         with:
@@ -74,6 +77,43 @@ jobs:
           with open(path, "w", encoding="utf-8") as f:
               f.write(content)
           print("plugins.json URL'leri güncellendi")
+          EOF
+
+      - name: Sürüm artışı kontrolü
+        run: |
+          python3 - <<'EOF'
+          import json, os, sys
+
+          new_path = os.environ["GITHUB_WORKSPACE"] + "/builds/plugins.json"
+          prev_path = os.environ["RUNNER_TEMP"] + "/prev_plugins.json"
+
+          if not os.path.exists(prev_path):
+              print("Önceki manifest yok, kontrol atlandı.")
+              sys.exit(0)
+
+          with open(prev_path, encoding="utf-8") as f:
+              prev = {p["internalName"]: p for p in json.load(f)}
+          with open(new_path, encoding="utf-8") as f:
+              new = {p["internalName"]: p for p in json.load(f)}
+
+          stale = []
+          for name, plugin in new.items():
+              old = prev.get(name)
+              if not old:
+                  continue
+              changed = (old.get("fileHash") != plugin.get("fileHash")
+                         or old.get("fileSize") != plugin.get("fileSize"))
+              if changed and old.get("version", 0) == plugin.get("version", 0):
+                  stale.append(name)
+
+          if stale:
+              msg = ("Bu eklentilerin kodu değişti ama sürümü artmadı, "
+                     "uygulama güncellemeyi görmez: " + ", ".join(sorted(stale)))
+              print("::warning title=Sürüm artırılmadı::" + msg)
+              with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
+                  f.write("### ⚠️ Sürüm artırılmadı\n\n" + msg + "\n")
+          else:
+              print("Tüm değişen eklentilerin sürümü artmış.")
           EOF
 
       - name: Push builds
