@@ -57,6 +57,16 @@ object TraktSyncConfig {
         get() = p().getBoolean("auto_sync", DEFAULT_AUTO_SYNC)
         set(v) = p().edit().putBoolean("auto_sync", v).apply()
 
+    /** Son başarılı eşitlemenin zamanı (unix ms). 0 = hiç eşitlenmedi. */
+    var lastSyncAt: Long
+        get() = p().getLong("last_sync_at", 0L)
+        set(v) = p().edit().putLong("last_sync_at", v).apply()
+
+    /** Son eşitlemenin kısa özeti ("Gönderilen: 3 · Alınan: 2 işaret" gibi). */
+    var lastSyncSummary: String
+        get() = p().getString("last_sync_summary", "").orEmpty()
+        set(v) = p().edit().putString("last_sync_summary", v).apply()
+
     /** Trakt kullanıcısı bağlı mı? */
     val connected: Boolean get() = accessToken.isNotBlank()
 
@@ -89,6 +99,8 @@ object TraktSyncConfig {
             .remove("refresh_token")
             .remove("expires_at")
             .remove("user_name")
+            .remove("last_sync_at")
+            .remove("last_sync_summary")
             .apply()
     }
 

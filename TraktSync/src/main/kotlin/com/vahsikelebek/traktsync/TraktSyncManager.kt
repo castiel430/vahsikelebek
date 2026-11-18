@@ -63,12 +63,22 @@ object TraktSyncManager {
             return
         }
 
-        pushToTrakt()
+        val sent = pushToTrakt()
+        var received = 0
+        var pullFailed = false
         try {
-            pullFromTrakt()
+            received = pullFromTrakt()
         } catch (e: Exception) {
             // Çekme hatası gönderme tarafını etkilemesin
+            pullFailed = true
             Log.w(TAG, "trakt'tan çekme başarısız: ${e.message}")
+        }
+
+        TraktSyncConfig.lastSyncAt = System.currentTimeMillis()
+        TraktSyncConfig.lastSyncSummary = if (pullFailed) {
+            "Gönderilen: $sent · çekme başarısız (logcat: TraktSync)"
+        } else {
+            "Gönderilen: $sent · alınan: $received"
         }
     }
 
@@ -77,7 +87,9 @@ object TraktSyncManager {
             type == TvType.Cartoon || type == TvType.AsianDrama ||
             type == TvType.OVA
 
-    private suspend fun pushToTrakt() {
+    /** Kâtüphaneden Trakt'a gönderilenler; gönderilen öğe sayısını döner. */
+    private suspend fun pushToTrakt(): Int {
+        var sent = 0
         val bookmarks = runCatching { DataStoreHelper.getAllBookmarkedData() }.getOrNull().orEmpty()
         for (b in bookmarks) {
             val id = b.id ?: continue
@@ -114,27 +126,32 @@ object TraktSyncManager {
                     imdb != null || tmdb != null -> TraktApi.addHistory(imdb, tmdb, null, null)
                     else -> b.name?.let { TraktApi.addHistoryBySearch(it, b.year, isShow = false) } ?: false
                 }
-                if (ok) TraktSyncConfig.addSyncedId(syncKey)
+                if (ok) {
+                    TraktSyncConfig.addSyncedId(syncKey)
+                    sent++
+                }
             } else {
                 // WATCHING / ONHOLD / PLANTOWATCH → izleme listesi
                 if (imdb == null && tmdb == null) continue
                 if (TraktApi.addToWatchlist(imdb, tmdb, isShow)) {
                     TraktSyncConfig.addSyncedId(syncKey)
+                    sent++
                 }
             }
         }
+        return sent
     }
 
     /**
      * Trakt'taki izleme geçmişini CloudStream'e işler.
      * Kitap işareti olarak ekli içeriklerle imdb/tmdb üzerinden eşleştirir.
      */
-    private suspend fun pullFromTrakt() {
+    private suspend fun pullFromTrakt(): Int {
         val movies = TraktApi.watchedMovies()
         val shows = TraktApi.watchedShows()
         if (movies.isEmpty() && shows.isEmpty()) {
             Log.i(TAG, "Trakt izleme geçmişi boş")
-            return
+            return 0
         }
 
         val moviesByImdb = movies.mapNotNull { m -> m.imdb?.let { it to m } }.toMap()
@@ -208,6 +225,7 @@ object TraktSyncManager {
             }
         }
         if (changed > 0) Log.i(TAG, "trakt'tan $changed işaret uygulandı")
+        return changed
     }
 
     /** VideoWatchState.Watched'ı yazar; zaten işaretliyse false döner. */
