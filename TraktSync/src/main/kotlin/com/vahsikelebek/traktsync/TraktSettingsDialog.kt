@@ -24,25 +24,29 @@ import java.util.Date
 import java.util.Locale
 
 /**
- * Trakt Senkron ayar penceresi — çift yönlü eşitlemeyi gösterir.
+ * Trakt Senkron ayar penceresi.
+ *
+ * İki durum:
+ *  - Bağlı değil: tek ve net çağrı — "Trakt'a Bağlan" (kırmızı, tam genişlik).
+ *  - Bağlı: birincil eylem "Şimdi Eşitle"; altında eşit genişlikte, aynı stilde
+ *    "Hesap Değiştir" ve "Bağlantıyı Kes".
  *
  * Kullanıcıdan Client ID / Secret alınmaz; eklentiye gömülü, PKCE
  * (client_secret gerektirmeyen) Trakt API uygulaması kullanılır.
- * Giriş, e-posta + Trakt'tan gelen kodla (uygulama içi WebView) yapılır.
  */
 object TraktSettingsDialog {
 
     private const val TRAKT_RED = 0xFFED1C24.toInt()
     private const val OK_GREEN = 0xFF2E7D32.toInt()
     private const val ERR_RED = 0xFFB71C1C.toInt()
-    private const val CARD_BG = 0x1A808080.toInt() // her iki temada da okunur nötr kutu
+    private const val CARD_BG = 0x1A808080.toInt() // iki temada da okunan nötr kutu
 
     fun show(context: Context) {
         val activity = context as? Activity ?: return
         val density = activity.resources.displayMetrics.density
         fun dp(v: Int) = (v * density).toInt()
 
-        // Temaya uyumlu metin renkleri (koyu/açık tema ikisinde de okunur)
+        // Temaya uyumlu metin renkleri (koyu/açık)
         val ta = activity.obtainStyledAttributes(
             intArrayOf(android.R.attr.textColorPrimary, android.R.attr.textColorSecondary),
         )
@@ -51,14 +55,12 @@ object TraktSettingsDialog {
         ta.recycle()
 
         val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
-
-        // ---------- kök ----------
         val layout = LinearLayout(activity).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(dp(20), dp(14), dp(20), dp(4))
         }
 
-        // ---------- başlık: Trakt "T" logosu + ad ----------
+        // ---------- başlık ----------
         val header = LinearLayout(activity).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
@@ -85,7 +87,7 @@ object TraktSettingsDialog {
                 setTypeface(typeface, Typeface.BOLD)
             })
             addView(TextView(activity).apply {
-                text = "CloudStream ⇄ Trakt.tv çift yönlü eşitleme"
+                text = "Kâtüphanen ⇄ Trakt.tv izleme listen"
                 textSize = 12f
                 setTextColor(secondaryText)
             })
@@ -101,7 +103,6 @@ object TraktSettingsDialog {
             }
             setPadding(dp(14), dp(12), dp(14), dp(12))
         }
-
         val statusRow = LinearLayout(activity).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
@@ -121,9 +122,8 @@ object TraktSettingsDialog {
         }
         statusRow.addView(statusText)
         card.addView(statusRow)
-
         val lastSyncText = TextView(activity).apply {
-            textSize = 11.5f
+            textSize = 11f
             setTextColor(secondaryText)
             setPadding(dp(22), dp(6), 0, 0)
         }
@@ -139,50 +139,73 @@ object TraktSettingsDialog {
             setTextColor(primaryText)
             textSize = 13f
             isChecked = TraktSyncConfig.autoSync
-            setPadding(dp(2), dp(2), 0, dp(6))
+            setPadding(dp(2), dp(2), 0, dp(8))
             setOnCheckedChangeListener { _, checked -> TraktSyncConfig.autoSync = checked }
         }
         layout.addView(autoCheck)
 
         // ---------- düğmeler ----------
-        fun roundedBg(color: Int): GradientDrawable = GradientDrawable().apply {
+        fun rounded(color: Int): GradientDrawable = GradientDrawable().apply {
             cornerRadius = dp(10).toFloat()
             setColor(color)
         }
+        fun Button.tune() {
+            minWidth = 0
+            minHeight = 0
+            minimumWidth = 0
+            minimumHeight = 0
+            isAllCaps = false
+            textSize = 14f
+            setPadding(dp(12), dp(8), dp(12), dp(8))
+        }
 
-        val connectBtn = Button(activity).apply {
-            textSize = 13f
+        // Birincil düğme: bağlı değilse "Trakt'a Bağlan", bağlıysa "Şimdi Eşitle"
+        val primaryBtn = Button(activity).apply {
+            tune()
             setTextColor(Color.WHITE)
-            background = roundedBg(TRAKT_RED)
-            isAllCaps = false
+            background = rounded(TRAKT_RED)
         }
-        val syncBtn = Button(activity).apply {
-            text = "Şimdi Eşitle"
-            textSize = 13f
-            setTextColor(primaryText)
-            background = roundedBg(CARD_BG)
-            isAllCaps = false
-        }
-        val btnRow = LinearLayout(activity).apply {
+        layout.addView(primaryBtn, LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, dp(48),
+        ))
+
+        // Bağlı durumda ikincil eylemler: eşit genişlik, aynı stil
+        val secondaryRow = LinearLayout(activity).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_HORIZONTAL
         }
-        btnRow.addView(connectBtn, LinearLayout.LayoutParams(0, dp(46), 1f))
-        btnRow.addView(View(activity), LinearLayout.LayoutParams(dp(8), 1))
-        btnRow.addView(syncBtn, LinearLayout.LayoutParams(0, dp(46), 1f))
-        layout.addView(btnRow)
-
-        val disconnectBtn = Button(activity).apply {
-            text = "Bağlantıyı Kes"
-            textSize = 12f
-            setTextColor(ERR_RED)
-            background = null
-            isAllCaps = false
+        val switchBtn = Button(activity).apply {
+            tune()
+            text = "Hesap Değiştir"
+            setTextColor(primaryText)
+            background = rounded(CARD_BG)
         }
-        layout.addView(disconnectBtn, LinearLayout.LayoutParams(
+        val disconnectBtn = Button(activity).apply {
+            tune()
+            text = "Bağlantıyı Kes"
+            setTextColor(ERR_RED)
+            background = rounded(CARD_BG)
+        }
+        secondaryRow.addView(switchBtn, LinearLayout.LayoutParams(0, dp(44), 1f))
+        secondaryRow.addView(View(activity), LinearLayout.LayoutParams(dp(8), 1))
+        secondaryRow.addView(disconnectBtn, LinearLayout.LayoutParams(0, dp(44), 1f))
+        layout.addView(secondaryRow, LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
-        ).apply { topMargin = dp(4) })
+        ).apply { topMargin = dp(8) })
+
+        // Yeniden uygula (işaretler kaçtıysa kurtarır) — sadece bağlıyken
+        val reapplyBtn = Button(activity).apply {
+            tune()
+            textSize = 12f
+            text = "İşaretleri Yeniden Uygula"
+            setTextColor(secondaryText)
+            background = null
+        }
+        layout.addView(reapplyBtn, LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+        ).apply { topMargin = dp(2) })
 
         // ---------- durum yenileyici ----------
         fun refreshStatus() {
@@ -199,17 +222,40 @@ object TraktSettingsDialog {
                 val fmt = SimpleDateFormat("d MMM yyyy, HH:mm", Locale("tr"))
                 val when_ = fmt.format(Date(TraktSyncConfig.lastSyncAt))
                 val summary = TraktSyncConfig.lastSyncSummary
-                if (summary.isBlank()) "Son eşitleme: $when_" else "Son eşitleme: $when_  ·  $summary"
+                if (summary.isBlank()) "Son eşitleme: $when_"
+                else "Son eşitleme: $when_\n$summary"
             } else {
-                if (connected) "Henüz eşitlenmedi — birazdan otomatik eşitlenir" else "Bağlanınca eşitleme başlar"
+                if (connected) "Henüz eşitlenmedi — birazdan otomatik eşitlenir"
+                else "Bağlanınca eşitleme başlar"
             }
 
-            connectBtn.text = if (connected) "Başka Hesapla Bağlan" else "Trakt'a Bağlan"
-            disconnectBtn.visibility = if (connected) View.VISIBLE else View.GONE
+            // İki durum arasında net geçiş — bağlıyken "Bağlan" yazmaz
+            if (connected) {
+                primaryBtn.text = "Şimdi Eşitle"
+                secondaryRow.visibility = View.VISIBLE
+                reapplyBtn.visibility = View.VISIBLE
+            } else {
+                primaryBtn.text = "Trakt'a Bağlan"
+                secondaryRow.visibility = View.GONE
+                reapplyBtn.visibility = View.GONE
+            }
         }
         refreshStatus()
 
         // ---------- eylemler ----------
+        fun runSyncThenRefresh() {
+            primaryBtn.isEnabled = false
+            primaryBtn.text = "Eşitleniyor…"
+            scope.launch(Dispatchers.IO) {
+                runCatching { TraktSyncManager.syncOnce() }
+                launch(Dispatchers.Main) {
+                    primaryBtn.isEnabled = true
+                    refreshStatus()
+                    Toast.makeText(activity, "Trakt eşitlemesi tamamlandı", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
         fun connect() {
             TraktLoginDialog.show(activity) { success ->
                 refreshStatus()
@@ -222,26 +268,15 @@ object TraktSettingsDialog {
                 }
             }
         }
-        connectBtn.setOnClickListener { connect() }
 
-        syncBtn.setOnClickListener {
-            if (!TraktSyncConfig.connected) {
-                Toast.makeText(activity, "Önce Trakt'a bağlanın", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            syncBtn.isEnabled = false
-            syncBtn.text = "Eşitleniyor…"
-            scope.launch(Dispatchers.IO) {
-                runCatching { TraktSyncManager.syncOnce() }
-                launch(Dispatchers.Main) {
-                    syncBtn.isEnabled = true
-                    syncBtn.text = "Şimdi Eşitle"
-                    refreshStatus()
-                    Toast.makeText(activity, "Trakt eşitlemesi tamamlandı", Toast.LENGTH_SHORT).show()
-                }
+        primaryBtn.setOnClickListener {
+            if (TraktSyncConfig.connected) {
+                runSyncThenRefresh()
+            } else {
+                connect()
             }
         }
-
+        switchBtn.setOnClickListener { connect() }
         disconnectBtn.setOnClickListener {
             AlertDialog.Builder(activity)
                 .setTitle("Bağlantı kesilsin mi?")
@@ -254,8 +289,20 @@ object TraktSettingsDialog {
                 .setNegativeButton("Vazgeç", null)
                 .show()
         }
+        reapplyBtn.setOnClickListener {
+            AlertDialog.Builder(activity)
+                .setTitle("İşaretler yeniden uygulansın mı?")
+                .setMessage("Trakt'ta izlediklerinin tamamı kâtüphanedeki içeriklere tekrar işlenir. " +
+                    "Daha önce işaretlenmişler zaten yeşil görünür.")
+                .setPositiveButton("Uygula") { _, _ ->
+                    TraktSyncConfig.resetPulledApplied()
+                    runSyncThenRefresh()
+                }
+                .setNegativeButton("Vazgeç", null)
+                .show()
+        }
 
-        // ---------- nasıl çalışır ----------
+        // ---------- açıklama ----------
         layout.addView(TextView(activity).apply {
             text = "Nasıl çalışır?"
             textSize = 13f
@@ -264,30 +311,17 @@ object TraktSettingsDialog {
             setPadding(0, dp(14), 0, dp(4))
         })
         layout.addView(TextView(activity).apply {
-            text = "Senkron çift yönlüdür:\n" +
-                "→ CloudStream'de COMPLETED işaretlediklerin Trakt izleme geçmişine yazılır; " +
-                "WATCHING / ONHOLD / PLANTOWATCH içerikler Trakt izleme listene eklenir.\n" +
-                "← Trakt'ta izlediklerin de buraya işlenir: filmler COMPLETED olur, dizi " +
-                "bölümleri bölüm listesinde yeşil ✓ alır. Dizinin yayındaki tüm bölümleri " +
-                "izlendiyse COMPLETED, en az biri izlendiyse WATCHING yapılır " +
-                "(DROPPED / ONHOLD'a dokunulmaz).\n\n" +
-                "Oynat menüsündeki “✓ Trakt'a İzledim Olarak İşaretle” düğmesiyle tek " +
-                "dokunuşla da işaretleyebilirsin."
-            textSize = 12f
+            text = "→ CloudStream'de izlendi (COMPLETED) işaretlediklerin Trakt izleme " +
+                "geçmişine yazılır; WATCHING / PLANTOWATCH içerikler Trakt izleme listene eklenir.\n" +
+                "← Trakt'ta izlediklerin buraya işlenir: filmler COMPLETED + yeşil ✓ olur, dizi " +
+                "bölümleri bölüm listesinde yeşil ✓ alır. Tüm yayındaki bölümler izlendiyse " +
+                "COMPLETED, en az biri izlendiyse WATCHING olur (DROPPED / ONHOLD'a dokunulmaz).\n\n" +
+                "Not: Eşleme yalnızca kâtüphanene eklediğin (kitap işaretli) içeriklere uygulanır. " +
+                "Gömülü Trakt uygulaması “Development” türündedir; yalnızca uygulamanın sahibi ve " +
+                "16 davetli kullanıcı bağlanabilir."
+            textSize = 11.5f
             setTextColor(secondaryText)
-            setLineSpacing(0f, 1.15f)
-        })
-
-        layout.addView(TextView(activity).apply {
-            text = "Gömülü Trakt uygulaması “Development” türündedir: yalnızca uygulamanın " +
-                "sahibi ve geliştirme süresince eklenen 16 kullanıcı bağlanabilir. Herkese " +
-                "açık sürüm için geliştiricinin Production erişimi istemesi gerekir. " +
-                "Kimlik çözülemezse (imdb/tmdb/syncData yoksa) ve başlıkla aramada " +
-                "bulunamazsa içerik eşitleme sırasını atlar."
-            textSize = 10.5f
-            setTextColor(secondaryText)
-            setLineSpacing(0f, 1.1f)
-            setPadding(0, dp(10), 0, dp(6))
+            setLineSpacing(0f, 1.2f)
         })
 
         AlertDialog.Builder(activity)

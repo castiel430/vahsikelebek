@@ -81,6 +81,11 @@ object TraktSyncConfig {
         p().edit().putStringSet("pulled_applied", s).apply()
     }
 
+    /** Çekme tarafındaki uygulanmış işaret kayıtlarını sıfırlar (yeniden uygulama için). */
+    fun resetPulledApplied() {
+        p().edit().remove("pulled_applied").apply()
+    }
+
     /** Daha önce eşitlenen (id:latestUpdatedTime) kayıtlar. */
     fun syncedIds(): Set<String> = p().getStringSet("synced_ids", emptySet()) ?: emptySet()
 

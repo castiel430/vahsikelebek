@@ -64,10 +64,13 @@ object TraktSyncManager {
         }
 
         val sent = pushToTrakt()
+        var pullMatched = 0
         var received = 0
         var pullFailed = false
         try {
-            received = pullFromTrakt()
+            val pull = pullFromTrakt()
+            pullMatched = pull.first
+            received = pull.second
         } catch (e: Exception) {
             // Çekme hatası gönderme tarafını etkilemesin
             pullFailed = true
@@ -78,7 +81,7 @@ object TraktSyncManager {
         TraktSyncConfig.lastSyncSummary = if (pullFailed) {
             "Gönderilen: $sent · çekme başarısız (logcat: TraktSync)"
         } else {
-            "Gönderilen: $sent · alınan: $received"
+            "Gönderilen: $sent · eşleşen: $pullMatched · alınan: $received"
         }
     }
 
@@ -146,12 +149,12 @@ object TraktSyncManager {
      * Trakt'taki izleme geçmişini CloudStream'e işler.
      * Kitap işareti olarak ekli içeriklerle imdb/tmdb üzerinden eşleştirir.
      */
-    private suspend fun pullFromTrakt(): Int {
+    private suspend fun pullFromTrakt(): Pair<Int, Int> {
         val movies = TraktApi.watchedMovies()
         val shows = TraktApi.watchedShows()
         if (movies.isEmpty() && shows.isEmpty()) {
             Log.i(TAG, "Trakt izleme geçmişi boş")
-            return 0
+            return 0 to 0
         }
 
         val moviesByImdb = movies.mapNotNull { m -> m.imdb?.let { it to m } }.toMap()
@@ -161,6 +164,7 @@ object TraktSyncManager {
 
         val bookmarks = runCatching { DataStoreHelper.getAllBookmarkedData() }.getOrNull().orEmpty()
         var changed = 0
+        var matched = 0
         for (b in bookmarks) {
             val id = b.id ?: continue
             val isShow = isShowType(b.type)
@@ -179,6 +183,7 @@ object TraktSyncManager {
             if (!isShow) {
                 val watched = imdb?.let(moviesByImdb::get) ?: tmdb?.let(moviesByTmdb::get)
                 if (watched == null || watched.plays <= 0) continue
+                matched++
                 if (markVideoWatched(id)) changed++
                 val state = runCatching { DataStoreHelper.getResultWatchState(id) }.getOrNull() ?: WatchType.NONE
                 if (state == WatchType.NONE || state == WatchType.WATCHING || state == WatchType.PLANTOWATCH) {
@@ -191,6 +196,7 @@ object TraktSyncManager {
             // ---- dizi ----
             val match = imdb?.let(showsByImdb::get) ?: tmdb?.let(showsByTmdb::get)
             if (match == null) continue
+            matched++
 
             // 1) Bölüm bazında "izlendi" işareti (sağlayıcının bölüm id şemasına eşle)
             val applied = TraktSyncConfig.pulledApplied()
@@ -225,7 +231,7 @@ object TraktSyncManager {
             }
         }
         if (changed > 0) Log.i(TAG, "trakt'tan $changed işaret uygulandı")
-        return changed
+        return matched to changed
     }
 
     /** VideoWatchState.Watched'ı yazar; zaten işaretliyse false döner. */
