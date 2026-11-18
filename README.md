@@ -31,7 +31,7 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/repo.json
 Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 [`builds/plugins.json`](https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/plugins.json).
 
-### Sağlayıcı modülleri (58)
+### Sağlayıcı modülleri (59)
 
 | Modül | Hedef site |
 |---|---|
@@ -53,6 +53,7 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | DiziKorea | dizikorea3.com |
 | Dizilla | dizilla.la |
 | DiziMom | ddizimom.net |
+| DiziPal | dizipal1596.com |
 | DiziPod | dizipod.com |
 | DiziYou | www.diziyou.one |
 | DMAX | www.dmax.com.tr |
