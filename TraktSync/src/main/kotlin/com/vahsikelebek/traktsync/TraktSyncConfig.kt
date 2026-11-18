@@ -60,6 +60,17 @@ object TraktSyncConfig {
     /** Trakt kullanıcısı bağlı mı? */
     val connected: Boolean get() = accessToken.isNotBlank()
 
+    /** Daha önce Trakt'tan çekilip uygulanan (ep:<seriId>:<sezon>:<bölüm>) kayıtlar. */
+    fun pulledApplied(): Set<String> = p().getStringSet("pulled_applied", emptySet()) ?: emptySet()
+
+    fun addPulledApplied(key: String) {
+        val s = HashSet(p().getStringSet("pulled_applied", emptySet()) ?: emptySet())
+        s.add(key)
+        // Aşırı büyümeyi engelle
+        if (s.size > 5000) s.clear()
+        p().edit().putStringSet("pulled_applied", s).apply()
+    }
+
     /** Daha önce eşitlenen (id:latestUpdatedTime) kayıtlar. */
     fun syncedIds(): Set<String> = p().getStringSet("synced_ids", emptySet()) ?: emptySet()
 
@@ -89,6 +100,7 @@ object TraktSyncConfig {
             .remove("client_secret")
             .remove("auto_sync")
             .remove("synced_ids")
+            .remove("pulled_applied")
             .apply()
     }
 }

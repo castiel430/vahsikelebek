@@ -1,7 +1,7 @@
-version = 2
+version = 3
 
 cloudstream {
-    description = "Trakt Senkron - CloudStream kütüphenizi Trakt.tv ile eşitler (izleme listesi ve izlenenler)"
+    description = "Trakt Senkron - CloudStream kütüphanenizi Trakt.tv ile çift yönlü eşitler (izlenenler ve izleme listesi iki tarafta da görünür)"
     authors     = listOf("vahsikelebek")
     language    = "tr"
     status      = 1

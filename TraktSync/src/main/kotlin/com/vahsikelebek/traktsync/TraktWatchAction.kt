@@ -43,7 +43,7 @@ class TraktWatchAction : VideoClickAction() {
             } else if (isEpisode && !video.name.isNullOrBlank()) {
                 // Dizi arama — bölümü sezon/bölüm ile işle
                 val found = TraktApi.searchIdsByTitle(video.name.orEmpty(), year = null, isShow = true)
-                if (found.first == null && found.second == null) false
+                if (found == null || (found.first == null && found.second == null)) false
                 else TraktApi.addHistory(found.first, found.second, season, episode)
             } else if (!isEpisode && !video.name.isNullOrBlank()) {
                 // Film arama

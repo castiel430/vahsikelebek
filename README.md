@@ -122,10 +122,14 @@ Trakt.tv API'si kullanılır — başka kodlardan kopyalanmamıştır.
 
 - Oynat menüsüne **"✓ Trakt'a İzledim Olarak İşaretle"** düğmesi eklenir — dokunduğunuz
   içerik (film: tamamı, dizi: ilgili sezon/bölüm) Trakt izleme geçmişinize yazılır.
-- Kütüphane işaretleri değiştikçe ~60 saniyede bir otomatik eşitlenir:
+- Kütüphane işaretleri değiştikçe ~60 saniyede bir otomatik, çift yönlü eşitlenir:
   - `COMPLETED` → Trakt izleme geçmişine (`sync/history`) yazılır
     (dizide son bilinen sezon/bölüm)
   - `WATCHING` / `ONHOLD` / `PLANTOWATCH` → Trakt izleme listesine (`sync/watchlist`) eklenir
+  - **Trakt → CloudStream:** Trakt.tv'de izledikleriniz CloudStream'de izlendi görünür —
+    film → `COMPLETED` ve yeşil ✓; dizi bölümleri → bölüm listesinde yeşil ✓;
+    dizinin tüm yayındaki bölümleri izlendiyse `COMPLETED`, en az biri izlendiyse
+    `WATCHING` (`DROPPED` / `ONHOLD` durumlarına dokunulmaz)
 - **Ayarlar → Eklenti ayarları → Trakt Senkron** → **Trakt'a Bağlan** düğmesine
   dokunun; açılan pencere **uygulama içinde** Trakt sitesini açar — e-posta +
   e-postanıza gelen 6 haneli kodu girin, otomatik bağlanın.
