@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import java.net.URLEncoder
@@ -123,6 +124,6 @@ class YouTube : MainAPI() {
 
     override suspend fun loadLinks(data: String, isCasting: Boolean, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit): Boolean {
         Log.d("YTB", "data » $data")
-        return loadExtractor("https://www.youtube.com/watch?v=${data}", subtitleCallback, callback)
+        return StreamFix.loadExtractor("https://www.youtube.com/watch?v=${data}", subtitleCallback, callback)
     }
 }

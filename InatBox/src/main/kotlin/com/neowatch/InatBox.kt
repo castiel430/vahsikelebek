@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import com.lagradost.cloudstream3.*
@@ -443,7 +444,7 @@ class InatBox : MainAPI() {
 
         // Doğrudan yayın değilse (Yandex Disk, VK sayfası, Dzen …) çıkarıcılara bırak
         val bulunanlar = mutableListOf<ExtractorLink>()
-        val cikariciVar = loadExtractor(adres, basliklar["Referer"], subtitleCallback) { bulunanlar.add(it) }
+        val cikariciVar = StreamFix.loadExtractor(adres, basliklar["Referer"], subtitleCallback) { bulunanlar.add(it) }
         bulunanlar.forEach { link ->
             callback.invoke(
                 newExtractorLink(source = link.source, name = ch.chName, url = link.url, type = link.type) {

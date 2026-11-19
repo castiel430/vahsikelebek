@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import com.lagradost.cloudstream3.*
@@ -113,7 +114,7 @@ class AnimeciX : MainAPI() {
         val iframeLink = app.get("${mainUrl}/${data}", referer="${mainUrl}/").url
         Log.d("ACX", "iframeLink » $iframeLink")
 
-        loadExtractor(iframeLink, "${mainUrl}/", subtitleCallback, callback)
+        StreamFix.loadExtractor(iframeLink, "${mainUrl}/", subtitleCallback, callback)
 
         return true
     }

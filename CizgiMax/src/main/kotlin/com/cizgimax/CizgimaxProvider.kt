@@ -1,4 +1,5 @@
 package com.cizgimax
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Base64
 import com.vahsikelebek.common.browserHeaders
@@ -217,7 +218,7 @@ class CizgimaxProvider : MainAPI() {
             // A dead embed must not take the live ones down with it.
             try {
                 when {
-                    youtubeId.isNotBlank() -> loadExtractor(
+                    youtubeId.isNotBlank() -> StreamFix.loadExtractor(
                         "https://www.youtube.com/watch?v=$youtubeId", data, subtitleFilter, emit
                     )
 
@@ -275,7 +276,7 @@ class CizgimaxProvider : MainAPI() {
                             app.get(fixUrl(src), referer = data, allowRedirects = false, headers = uaHeaders, interceptor = CfBypass.interceptor)
                                 .headers["location"]?.let { absolute(it) }
                         }
-                        if (!embed.isNullOrBlank()) loadExtractor(embed, data, subtitleFilter, emit)
+                        if (!embed.isNullOrBlank()) StreamFix.loadExtractor(embed, data, subtitleFilter, emit)
                     }
 
                     resolveUrl.isNotBlank() -> {

@@ -1,4 +1,5 @@
 package dev.wiojelt.turksinema.vendor.cizgivedizi
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Base64
 import com.lagradost.cloudstream3.*
@@ -581,7 +582,7 @@ class CizgiVeDiziProvider : MainAPI() {
             })
             return true
         }
-        return loadExtractor(url, page, subtitleCallback, callback)
+        return StreamFix.loadExtractor(url, page, subtitleCallback, callback)
     }
 
     override suspend fun loadLinks(

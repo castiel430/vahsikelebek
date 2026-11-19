@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import org.jsoup.nodes.Element
@@ -81,7 +82,7 @@ class RareFilmm : MainAPI() {
         val iframe   = fixUrlNull(document.selectFirst("article iframe")?.attr("src")) ?: return false
         Log.d("RRF", "iframe » $iframe")
 
-        loadExtractor(iframe, "${mainUrl}/", subtitleCallback, callback)
+        StreamFix.loadExtractor(iframe, "${mainUrl}/", subtitleCallback, callback)
 
         return true
     }

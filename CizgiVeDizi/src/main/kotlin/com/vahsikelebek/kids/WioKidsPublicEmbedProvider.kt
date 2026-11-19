@@ -1,4 +1,5 @@
 package com.vahsikelebek.kids
+import com.vahsikelebek.streamfix.StreamFix
 
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
@@ -275,7 +276,7 @@ abstract class KidsPublicEmbedProvider : MainAPI() {
         if (youtubeId(url) != null) {
             val youtubeLinks = mutableListOf<ExtractorLink>()
             val extracted = runCatching {
-                loadExtractor(url, referer, subtitleCallback) { youtubeLinks += it }
+                StreamFix.loadExtractor(url, referer, subtitleCallback) { youtubeLinks += it }
             }.getOrDefault(false)
             youtubeLinks.forEach { link ->
                 val renditions = if (link.type == ExtractorLinkType.M3U8) runCatching {
@@ -287,7 +288,7 @@ abstract class KidsPublicEmbedProvider : MainAPI() {
         }
 
         if (host(url).orEmpty().contains("rumble.com")) {
-            val extracted = runCatching { loadExtractor(url, referer, subtitleCallback, callback) }.getOrDefault(false)
+            val extracted = runCatching { StreamFix.loadExtractor(url, referer, subtitleCallback, callback) }.getOrDefault(false)
             if (extracted) return true
             val rumble = runCatching {
                 app.get(url, referer = referer, headers = wioHeaders, timeout = 20000L).text
@@ -310,7 +311,7 @@ abstract class KidsPublicEmbedProvider : MainAPI() {
         }
 
         if (isMediaHost(url)) {
-            val loaded = runCatching { loadExtractor(url, referer, subtitleCallback, callback) }.getOrDefault(false)
+            val loaded = runCatching { StreamFix.loadExtractor(url, referer, subtitleCallback, callback) }.getOrDefault(false)
             if (loaded) return true
         }
 

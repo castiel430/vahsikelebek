@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import org.jsoup.nodes.Document
@@ -202,7 +203,7 @@ class KoreanTurk : MainAPI() {
                 } else if (iframe.contains("vidmoly")) {
                     VidMolyNeo().getUrl(iframe, "${mainUrl}/", subtitleCallback, callback)
                 } else {
-                    loadExtractor(iframe, "${mainUrl}/", subtitleCallback, callback)
+                    StreamFix.loadExtractor(iframe, "${mainUrl}/", subtitleCallback, callback)
                 }
             }
         }

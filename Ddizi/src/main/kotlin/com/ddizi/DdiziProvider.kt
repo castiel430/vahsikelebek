@@ -1,4 +1,5 @@
 package com.ddizi
+import com.vahsikelebek.streamfix.StreamFix
 
 import com.vahsikelebek.common.jsonLdDescription
 import com.vahsikelebek.common.browserHeaders
@@ -201,7 +202,7 @@ class DdiziProvider : MainAPI() {
             val id = YOUTUBE_ID.find(embedUrl)?.groupValues?.get(1)
             if (id != null) "https://www.youtube.com/watch?v=$id" else embedUrl
         }
-        return runCatching { loadExtractor(target, referer, subtitleFilter, callback) }.getOrDefault(false)
+        return runCatching { StreamFix.loadExtractor(target, referer, subtitleFilter, callback) }.getOrDefault(false)
     }
 
     private fun Element.toSearchResult(): SearchResponse? {

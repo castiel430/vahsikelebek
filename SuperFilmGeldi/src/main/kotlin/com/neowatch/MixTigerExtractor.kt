@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import com.lagradost.cloudstream3.*
@@ -37,7 +38,7 @@ open class MixTiger : ExtractorApi() {
             m3uLink = videoResponse.videoSrc
             Log.d("NeO_${this.name}", "m3uLink » $m3uLink")
 
-            loadExtractor(m3uLink, extRef, subtitleCallback, callback)
+            StreamFix.loadExtractor(m3uLink, extRef, subtitleCallback, callback)
         } else {
             val videoSources  = videoResponse.videoSources
             m3uLink = if (videoSources.isNotEmpty()) {

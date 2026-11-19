@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -100,7 +101,7 @@ open class FirePlayer : ExtractorApi() {
         // Başka bir oynatıcıya yönlendirme
         r.videoSrc?.takeIf { it.isNotBlank() }?.let { gomulu ->
             Log.d("NeO_FirePlayer", "$host iframe » $gomulu")
-            loadExtractor(tamAdres(gomulu, base), "$base/", subtitleCallback, callback)
+            StreamFix.loadExtractor(tamAdres(gomulu, base), "$base/", subtitleCallback, callback)
         }
     }
 

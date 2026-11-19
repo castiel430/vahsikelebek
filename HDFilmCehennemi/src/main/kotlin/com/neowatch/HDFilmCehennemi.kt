@@ -1,6 +1,7 @@
 // ! Kaynak: https://github.com/hexated/cloudstream-extensions-hexated (Hdfilmcehennemi)
 
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import org.jsoup.nodes.Element
@@ -182,7 +183,7 @@ class HDFilmCehennemi : MainAPI() {
                     if (iframe.contains("/video/embed/") || iframe.contains("/rplayer/") || iframe.contains("/playerr/")) {
                         GizliJsOynatici().getUrl(iframe, "${mainUrl}/", subtitleCallback, callback)
                     } else {
-                        loadExtractor(iframe, "${mainUrl}/", subtitleCallback, callback)
+                        StreamFix.loadExtractor(iframe, "${mainUrl}/", subtitleCallback, callback)
                     }
                 }
             }

@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import android.util.Base64
@@ -188,7 +189,7 @@ class FullHDFilmizlesene : MainAPI() {
                     if (videoUrl.contains("turbo.imgz.me")) {
                         TurboImgz().getUrl("${key}||${videoUrl}", "${mainUrl}/", subtitleCallback, callback)
                     } else {
-                        loadExtractor(videoUrl, "${mainUrl}/", subtitleCallback, callback)
+                        StreamFix.loadExtractor(videoUrl, "${mainUrl}/", subtitleCallback, callback)
                     }
                 }
             }

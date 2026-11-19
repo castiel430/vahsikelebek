@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import org.jsoup.nodes.Document
@@ -249,7 +250,7 @@ class SetFilmIzle : MainAPI() {
                         }
                     }
                     veri.optString("url").isNotBlank() -> {
-                        loadExtractor(veri.optString("url"), "${mainUrl}/", subtitleCallback, sayac)
+                        StreamFix.loadExtractor(veri.optString("url"), "${mainUrl}/", subtitleCallback, sayac)
                     }
                 }
             }.onFailure { Log.d("STF", "$oynatici hata » ${it.message}") }

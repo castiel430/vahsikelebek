@@ -1,4 +1,5 @@
 package com.jetfilmizle
+import com.vahsikelebek.streamfix.StreamFix
 
 import com.vahsikelebek.common.browserHeaders
 import com.vahsikelebek.common.posterSrcLazy
@@ -153,8 +154,8 @@ class JetFilmizleProvider : MainAPI() {
         playerUrl.contains("videopark.top/vip/") -> resolveVip(playerUrl, referer, label, callback)
         playerUrl.contains("videopark.top/go/") -> resolveGo(playerUrl, referer, label, callback)
         playerUrl.contains("/jetembed/") -> resolveVideopark(playerUrl, referer, label, subtitleCallback, callback) ||
-            loadExtractor(playerUrl, referer, subtitleCallback, callback)
-        else -> loadExtractor(playerUrl, referer, subtitleCallback, callback)
+            StreamFix.loadExtractor(playerUrl, referer, subtitleCallback, callback)
+        else -> StreamFix.loadExtractor(playerUrl, referer, subtitleCallback, callback)
     }
 
     /** playerx.info/?id=NNN — jwplayer config `var initialPlayback = {...}` içinde HLS + altyazılar. */

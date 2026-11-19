@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Base64
 import android.util.Log
@@ -228,7 +229,7 @@ class DiziBox : MainAPI() {
 
             val subFrame = subDoc.selectFirst("div#Player iframe")?.attr("src") ?: return false
 
-            loadExtractor(subFrame, "${mainUrl}/", subtitleCallback, callback)
+            StreamFix.loadExtractor(subFrame, "${mainUrl}/", subtitleCallback, callback)
 
         } else if (iframe.contains("/player/haydi.php")) {
             iframe = iframe.replace("haydi.php?v=", "haydi.php?wmode=opaque&v=")
@@ -252,7 +253,7 @@ class DiziBox : MainAPI() {
 
             val subFrame = subDoc.selectFirst("div#Player iframe")?.attr("src") ?: return false
 
-            loadExtractor(subFrame, "${mainUrl}/", subtitleCallback, callback)
+            StreamFix.loadExtractor(subFrame, "${mainUrl}/", subtitleCallback, callback)
         }
 
         return true

@@ -1,4 +1,5 @@
 package com.yesilcamtv
+import com.vahsikelebek.streamfix.StreamFix
 
 import com.vahsikelebek.common.jsonLdDescription
 import com.vahsikelebek.common.browserHeaders
@@ -205,7 +206,7 @@ class YesilCamTvProvider : MainAPI() {
         }
         val frames = resp.document.select("iframe[src]").mapNotNull { fixUrlNull(it.attr("src")) }.distinct()
         for (frame in frames) {
-            if (!frame.contains("rumble.com/embed") && loadExtractor(frame, "$mainUrl/", subtitleCallback, callback)) found = true
+            if (!frame.contains("rumble.com/embed") && StreamFix.loadExtractor(frame, "$mainUrl/", subtitleCallback, callback)) found = true
         }
         val rumble = (frames.filter { it.contains("rumble.com/embed") } +
             Regex("""rumble\.com/embed/[^/?#"'\s<>]+""").findAll(text).map { "https://${it.value}" })

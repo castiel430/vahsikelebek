@@ -1,4 +1,5 @@
 package com.vahsikelebek.kids
+import com.vahsikelebek.streamfix.StreamFix
 
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
@@ -317,7 +318,7 @@ object KidsYoutubeFallback {
         search(query).take(maxResults).forEach { candidate ->
             val extractedLinks = mutableListOf<ExtractorLink>()
             val ok = runCatching {
-                loadExtractor(
+                StreamFix.loadExtractor(
                     "https://www.youtube.com/watch?v=" + candidate.id,
                     subtitleCallback,
                     { extractedLinks += it },

@@ -1,4 +1,5 @@
 package com.webdramaturkey2
+import com.vahsikelebek.streamfix.StreamFix
 
 import com.lagradost.cloudstream3.Actor
 import com.lagradost.cloudstream3.ErrorLoadingException
@@ -260,7 +261,7 @@ class WebdramaTurkey2Provider : MainAPI() {
                 }
             }
         }
-        return runCatching { loadExtractor(target, referer, subtitleCallback, callback) }
+        return runCatching { StreamFix.loadExtractor(target, referer, subtitleCallback, callback) }
             .getOrDefault(false)
     }
 

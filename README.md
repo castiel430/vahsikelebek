@@ -78,7 +78,6 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 
 | SelcukFlix | selcukflix.app |
 | SetFilmIzle | www.setfilmizle.ltd |
-| SezonlukDizi | sezonlukdizi.cc |
 | ShowTV | www.showtv.com.tr |
 | SinemaCX | sinemacc.com |
 | Sinezy | sinezy.si |
@@ -107,9 +106,14 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 > ediyor) silinmiştir; depoda yalnızca çalışan gerçek site sağlayıcıları ve
 > TraktSync bulunur.
 
-> **SezonlukDizi notu:** Site, kaynaklarının çoğunu Cloudflare Turnstile (captcha)
-> arkasına aldı. Eklenti captcha istemeyen kaynakları (Streamruby/Filemoon/VideoMoly)
-> kullanır; captcha'lı kaynaklar otomatik atlanır.
+> **SezonlukDizi kaldırıldı:** Site tüm kaynaklarını Cloudflare Turnstile arkasına
+> aldı; tek açık kaynak (byse) de artık PoW + parmak izi doğrulaması istiyor.
+> Eklentiden çözülemediği için sağlayıcı silindi.
+
+> **BTK engelli video host'ları:** `StreamFix`, `loadExtractor` çağrılarında
+> engellenen host'ları (dood.to/ws/li, ds2play.com, streamwish.to,
+> luluvdo.com vb.) çalışan aynalarına (doodstream.com, dsvplay.com, awish.pro,
+> lulustream.com) çevirir; 2001 (bağlantı kurulamadı) hatalarını azaltır.
 
 > Not: Hazır modüllerin bir kısmı açık kaynak eklenti depolarındaki kodlardan
 > alınmış/uyalanmıştır; site yapıları ve alan adları zamanla değişebilir.

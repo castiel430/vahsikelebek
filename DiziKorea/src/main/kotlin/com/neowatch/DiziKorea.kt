@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -193,7 +194,7 @@ class DiziKorea : MainAPI() {
             FirePlayer.isFirePlayer(url) -> FirePlayer().getUrl(url, "${mainUrl}/", subtitleCallback, callback)
             host.contains("vidmoly")     -> VidMolyNeo().getUrl(url, "${mainUrl}/", subtitleCallback, callback)
             host.startsWith("byse")      -> ByseSX().getUrl(url, "${mainUrl}/", subtitleCallback, callback)
-            else                         -> loadExtractor(url, "${mainUrl}/", subtitleCallback, callback)
+            else                         -> StreamFix.loadExtractor(url, "${mainUrl}/", subtitleCallback, callback)
         }
     }
 

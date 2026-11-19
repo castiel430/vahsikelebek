@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import java.util.Locale
 import java.net.URLEncoder
@@ -200,7 +201,7 @@ class BelgeselX : MainAPI() {
                 val tam = if (src.startsWith("//")) "https:$src" else fixUrl(src)
                 Log.d("BLX", "iframe » $tam")
                 bulundu = true
-                runCatching { loadExtractor(tam, "${mainUrl}/", subtitleCallback, callback) }
+                runCatching { StreamFix.loadExtractor(tam, "${mainUrl}/", subtitleCallback, callback) }
             }
         }
 

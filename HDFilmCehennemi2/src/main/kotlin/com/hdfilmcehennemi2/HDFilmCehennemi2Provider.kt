@@ -1,4 +1,5 @@
 package com.hdfilmcehennemi2
+import com.vahsikelebek.streamfix.StreamFix
 
 import com.vahsikelebek.common.browserHeaders
 import com.vahsikelebek.common.posterSrcLazy
@@ -279,10 +280,10 @@ class HDFilmCehennemi2Provider : MainAPI() {
                 }
                 for (sub in Regex("""<iframe[^>]+(?:src|data-src)="([^"]+)""").findAll(innerText)) {
                     val subUrl = fixUrl(sub.groupValues[1])
-                    if (loadExtractor(subUrl, frame, subtitleCallback, callback)) found = true
+                    if (StreamFix.loadExtractor(subUrl, frame, subtitleCallback, callback)) found = true
                 }
             }
-            if (loadExtractor(frame, "$mainUrl/", subtitleCallback, callback)) found = true
+            if (StreamFix.loadExtractor(frame, "$mainUrl/", subtitleCallback, callback)) found = true
         }
         val subs = Regex("""https?://[^"'\s<>]+?\.(?:vtt|srt)(?:\?[^"'\s<>]*)""").findAll(text)
         for (m in subs) {

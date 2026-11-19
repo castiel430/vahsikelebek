@@ -1,4 +1,5 @@
 package com.webteizle
+import com.vahsikelebek.streamfix.StreamFix
 
 import com.vahsikelebek.common.browserHeaders
 import com.vahsikelebek.common.posterSrcLazy
@@ -221,7 +222,7 @@ class WebteIzleProvider : MainAPI() {
                 // Site protokol-göreli iframe yazıyor ("//vidmoly.net/embed-x.html").
                 val src = if (raw.startsWith("//")) "https:$raw" else raw
                 if (src.contains("vidmoly") && resolveVidmoly(src, label, callback)) return true
-                return loadExtractor(src, referer, subtitleCallback, callback)
+                return StreamFix.loadExtractor(src, referer, subtitleCallback, callback)
             }
 
         VID_URL.find(html)?.groupValues?.get(1)?.trim()?.takeIf { it.isNotBlank() }?.let { url ->
@@ -258,7 +259,7 @@ class WebteIzleProvider : MainAPI() {
             "sruby" -> "https://streamruby.com/$arg.html"
             else -> return false
         }
-        return loadExtractor(url, referer, subtitleCallback, callback)
+        return StreamFix.loadExtractor(url, referer, subtitleCallback, callback)
     }
 
     private suspend fun resolveVidmoly(embed: String, label: String, callback: (ExtractorLink) -> Unit): Boolean {

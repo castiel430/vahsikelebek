@@ -1,4 +1,5 @@
 package com.hdfilmdiziizle
+import com.vahsikelebek.streamfix.StreamFix
 
 import com.vahsikelebek.common.aesCbcDecrypt
 import com.vahsikelebek.common.browserHeaders
@@ -282,7 +283,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
                     }
                     continue
                 }
-                if (loadExtractor(target, data, subtitleCallback, callback)) {
+                if (StreamFix.loadExtractor(target, data, subtitleCallback, callback)) {
                     found = true
                     continue
                 }
@@ -295,7 +296,7 @@ class HDFilmDiziIzleProvider : MainAPI() {
                 }
                 for (frame in inner.select("iframe[src]")) {
                     val sub = fixUrlNull(frame.attr("src")) ?: continue
-                    if (loadExtractor(sub, target, subtitleCallback, callback)) found = true
+                    if (StreamFix.loadExtractor(sub, target, subtitleCallback, callback)) found = true
                     val subDoc = runCatching { app.get(sub, headers = uaHeaders, referer = target, interceptor = CfBypass.interceptor).document }
                         .getOrNull() ?: continue
                     for (m in Regex("""["'](/[^"']+\.m3u8(?:\?[^"']*)?)["']""").findAll(subDoc.outerHtml())) {
@@ -337,10 +338,10 @@ class HDFilmDiziIzleProvider : MainAPI() {
                 }
                 for (sub in Regex("""<iframe[^>]+(?:src|data-src)="([^"]+)""").findAll(innerText)) {
                     val subUrl = fixUrl(sub.groupValues[1])
-                    if (loadExtractor(subUrl, frame, subtitleCallback, callback)) found = true
+                    if (StreamFix.loadExtractor(subUrl, frame, subtitleCallback, callback)) found = true
                 }
             }
-            if (loadExtractor(frame, "$mainUrl/", subtitleCallback, callback)) found = true
+            if (StreamFix.loadExtractor(frame, "$mainUrl/", subtitleCallback, callback)) found = true
         }
         val subs = Regex("""https?://[^"'\s<>]+?\.(?:vtt|srt)(?:\?[^"'\s<>]*)""").findAll(text)
         for (m in subs) {

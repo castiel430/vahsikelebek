@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import com.lagradost.cloudstream3.*
@@ -164,7 +165,7 @@ class FilmMakinesi : MainAPI() {
                 if (host.startsWith("closeload") || host.startsWith("rapid")) {
                     GizliJsOynatici().getUrl(iframe, "${mainUrl}/", subtitleCallback) { toplanan.add(it) }
                 } else {
-                    loadExtractor(iframe, "${mainUrl}/", subtitleCallback) { toplanan.add(it) }
+                    StreamFix.loadExtractor(iframe, "${mainUrl}/", subtitleCallback) { toplanan.add(it) }
                 }
             }
             val dil = when {

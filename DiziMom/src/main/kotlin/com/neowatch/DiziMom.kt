@@ -1,4 +1,5 @@
 package com.neowatch
+import com.vahsikelebek.streamfix.StreamFix
 
 import android.util.Log
 import java.net.URLEncoder
@@ -172,7 +173,7 @@ class DiziMom : MainAPI() {
             val src = f.attr("data-src").ifBlank { f.attr("src") }
             if (src.isBlank() || src.startsWith("about:")) return@forEach
             bulundu = true
-            runCatching { loadExtractor(fixUrl(src), "${mainUrl}/", subtitleCallback, callback) }
+            runCatching { StreamFix.loadExtractor(fixUrl(src), "${mainUrl}/", subtitleCallback, callback) }
         }
 
         return bulundu
@@ -242,7 +243,7 @@ class DiziMom : MainAPI() {
             bulundu = true
             runCatching {
                 if (FirePlayer.isFirePlayer(src)) FirePlayer().getUrl(src, "$base/", subtitleCallback, callback)
-                else loadExtractor(src, "$base/", subtitleCallback, callback)
+                else StreamFix.loadExtractor(src, "$base/", subtitleCallback, callback)
             }
         }
 

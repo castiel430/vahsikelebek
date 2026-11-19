@@ -1,4 +1,5 @@
 package com.yabancidizi
+import com.vahsikelebek.streamfix.StreamFix
 
 import com.vahsikelebek.common.pichiveSign
 import com.vahsikelebek.common.browserHeaders
@@ -252,7 +253,7 @@ class YabancidiziProvider : MainAPI() {
                 val iframeUrl = decryptIframeUrl(rsc) ?: return@runCatching
                 if (resolvePichive(iframeUrl, tab, linkCallback, subtitleFilter, seenLinks, seenSubtitles)) {
                     found = true
-                } else if (loadExtractor(iframeUrl, "$mainUrl/", subtitleFilter, linkCallback)) {
+                } else if (StreamFix.loadExtractor(iframeUrl, "$mainUrl/", subtitleFilter, linkCallback)) {
                     found = true
                 }
             }
