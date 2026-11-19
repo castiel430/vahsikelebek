@@ -31,7 +31,7 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/repo.json
 Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 [`builds/plugins.json`](https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/plugins.json).
 
-### Sağlayıcı modülleri (58)
+### Sağlayıcı modülleri (57)
 
 | Modül | Hedef site |
 |---|---|
@@ -110,10 +110,11 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 > aldı; tek açık kaynak (byse) de artık PoW + parmak izi doğrulaması istiyor.
 > Eklentiden çözülemediği için sağlayıcı silindi.
 
-> **BTK engelli video host'ları:** `StreamFix`, `loadExtractor` çağrılarında
-> engellenen host'ları (dood.to/ws/li, ds2play.com, streamwish.to,
-> luluvdo.com vb.) çalışan aynalarına (doodstream.com, dsvplay.com, awish.pro,
-> lulustream.com) çevirir; 2001 (bağlantı kurulamadı) hatalarını azaltır.
+> **Erişilemeyen video host'ları:** `StreamFix`, `loadExtractor` çağrılarında
+> artık erişilemeyen eski alan adlarını (dood.to/ws/li, ds2play.com,
+> streamwish.to, luluvdo.com vb.) aynı servisin güncel adreslerine
+> (doodstream.com, dsvplay.com, awish.pro, lulustream.com) yönlendirir;
+> 2001 (bağlantı kurulamadı) hatalarını azaltır. Doğrulama/şifre üretmez.
 
 > Not: Hazır modüllerin bir kısmı açık kaynak eklenti depolarındaki kodlardan
 > alınmış/uyalanmıştır; site yapıları ve alan adları zamanla değişebilir.
@@ -224,6 +225,15 @@ Token güvenliği: Actions, dağıtım reposuna push etmek için bu kaynak repod
 `BUILDS_TOKEN` secret'ini kullanır. İsterseniz daha dar yetkili (yalnızca
 `vahsikelebek-builds`, `Contents: Read and write`) bir fine-grained PAT oluşturup
 `gh secret set BUILDS_TOKEN --body "..."` ile değiştirebilirsiniz.
+
+## Yasal / telif
+
+Depoda telifli medya dosyası barındırılmaz; eklentiler yalnızca herkese açık
+sayfalardaki bağlantıları okuyan istemcilerdir. Erişim kontrolü aşan kod
+(captcha/PoW çözümü, parmak izi sahteciliği, DRM) **bilinçli olarak eklenmez**;
+böyle bir korumaya geçen kaynaklar kaldırılır.
+
+Ayrıntılar ve telif bildirimi süreci: [`LEGAL.md`](LEGAL.md).
 
 ## Kaynak/Referans
 
