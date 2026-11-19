@@ -182,15 +182,24 @@ Actions derlemesi yeni modülü de paketler.
 
 ## Domain değişikliklerini kontrol etme (Python)
 
+Tüm sağlayıcıların `mainUrl` değerlerini tarar, gerçekten açılıp açılmadığını
+denetler ve yeni domaine yönlenenleri **isteğe bağlı olarak** kaynağa yazar:
+
 ```bash
-python scripts/check_domains.py
-python scripts/check_domains.py --file scripts/domains.json
-python scripts/check_domains.py --json
+python scripts/auto_domains.py                 # rapor (hiçbir dosyayı değiştirmez)
+python scripts/auto_domains.py --only DiziBox  # tek modül
+python scripts/auto_domains.py --apply         # yönlenenleri yaz + sürümü artır
 ```
 
-- İzlenen siteler: `scripts/domains.json`
-- Script, verilen URL'lere istek atar, yönlendirmeleri takip eder ve olası alan adı
-  değişikliklerini raporlar.
+- Denetim **Türkiye'deki ağdan** çalışmalıdır. GitHub Actions sunucuları yurt
+  dışında olduğu için BTK'nın DNS zehirlemesini/SNI engelini göremez; bu yüzden
+  iş akışına eklenmez, yerelde çalıştırılır.
+- DNS zehirlemesi `195.175.254.2` / `2a01:358:4014::/48` adreslerine düşer.
+  Rapor `POISON`, `NXDOMAIN`, `CONN-ERR` ve `HTTP 403` durumlarını ayırır.
+- `--apply` yalnızca yönlendirme **yeni bir domaine** gidiyorsa ve yeni domain
+  içerik döndürüyorsa çalışır; ilgili modülün sürümünü de artırır.
+- Eski, basit denetleyici: `python scripts/check_domains.py` (yalnızca
+  `scripts/domains.json` listesine bakar).
 
 ## Gizlilik: kaynak repo private, dağıtım repo public
 

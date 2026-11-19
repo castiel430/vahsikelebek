@@ -37,6 +37,15 @@ object TraktSyncManager {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private var worker: kotlinx.coroutines.Job? = null
 
+    /** Bir çekme turunun sonucu; özet metninde kullanılır. */
+    data class PullStats(
+        val matched: Int = 0,
+        val applied: Int = 0,
+        val traktMovies: Int = 0,
+        val traktShows: Int = 0,
+        val library: Int = 0,
+    )
+
     fun start(context: Context) {
         if (worker?.isActive == true) return
         worker = scope.launch {
@@ -63,25 +72,33 @@ object TraktSyncManager {
             return
         }
 
+        TraktApi.resetError()
         val sent = pushToTrakt()
-        var pullMatched = 0
-        var received = 0
         var pullFailed = false
-        try {
-            val pull = pullFromTrakt()
-            pullMatched = pull.first
-            received = pull.second
+        val pull = try {
+            pullFromTrakt()
         } catch (e: Exception) {
             // Çekme hatası gönderme tarafını etkilemesin
             pullFailed = true
             Log.w(TAG, "trakt'tan çekme başarısız: ${e.message}")
+            PullStats()
         }
 
         TraktSyncConfig.lastSyncAt = System.currentTimeMillis()
-        TraktSyncConfig.lastSyncSummary = if (pullFailed) {
-            "Gönderilen: $sent · çekme başarısız (logcat: TraktSync)"
-        } else {
-            "Gönderilen: $sent · eşleşen: $pullMatched · alınan: $received"
+        TraktSyncConfig.lastSyncSummary = buildString {
+            append("Gönderilen: $sent")
+            append(" · kütüphane: ${pull.library}")
+            append(" · Trakt: ${pull.traktMovies} film / ${pull.traktShows} dizi")
+            append(" · eşleşen: ${pull.matched} · alınan: ${pull.applied}")
+            if (pullFailed) append(" · çekme başarısız")
+            TraktApi.lastError?.takeIf { it.isNotBlank() }?.let {
+                append("\nHata: ${it.take(140)}")
+            }
+            if (pull.library == 0) {
+                append("\nKütüphanede kitap işaretli içerik yok; eşitleme için içerikleri kütüphanene ekle.")
+            } else if (pull.traktMovies == 0 && pull.traktShows == 0 && !pullFailed) {
+                append("\nTrakt izleme geçmişi boş görünüyor (gönderilecek izlendi işareti de yoksa).")
+            }
         }
     }
 
@@ -149,12 +166,13 @@ object TraktSyncManager {
      * Trakt'taki izleme geçmişini CloudStream'e işler.
      * Kitap işareti olarak ekli içeriklerle imdb/tmdb üzerinden eşleştirir.
      */
-    private suspend fun pullFromTrakt(): Pair<Int, Int> {
+    private suspend fun pullFromTrakt(): PullStats {
+        val bookmarks = runCatching { DataStoreHelper.getAllBookmarkedData() }.getOrNull().orEmpty()
         val movies = TraktApi.watchedMovies()
         val shows = TraktApi.watchedShows()
         if (movies.isEmpty() && shows.isEmpty()) {
             Log.i(TAG, "Trakt izleme geçmişi boş")
-            return 0 to 0
+            return PullStats(library = bookmarks.size)
         }
 
         val moviesByImdb = movies.mapNotNull { m -> m.imdb?.let { it to m } }.toMap()
@@ -162,7 +180,6 @@ object TraktSyncManager {
         val showsByImdb = shows.mapNotNull { s -> s.imdb?.let { it to s } }.toMap()
         val showsByTmdb = shows.mapNotNull { s -> s.tmdb?.let { it to s } }.toMap()
 
-        val bookmarks = runCatching { DataStoreHelper.getAllBookmarkedData() }.getOrNull().orEmpty()
         var changed = 0
         var matched = 0
         for (b in bookmarks) {
@@ -231,7 +248,13 @@ object TraktSyncManager {
             }
         }
         if (changed > 0) Log.i(TAG, "trakt'tan $changed işaret uygulandı")
-        return matched to changed
+        return PullStats(
+            matched = matched,
+            applied = changed,
+            traktMovies = movies.size,
+            traktShows = shows.size,
+            library = bookmarks.size,
+        )
     }
 
     /** VideoWatchState.Watched'ı yazar; zaten işaretliyse false döner. */

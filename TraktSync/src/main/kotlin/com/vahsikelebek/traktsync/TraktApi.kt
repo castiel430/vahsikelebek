@@ -48,6 +48,28 @@ object TraktApi {
     private const val TAG = "TraktSyncApi"
     private val JSON = "application/json; charset=utf-8".toMediaType()
 
+    /**
+     * Son HTTP/servis hatasının kısa açıklaması ("GET ... → HTTP 401: ..." gibi).
+     * Ayarlar penceresindeki eşitleme özetinde gösterilir; başarılı istekte temizlenir.
+     */
+    @Volatile
+    var lastError: String? = null
+        private set
+
+    /** Yeni bir eşitleme turunun başında çağrılır. */
+    fun resetError() {
+        lastError = null
+    }
+
+    private fun fail(message: String): Nothing? {
+        lastError = message
+        Log.w(TAG, message)
+        return null
+    }
+
+    private fun bodySnippet(text: String, limit: Int = 160): String =
+        text.replace(Regex("\\s+"), " ").trim().take(limit)
+
     private fun publicHeaders(): Map<String, String> = mapOf(
         "Content-Type" to "application/json",
         "trakt-api-version" to "2",
@@ -57,32 +79,46 @@ object TraktApi {
     private fun authHeaders(): Map<String, String> =
         publicHeaders() + ("Authorization" to "Bearer ${TraktSyncConfig.accessToken}")
 
+    /**
+     * Trakt hataları JSON gövdesinde döner ("Bu token geçersiz" vb.), bu yüzden
+     * yanıtın HTTP durumunu mutlaka kontrol ediyoruz. Aksi halde 401/422 yanıtı
+     * "başarılı" sayılıp sayaçlar yanlış görünüyordu.
+     */
     private suspend fun postJson(url: String, body: JSONObject, auth: Boolean): JSONObject? = try {
         val resp = app.post(
             url,
             headers = if (auth) authHeaders() else publicHeaders(),
             requestBody = body.toString().toRequestBody(JSON),
         )
-        JSONObject(resp.text)
+        if (!resp.isSuccessful) {
+            fail("POST ${url.substringAfter("api.trakt.tv")} → HTTP ${resp.code}: ${bodySnippet(resp.text)}")
+        } else {
+            JSONObject(resp.text)
+        }
     } catch (e: Exception) {
-        Log.w(TAG, "POST $url başarısız: ${e.message}")
-        null
+        fail("POST ${url.substringAfter("api.trakt.tv")} başarısız: ${e.message}")
     }
 
     private suspend fun getJson(url: String): JSONObject? = try {
         val resp = app.get(url, headers = authHeaders())
-        JSONObject(resp.text)
+        if (!resp.isSuccessful) {
+            fail("GET ${url.substringAfter("api.trakt.tv")} → HTTP ${resp.code}: ${bodySnippet(resp.text)}")
+        } else {
+            JSONObject(resp.text)
+        }
     } catch (e: Exception) {
-        Log.w(TAG, "GET $url başarısız: ${e.message}")
-        null
+        fail("GET ${url.substringAfter("api.trakt.tv")} başarısız: ${e.message}")
     }
 
     private suspend fun getArray(url: String): org.json.JSONArray? = try {
         val resp = app.get(url, headers = authHeaders())
-        org.json.JSONArray(resp.text)
+        if (!resp.isSuccessful) {
+            fail("GET ${url.substringAfter("api.trakt.tv")} → HTTP ${resp.code}: ${bodySnippet(resp.text)}")
+        } else {
+            org.json.JSONArray(resp.text)
+        }
     } catch (e: Exception) {
-        Log.w(TAG, "GET $url başarısız: ${e.message}")
-        null
+        fail("GET ${url.substringAfter("api.trakt.tv")} başarısız: ${e.message}")
     }
 
     // ---------------------------------------------------------------- auth
@@ -112,7 +148,10 @@ object TraktApi {
     suspend fun ensureFreshToken(): Boolean {
         if (TraktSyncConfig.expiresAt > System.currentTimeMillis() / 1000 + 3600) return true
         val refresh = TraktSyncConfig.refreshToken
-        if (refresh.isBlank() || TraktSyncConfig.clientId.isBlank()) return false
+        if (refresh.isBlank() || TraktSyncConfig.clientId.isBlank()) {
+            if (refresh.isBlank()) fail("Oturum yenilenemedi: yenileme anahtarı yok, yeniden bağlan")
+            return false
+        }
         val body = JSONObject()
             .put("refresh_token", refresh)
             .put("client_id", TraktSyncConfig.clientId)
@@ -127,7 +166,11 @@ object TraktApi {
                 requestBody = body.toString().toRequestBody(JSON),
             )
         } catch (e: Exception) {
-            Log.w(TAG, "token yenilenemedi: ${e.message}")
+            fail("Token yenileme isteği başarısız: ${e.message}")
+            return false
+        }
+        if (!resp.isSuccessful) {
+            fail("Token yenileme → HTTP ${resp.code}: ${bodySnippet(resp.text)}")
             return false
         }
         return saveToken(resp.text)
@@ -212,6 +255,15 @@ object TraktApi {
 
     /** Başlık (+ yıl) ile Trakt'ta arar ve eşleşenin (imdb, tmdb) kimliklerini döner. Bulamazsa null. */
     suspend fun searchIdsByTitle(title: String, year: Int?, isShow: Boolean): Pair<String?, String?>? {
+        val direct = searchIdsOnce(title, year, isShow)
+        // Yıl yanlışsa (veya Trakt'ta yıl farklıysa) yılsız aramayla bir kez daha dene.
+        if (direct == null && year != null) {
+            return searchIdsOnce(title, null, isShow)
+        }
+        return direct
+    }
+
+    private suspend fun searchIdsOnce(title: String, year: Int?, isShow: Boolean): Pair<String?, String?>? {
         val path = if (isShow) "show" else "movie"
         val q = java.net.URLEncoder.encode(title, "UTF-8")
         val url = buildString {
@@ -221,6 +273,11 @@ object TraktApi {
         val resp = try {
             app.get(url, headers = authHeaders())
         } catch (e: Exception) {
+            fail("Arama isteği başarısız: ${e.message}")
+            return null
+        }
+        if (!resp.isSuccessful) {
+            fail("Arama \"$title\" → HTTP ${resp.code}: ${bodySnippet(resp.text)}")
             return null
         }
         return try {
