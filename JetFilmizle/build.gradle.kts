@@ -3,7 +3,7 @@ version = 9
 
 
 cloudstream {
-    description = "JetFilmizle â€” TÃ¼rkÃ§e dublaj/altyazÄ±lÄ± film izle (jetfilmizle.app)"
+    description = "JetFilmizle — Türkçe dublaj/altyazılı film izle (jetfilmizle.app)"
     authors = listOf("F0Rextasy")
 
     /**

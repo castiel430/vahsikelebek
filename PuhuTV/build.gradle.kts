@@ -1,7 +1,7 @@
 ﻿version = 3
 
 cloudstream {
-    description = "PuhuTV â€” Yerli diziler, puhutv Orijinal yapÄ±mlar, filmler ve belgeseller"
+    description = "PuhuTV — Yerli diziler, puhutv Orijinal yapımlar, filmler ve belgeseller"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("TvSeries", "Movie")

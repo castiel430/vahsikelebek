@@ -3,7 +3,7 @@ version = 6
 
 
 cloudstream {
-    description = "WebteIzle â€” TÃ¼rkÃ§e dublaj/altyazÄ±lÄ± film izle (webteizle.info)"
+    description = "WebteIzle — Türkçe dublaj/altyazılı film izle (webteizle.info)"
     authors = listOf("F0Rextasy")
 
     /**

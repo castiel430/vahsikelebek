@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "SinemaCX â€” TÃ¼rkÃ§e dublaj & altyazÄ±lÄ± film arÅŸivi (sinemacc.com)"
+    description = "SinemaCX — Türkçe dublaj & altyazılı film arşivi (sinemacc.com)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie")

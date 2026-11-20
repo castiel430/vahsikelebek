@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "ATV â€” GÃ¼ncel ve klasik ATV dizileri (doÄŸrudan MP4/HLS)"
+    description = "ATV — Güncel ve klasik ATV dizileri (doğrudan MP4/HLS)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("TvSeries")

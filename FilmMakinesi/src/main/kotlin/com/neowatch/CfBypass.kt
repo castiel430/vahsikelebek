@@ -4,11 +4,11 @@ import com.lagradost.cloudstream3.network.CloudflareKiller
 import okhttp3.Interceptor
 
 /**
- * Cloudflare "Just a momentâ€¦" (managed challenge) sayfasÄ± yakalayÄ±cÄ±.
+ * Cloudflare "Just a moment…" (managed challenge) sayfası yakalayıcı.
  *
- * Normal yanÄ±tlarda olduÄŸu gibi dÃ¶ner; gÃ¶vde bir Cloudflare challenge'Ä±ysa
- * isteÄŸi WebView Ã¼zerinden yeniden Ã§Ã¶zmeyi dener (CloudflareKiller).
- * Challenge tespiti gÃ¶vdenin ilk ~1 MB'Ä±nda, KAÃ‡TIRÄ°CÄ° marker'lar ile yapÄ±lÄ±r.
+ * Normal yanıtlarda olduğu gibi döner; gövde bir Cloudflare challenge'ıysa
+ * isteği WebView üzerinden yeniden çözmeyi dener (CloudflareKiller).
+ * Challenge tespiti gövdenin ilk ~1 MB'ında, KAÇTIRİCİ marker'lar ile yapılır.
  */
 object CfBypass {
     private val killer by lazy { CloudflareKiller() }
@@ -21,7 +21,7 @@ object CfBypass {
 
     private val CHALLENGE_MARKERS = listOf(
         "just a moment",
-        "gÃ¼venlik taramasÄ±ndan geÃ§iriliyorsunuz",
+        "güvenlik taramasından geçiriliyorsunuz",
         "cf-chl",
         "challenge-platform",
         "attention required",

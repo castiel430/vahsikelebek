@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "Sinezy â€” TÃ¼rkÃ§e dublaj/altyazÄ±lÄ± film arÅŸivi"
+    description = "Sinezy — Türkçe dublaj/altyazılı film arşivi"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie")

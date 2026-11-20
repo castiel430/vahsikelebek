@@ -14,8 +14,7 @@ object TraktSyncConfig {
     /**
      * Eklentiye gömülü Trakt API uygulaması (PKCE, client_secret yok).
      * Geliştirme (Development) uygulamasıdır; yalnızca hesap sahibi ve 16 davetli
-     * kullanıcı giriş yapabilir. Kendi uygulamanızı kullanmak isterseniz
-     * Client ID alanına kendi değerinizi yazabilirsiniz.
+     * kullanıcı giriş yapabilir. Arayüzde Client ID / Secret alanı bulunmaz.
      */
     const val EMBEDDED_CLIENT_ID = "1TF_r9MwpFwHHTjzAAQ0n7hWIqwNBXZ2MU9-nuKLleQ"
 

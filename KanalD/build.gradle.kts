@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "Kanal D â€” dizi ve program bÃ¶lÃ¼mleri"
+    description = "Kanal D — dizi ve program bölümleri"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("TvSeries", "Movie")

@@ -107,7 +107,7 @@ object TraktSyncManager {
             type == TvType.Cartoon || type == TvType.AsianDrama ||
             type == TvType.OVA
 
-    /** Kâtüphaneden Trakt'a gönderilenler; gönderilen öğe sayısını döner. */
+    /** Kütüphaneden Trakt'a gönderilenler; gönderilen öğe sayısını döner. */
     private suspend fun pushToTrakt(): Int {
         var sent = 0
         val bookmarks = runCatching { DataStoreHelper.getAllBookmarkedData() }.getOrNull().orEmpty()

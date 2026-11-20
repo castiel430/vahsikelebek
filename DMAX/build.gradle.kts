@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "DMAX â€” belgesel ve program bÃ¶lÃ¼mleri"
+    description = "DMAX — belgesel ve program bölümleri"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("TvSeries", "Movie")

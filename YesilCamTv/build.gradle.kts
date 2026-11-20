@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "YesilCamTv â€” TÃ¼rkÃ§e iÃ§erik"
+    description = "YesilCamTv — Türkçe içerik"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie", "TvSeries")

@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "CanliDizi â€” TÃ¼rkÃ§e iÃ§erik"
+    description = "CanliDizi — Türkçe içerik"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie", "TvSeries")

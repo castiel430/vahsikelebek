@@ -3,7 +3,7 @@ version = 7
 
 
 cloudstream {
-    description = "DDizi â€” TÃ¼rkÃ§e dizi izle (ddizi.im â†’ ddizi.tel)"
+    description = "DDizi — Türkçe dizi izle (ddizi.im → ddizi.tel)"
     authors = listOf("F0Rextasy")
 
     /**

@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "LoveFilm â€” TÃ¼rkÃ§e dublaj & altyazÄ±lÄ± film arÅŸivi (lovefilmizle.net)"
+    description = "LoveFilm — Türkçe dublaj & altyazılı film arşivi (lovefilmizle.net)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie")

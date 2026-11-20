@@ -1,6 +1,6 @@
 ﻿version = 1
 cloudstream {
-    description = "TÃ¼rk Anime TV â€” TÃ¼rkÃ§e altyazÄ±lÄ± anime izle (turkanime.live)"
+    description = "Türk Anime TV — Türkçe altyazılı anime izle (turkanime.live)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Anime", "AnimeMovie")

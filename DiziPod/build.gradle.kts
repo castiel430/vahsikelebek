@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "DiziPod â€” TÃ¼rkÃ§e altyazÄ±lÄ± yabancÄ± dizi & film arÅŸivi (dizipod.com)"
+    description = "DiziPod — Türkçe altyazılı yabancı dizi & film arşivi (dizipod.com)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("TvSeries", "Movie")

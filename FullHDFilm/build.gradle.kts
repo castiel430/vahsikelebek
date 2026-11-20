@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "FullHDFilm â€” fullhdfilmizlebox.vip (TÃ¼rkÃ§e dublaj & altyazÄ±)"
+    description = "FullHDFilm — fullhdfilmizlebox.vip (Türkçe dublaj & altyazı)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie")

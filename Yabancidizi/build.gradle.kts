@@ -3,7 +3,7 @@ version = 13
 
 
 cloudstream {
-    description = "YabancÄ±dizi â€” ybncidizi.com (dizi, film, anime)"
+    description = "Yabancıdizi — ybncidizi.com (dizi, film, anime)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("TvSeries", "Movie")

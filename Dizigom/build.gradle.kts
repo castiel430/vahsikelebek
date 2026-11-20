@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "Dizigom â€” TÃ¼rkÃ§e iÃ§erik"
+    description = "Dizigom — Türkçe içerik"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie", "TvSeries")

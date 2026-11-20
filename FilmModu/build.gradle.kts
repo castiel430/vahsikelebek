@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "Filmmodu â€” TÃ¼rkÃ§e dublaj & altyazÄ±lÄ± film arÅŸivi (filmmodu.news)"
+    description = "Filmmodu — Türkçe dublaj & altyazılı film arşivi (filmmodu.news)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie")

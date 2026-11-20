@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "DiziBal â€” altyazÄ±lÄ± yabancÄ± dizi ve film arÅŸivi (dizibal.org)"
+    description = "DiziBal — altyazılı yabancı dizi ve film arşivi (dizibal.org)"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("TvSeries", "Movie")

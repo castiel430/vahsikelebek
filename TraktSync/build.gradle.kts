@@ -1,4 +1,4 @@
-version = 6
+version = 7
 
 cloudstream {
     description = "Trakt Senkron - CloudStream kütüphanenizi Trakt.tv ile çift yönlü eşitler (izlenenler ve izleme listesi iki tarafta da görünür)"

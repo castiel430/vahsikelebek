@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "StarTV â€” YalÄ± Ã‡apkÄ±nÄ± ve diÄŸer dizilerin bÃ¶lÃ¼mleri"
+    description = "StarTV — Yalı Çapkını ve diğer dizilerin bölümleri"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("TvSeries")

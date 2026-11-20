@@ -2,7 +2,7 @@
 
 
 cloudstream {
-    description = "HDFilmCehennemi2 â€” TÃ¼rkÃ§e iÃ§erik"
+    description = "HDFilmCehennemi2 — Türkçe içerik"
     authors = listOf("F0Rextasy")
     status = 1
     tvTypes = listOf("Movie", "TvSeries")

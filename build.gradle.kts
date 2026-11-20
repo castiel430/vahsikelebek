@@ -12,11 +12,11 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:8.7.3")
         // Cloudstream gradle plugin which makes everything work and builds plugins
-        // Sabit sÃ¼rÃ¼m: JitPack'in master-SNAPSHOT kaydÄ± bozuk (22 Ekim 2026: maven-metadata "master-master-32895aedb6-1"
+        // Sabit sürüm: JitPack'in master-SNAPSHOT kaydı bozuk (22 Ekim 2026: maven-metadata "master-master-32895aedb6-1"
         // diyor, Gradle "inconsistent module metadata" ile reddediyor; 32895aedb6 derlemesinde dosya yok).
-        // 81b1d424d2 JitPack'te eksiksiz (pom + module + jar) ve CSX deposunda da kullanÄ±lÄ±yor.
+        // 81b1d424d2 JitPack'te eksiksiz (pom + module + jar) ve CSX deposunda da kullanılıyor.
         classpath("com.github.recloudstream:gradle:81b1d424d2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0")  // pre-release APK Kotlin 2.4 metadata kullanÄ±yor; 2.1 derleyicisi okuyamaz
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0")  // pre-release APK Kotlin 2.4 metadata kullanıyor; 2.1 derleyicisi okuyamaz
     }
 }
 
@@ -83,11 +83,11 @@ subprojects {
         // these dependencies can include any of those which are added by the app,
         // but you dont need to include any of them if you dont need them
         // https://github.com/recloudstream/cloudstream/blob/master/app/build.gradle
-        implementation(kotlin("stdlib"))                                              // Kotlin'in temel kÃ¼tÃ¼phanesi
-        implementation("com.github.Blatzar:NiceHttp:0.4.11")                          // HTTP kÃ¼tÃ¼phanesi
-        implementation("org.jsoup:jsoup:1.18.3")                                      // HTML ayrÄ±ÅŸtÄ±rÄ±cÄ±
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1")   // Kotlin iÃ§in Jackson JSON kÃ¼tÃ¼phanesi (eski Android cihazlar iÃ§in 2.13.1'in Ã¼stÃ¼ne Ã§Ä±kmayÄ±n)
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")      // Kotlin iÃ§in asenkron iÅŸlemler
+        implementation(kotlin("stdlib"))                                              // Kotlin'in temel kütüphanesi
+        implementation("com.github.Blatzar:NiceHttp:0.4.11")                          // HTTP kütüphanesi
+        implementation("org.jsoup:jsoup:1.18.3")                                      // HTML ayrıştırıcı
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1")   // Kotlin için Jackson JSON kütüphanesi (eski Android cihazlar için 2.13.1'in üstüne çıkmayın)
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")      // Kotlin için asenkron işlemler
     }
 }
 

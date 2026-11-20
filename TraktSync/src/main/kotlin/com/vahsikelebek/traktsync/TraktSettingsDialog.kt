@@ -87,7 +87,7 @@ object TraktSettingsDialog {
                 setTypeface(typeface, Typeface.BOLD)
             })
             addView(TextView(activity).apply {
-                text = "Kâtüphanen ⇄ Trakt.tv izleme listen"
+                text = "Kütüphanen ⇄ Trakt.tv izleme listen"
                 textSize = 12f
                 setTextColor(secondaryText)
             })
@@ -292,7 +292,7 @@ object TraktSettingsDialog {
         reapplyBtn.setOnClickListener {
             AlertDialog.Builder(activity)
                 .setTitle("İşaretler yeniden uygulansın mı?")
-                .setMessage("Trakt'ta izlediklerinin tamamı kâtüphanedeki içeriklere tekrar işlenir. " +
+                .setMessage("Trakt'ta izlediklerinin tamamı kütüphanedeki içeriklere tekrar işlenir. " +
                     "Daha önce işaretlenmişler zaten yeşil görünür.")
                 .setPositiveButton("Uygula") { _, _ ->
                     TraktSyncConfig.resetPulledApplied()
@@ -316,7 +316,7 @@ object TraktSettingsDialog {
                 "← Trakt'ta izlediklerin buraya işlenir: filmler COMPLETED + yeşil ✓ olur, dizi " +
                 "bölümleri bölüm listesinde yeşil ✓ alır. Tüm yayındaki bölümler izlendiyse " +
                 "COMPLETED, en az biri izlendiyse WATCHING olur (DROPPED / ONHOLD'a dokunulmaz).\n\n" +
-                "Not: Eşleme yalnızca kâtüphanene eklediğin (kitap işaretli) içeriklere uygulanır. " +
+                "Not: Eşleme yalnızca kütüphanene eklediğin (kitap işaretli) içeriklere uygulanır. " +
                 "Gömülü Trakt uygulaması “Development” türündedir; yalnızca uygulamanın sahibi ve " +
                 "16 davetli kullanıcı bağlanabilir."
             textSize = 11.5f
