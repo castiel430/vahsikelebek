@@ -44,9 +44,9 @@ Bir içerik veya bağlantı hakkında bildirim alırsak:
    `plugins.json`'u güncelleriz.
 3. Gerekiyorsa karşı-bildirim (counter-notice) sürecini belgeleriz.
 
-Bildirim için iletişim: **GitHub Issues** (`castiel430/vahsikelebek-builds`) veya
-profil üzerinden iletişim. *(Buraya gerçek bir e-posta adresi eklemeniz önerilir;
-DMCA "safe harbor" için belirli ve izlenebilir bir iletşim noktası gerekir.)*
+Bildirim için iletişim: **GitHub Issues**
+(`https://github.com/castiel430/vahsikelebek-builds/issues/new`) veya GitHub
+profilinden doğrudan mesaj. Başlıkta modül adını belirtmeniz yeterlidir.
 
 Bildirimde şunları belirtmeniz yeterlidir: hak sahibi olduğunuz içerik, ilgili
 modül/site, bağlantı veya açıklama ve iletişim bilgileriniz.
