@@ -31,7 +31,7 @@ https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/repo.json
 Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 [`builds/plugins.json`](https://raw.githubusercontent.com/castiel430/vahsikelebek-builds/main/plugins.json).
 
-### Sağlayıcı modülleri (57)
+### Sağlayıcı modülleri (56)
 
 | Modül | Hedef site |
 |---|---|
@@ -73,7 +73,6 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 | LoveFilm | lovefilmizle.net |
 | MinikaCocuk | www.minikacocuk.com.tr |
 | MinikaGO | www.minikago.com.tr |
-| PuhuTV | puhutv.com |
 | RareFilmm | rarefilmm.com |
 
 | SelcukFlix | selcukflix.app |
@@ -109,6 +108,9 @@ Her eklentinin kaynak kodu kendi modülünde bulunur. Tam liste için
 > **SezonlukDizi kaldırıldı:** Site tüm kaynaklarını Cloudflare Turnstile arkasına
 > aldı; tek açık kaynak (byse) de artık PoW + parmak izi doğrulaması istiyor.
 > Eklentiden çözülemediği için sağlayıcı silindi.
+
+> **PuhuTV kaldırıldı:** Sağlayıcı depadan çıkarıldı; yayındaki `.cs3` dosyası ve
+> `plugins.json` girdisi kaldırıldı.
 
 > **Erişilemeyen video host'ları:** `StreamFix`, `loadExtractor` çağrılarında
 > artık erişilemeyen eski alan adlarını (dood.to/ws/li, ds2play.com,
